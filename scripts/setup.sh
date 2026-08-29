@@ -1,12 +1,13 @@
 #!/bin/bash
 # ════════════════════════════════════════════════════════════════
 #
-# Instala y configura:
-#   1. GKE cluster (si no existe)
-#   2. Stack OTel (servicios + monitoring)
-#   3. Chaos Mesh (CNCF)
-#   4. LitmusChaos (CNCF)
-#   5. Experimentos de chaos
+# Instala y configura (cluster kubeadm local, sin GKE):
+#   1. Verifica el cluster kubeadm (ya debe existir y estar Ready)
+#   2. Build+push de las imagenes al registry local
+#   3. Stack OTel (servicios + monitoring)
+#   4. Chaos Mesh (CNCF)
+#   5. LitmusChaos (CNCF)
+#   6. Experimentos de chaos
 #
 # Uso:
 #   chmod +x scripts/setup.sh
@@ -21,9 +22,7 @@ set -euo pipefail
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
 BLUE='\033[0;34m'; CYAN='\033[0;36m'; NC='\033[0m'
 
-GCP_PROJECT="cicdtraining-498421"
-GCP_REGION="us-central1-a"
-CLUSTER_NAME="otel-lab-chaos"
+REGISTRY="${REGISTRY:-192.168.0.20:30500}"
 NAMESPACE="otel-lab"
 
 log()  { echo -e "${BLUE}[$(date +%H:%M:%S)]${NC} $1"; }
@@ -35,69 +34,48 @@ err()  { echo -e "${RED}❌ $1${NC}"; exit 1; }
  # PASO 1 — Verificar prerequisitos
  # ════════════════════════════════════════════════════════════════
  check_prerequisites() {
-   log "Verificando prerequisitos..."
-   for tool in gcloud kubectl helm docker; do
-     if ! command -v $tool &>/dev/null; then
-       err "$tool no está instalado. Instálalo antes de continuar."
-     fi
-     ok "$tool disponible"
-   done
+  log "Verificando prerequisitos..."
+  for tool in kubectl helm docker; do
+    if ! command -v $tool &>/dev/null; then
+      err "$tool no esta instalado. Instalalo antes de continuar."
+    fi
+    ok "$tool disponible"
+  done
 
-   # Verificar autenticación GCP
-   if ! gcloud auth list --filter=status:ACTIVE --format="value(account)" | grep -q "@"; then
-     err "No hay cuenta activa de GCP. Ejecuta: gcloud auth login"
-   fi
-   ok "Autenticado en GCP: $(gcloud auth list --filter=status:ACTIVE --format='value(account)')"
- }
-
-# ════════════════════════════════════════════════════════════════
-# PASO 2 — Crear o conectar al cluster GKE
-# ════════════════════════════════════════════════════════════════
-setup_gke_cluster() {
-  log "Verificando cluster GKE..."
-  gcloud config set project $GCP_PROJECT
-
-  if gcloud container clusters describe $CLUSTER_NAME \
-     --zone=$GCP_REGION &>/dev/null 2>&1; then
-    warn "Cluster $CLUSTER_NAME ya existe — conectando..."
-  else
-    log "Creando cluster GKE $CLUSTER_NAME..."
-    gcloud container clusters create $CLUSTER_NAME \
-      --zone=$GCP_REGION \
-      --num-nodes=3 \
-      --machine-type=e2-standard-4 \
-      --enable-autoscaling \
-      --min-nodes=2 \
-      --max-nodes=8 \
-      --disk-size=50GB \
-      --enable-network-policy \
-      --workload-pool="${GCP_PROJECT}.svc.id.goog" \
-      --labels="env=lab,app=otel-chaos"
-    ok "Cluster creado"
+  # Verificar que kubectl apunta al cluster kubeadm local (no a un contexto viejo)
+  if ! kubectl get nodes &>/dev/null; then
+    err "kubectl no puede alcanzar el cluster. Revisa: export KUBECONFIG=~/.kube/config-lab"
   fi
-
-  # Obtener credenciales
-  gcloud container clusters get-credentials $CLUSTER_NAME \
-    --zone=$GCP_REGION --project=$GCP_PROJECT
-  ok "kubectl configurado para $CLUSTER_NAME"
+  ok "kubectl conectado: $(kubectl config current-context)"
 }
 
 # ════════════════════════════════════════════════════════════════
-# PASO 3 — Build y push de las imágenes a GCR
+# PASO 2 — Verificar el cluster kubeadm (ya debe existir)
+# ════════════════════════════════════════════════════════════════
+check_kubeadm_cluster() {
+  log "Verificando nodos del cluster kubeadm..."
+  kubectl get nodes -o wide
+  NOT_READY=$(kubectl get nodes --no-headers | grep -cv " Ready " || true)
+  if [ "$NOT_READY" -gt 0 ]; then
+    err "Hay nodos que no estan Ready. Revisa: kubectl describe node <nodo>"
+  fi
+  ok "Los 3 nodos estan Ready"
+}
+
+# ════════════════════════════════════════════════════════════════
+# PASO 3 — Build y push de las imágenes al registry local
 # ════════════════════════════════════════════════════════════════
 build_and_push_images() {
-  log "Construyendo y publicando imágenes Docker..."
-
-  gcloud auth configure-docker gcr.io --quiet
+  log "Construyendo y publicando imagenes al registry local ($REGISTRY)..."
 
   for svc in service-a service-b data-service; do
     if [ -d "$svc" ]; then
       log "Building $svc..."
-      docker build -t gcr.io/$GCP_PROJECT/$svc:1.0.0 $svc/
-      docker push gcr.io/$GCP_PROJECT/$svc:1.0.0
-      ok "$svc publicado en GCR"
+      docker build -t $REGISTRY/$svc:1.0.0 $svc/
+      docker push $REGISTRY/$svc:1.0.0
+      ok "$svc publicado en $REGISTRY"
     else
-      warn "Directorio $svc no encontrado — asumiendo imagen ya existe en GCR"
+      warn "Directorio $svc no encontrado — asumiendo imagen ya existe en el registry"
     fi
   done
 }
@@ -106,7 +84,7 @@ build_and_push_images() {
 # PASO 4 — Desplegar el stack OTel base
 # ════════════════════════════════════════════════════════════════
 deploy_otel_stack() {
-  log "Desplegando stack OTel en GKE..."
+  log "Desplegando stack OTel..."
 
   # Namespace y RBAC
   kubectl apply -fbase/00-namespace-rbac.yaml
@@ -128,9 +106,9 @@ deploy_otel_stack() {
     --timeout=300s
   ok "Stack OTel listo"
 
-  # Mostrar servicios externos
-  log "Servicios externos (IPs pueden tardar 2-3 min en asignarse):"
-  kubectl get svc -n $NAMESPACE | grep LoadBalancer
+  # Mostrar servicios expuestos (NodePort en un cluster on-prem, sin cloud LB)
+  log "Servicios expuestos (NodePort):"
+  kubectl get svc -n $NAMESPACE | grep NodePort
 }
 
 # ════════════════════════════════════════════════════════════════
@@ -144,7 +122,7 @@ install_chaos_mesh() {
   helm repo update
 
   # Instalar en namespace chaos-mesh
-  # GKE usa containerd como container runtime desde K8s 1.24
+  # kubeadm con containerd como container runtime
   if helm status chaos-mesh -n chaos-mesh &>/dev/null 2>&1; then
     warn "Chaos Mesh ya está instalado — actualizando..."
     helm upgrade chaos-mesh chaos-mesh/chaos-mesh \
@@ -413,7 +391,7 @@ run_litmus_experiments() {
   echo -e "${CYAN}════════════════════════════════════════${NC}"
   echo ""
 
-  kubectl apply -f k8s/litmus/chaosengine-experiment-2.yaml
+  kubectl apply -f litmus/chaosengine-experiment-2.yaml
   ok "ChaosEngine aplicado"
 
   # Esperar resultado del ChaosEngine
@@ -488,7 +466,7 @@ main() {
   echo ""
   echo -e "${CYAN}╔══════════════════════════════════════════════════════╗${NC}"
   echo -e "${CYAN}║  OTel Lab — Chaos Engineering con Chaos Mesh + Litmus ║${NC}"
-  echo -e "${CYAN}║  Proyecto: $GCP_PROJECT                         ║${NC}"
+  echo -e "${CYAN}║  Cluster kubeadm local — $REGISTRY        ║${NC}"
   echo -e "${CYAN}╚══════════════════════════════════════════════════════╝${NC}"
   echo ""
 
@@ -510,12 +488,13 @@ main() {
       ;;
     *)
       # Instalación completa
-      #check_prerequisites
-      #setup_gke_cluster
-      #build_and_push_images
-      #deploy_otel_stack
-      #install_chaos_mesh
+      check_prerequisites
+      check_kubeadm_cluster
+      build_and_push_images
+      deploy_otel_stack
+      install_chaos_mesh
       install_litmus_chaos
+      kubectl apply -f litmus/pod-delete-experiment.yaml
       generate_baseline_traffic
       run_chaos_mesh_experiments
       run_litmus_experiments
