@@ -3,6 +3,100 @@
 
 ---
 
+---
+
+## Adaptación a un cluster kubeadm local (sin GKE)
+
+Este fork corre el laboratorio completo sobre un **cluster kubeadm propio** (3 VMs
+VirtualBox: `kube-cp` 192.168.0.20, `kube-w1` 192.168.0.21, `kube-w2` 192.168.0.22,
+Debian 12 arm64, containerd, Calico) en vez de GKE. `scripts/setup.sh` original
+asume GCP en varios puntos (cluster GKE, GCR, LoadBalancer, metadata server) que
+no existen en un cluster on-prem. Esto es lo que hubo que resolver, en orden.
+
+### 1. Preparación del cluster (antes de tocar el repo)
+
+- `kubectl label node kube-cp rol=observabilidad` — permite anclar ahí cargas
+  con estado (Postgres, el registry) vía `nodeSelector`.
+- `kubectl taint nodes kube-cp node-role.kubernetes.io/control-plane:NoSchedule-`
+  — cluster de 3 nodos, sin quitar el taint el control-plane no agenda pods.
+- `export KUBECONFIG=~/.kube/config-lab` (persistido en `~/.zshrc`) — evita
+  que `kubectl` caiga de nuevo en un contexto GKE viejo mezclado en el config
+  por defecto.
+- En las 3 VMs: enmascarar `sleep.target`/`suspend.target` y `IdleAction=ignore`
+  en `logind.conf` — por defecto se suspendían solas y los nodos quedaban
+  `NotReady`.
+
+### 2. Registry local (reemplaza a GCR)
+
+kubeadm no trae ningún registry. Se agregó:
+
+- **`registry/registry.yaml`** (nuevo) — Deployment `registry:2` + Service
+  `NodePort` en el puerto `30500`, con `nodeSelector: rol=observabilidad` y
+  `hostPath` para persistencia, anclado a `kube-cp`.
+- **`registry/setup-nodes.sh`** (nuevo) — por cada nodo, crea
+  `/etc/containerd/certs.d/192.168.0.20:30500/hosts.toml` (`skip_verify = true`,
+  HTTP sin TLS) y reinicia containerd para que confíe en el registry. Usa
+  `ssh -t` para que `sudo` tenga terminal — sin eso falla con
+  `sudo: a terminal is required`.
+
+Build y push de las 3 imágenes, manual (equivalente al paso 3 de `setup.sh`
+pero contra el registry local en vez de GCR):
+
+```bash
+docker build -t 192.168.0.20:30500/service-a:1.0.0 service-a/
+docker push 192.168.0.20:30500/service-a:1.0.0
+# ídem service-b y data-service
+```
+
+(Requiere agregar `192.168.0.20:30500` a `insecure-registries` en
+Docker Desktop → Settings → Docker Engine.)
+
+### 3. Cambios en los manifiestos (`base/`)
+
+| Archivo | Cambio | Por qué |
+|---|---|---|
+| `base/01-configmaps.yaml` | `detectors: [env, gcp, k8s_node]` → `[env, system]` | `gcp` asume metadata server de GCP; `k8s_node` no es un detector válido de `resourcedetectionprocessor` (es `k8snode`, y requiere RBAC extra) |
+| `base/01-configmaps.yaml` | exporter `googlecloud` quitado del pipeline de logs | sin credenciales de GCP en el cluster local |
+| `base/02-deployments.yaml` | `image: gcr.io/...` → `image: 192.168.0.20:30500/...` en las 3 imágenes | usar el registry local |
+| `base/02-deployments.yaml` | `service-a-svc` y `jaeger-svc`: `LoadBalancer` → `NodePort` | kubeadm no tiene cloud controller que asigne IPs externas |
+| `base/02-deployments.yaml` | Postgres: `StatefulSet` + `volumeClaimTemplates` → `Deployment` + `hostPath` (`nodeSelector: rol=observabilidad`) | el PVC dinámico requiere una `StorageClass`, que un kubeadm plano no trae; el PVC se hubiera quedado en `Pending` para siempre |
+
+### 4. LitmusChaos
+
+- `scripts/setup.sh` descarga las `ChaosExperiment` desde
+  `hub.litmuschaos.io/api/chaos/3.x.x?file=...` — esa URL del hub devuelve un
+  404/HTML y rompe el `kubectl apply`. Se agregó
+  **`litmus/pod-delete-experiment.yaml`** (nuevo) con el `ChaosExperiment`
+  `pod-delete` embebido directamente (imagen
+  `litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.31.0`, tomada del chart
+  oficial `litmus-helm`).
+- `litmus/chaosengine-experiment-2.yaml`: los probes usaban `mode: DuringChaos`,
+  que no es un valor válido del CRD (`^(SOT|EOT|Edge|Continuous|OnChaos)$`) →
+  corregido a `mode: OnChaos`.
+
+Instalación de Chaos Mesh + LitmusChaos (steps 1-4 de GCP quedan comentados en
+`main()`; se corre solo la parte de herramientas de chaos, que ya era
+containerd-nativa):
+
+```bash
+export KUBECONFIG=~/.kube/config-lab
+bash scripts/setup.sh --install-chaos-tools
+kubectl apply -f litmus/pod-delete-experiment.yaml
+```
+
+### 5. Verificación end-to-end
+
+```bash
+kubectl -n otel-lab get pods                 # todo Running
+curl http://192.168.0.20:$(kubectl -n otel-lab get svc service-a-svc -o jsonpath='{.spec.ports[0].nodePort}')/health
+kubectl apply -f litmus/chaosengine-experiment-2.yaml
+kubectl -n otel-lab get chaosengine,chaosresult
+```
+
+`chaos-mesh/*.yaml` no necesitó cambios: ya usa `chaosDaemon.runtime=containerd`
+y `socketPath=/run/containerd/containerd.sock`, compatible con kubeadm tal cual.
+
+
 ## Qué cambió técnicamente
 
 ### Antes (Docker Compose — Módulo D)

@@ -9,13 +9,17 @@
 
 ---
 # ── PostgreSQL ────────────────────────────────────────────────────
+# Ajuste para kubeadm: el StatefulSet original usaba volumeClaimTemplates,
+# que requieren una StorageClass con aprovisionamiento dinamico. Un cluster
+# kubeadm plano no trae ninguna por defecto, asi que el PVC se habria quedado
+# en Pending para siempre. Se reemplaza por un Deployment con hostPath fijado
+# en kube-cp (mismo nodo que el registry local, etiquetado rol=observabilidad).
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: postgres
   namespace: otel-lab
 spec:
-  serviceName: postgres-svc
   replicas: 1
   selector:
     matchLabels:
@@ -24,9 +28,10 @@ spec:
     metadata:
       labels:
         app: postgres
-        # Label explícito para excluir de chaos experiments
         chaos.exclude: "true"
     spec:
+      nodeSelector:
+        rol: observabilidad
       containers:
         - name: postgres
           image: postgres:16-alpine
@@ -44,6 +49,7 @@ spec:
               mountPath: /docker-entrypoint-initdb.d
             - name: data
               mountPath: /var/lib/postgresql/data
+              subPath: pgdata   # evita el aviso de lost+found en un hostPath vacio
           readinessProbe:
             exec:
               command: ["pg_isready", "-U", "app", "-d", "appdb"]
@@ -53,14 +59,10 @@ spec:
         - name: init-sql
           configMap:
             name: postgres-init
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 5Gi
+        - name: data
+          hostPath:
+            path: /var/lib/lab-postgres
+            type: DirectoryOrCreate
 
 ---
 apiVersion: v1
@@ -216,7 +218,7 @@ spec:
     spec:
       containers:
         - name: service-a
-          image: gcr.io/cicdtraining-498421/service-a:1.0.0
+          image: 192.168.0.20:30500/service-a:1.0.0
           ports:
             - containerPort: 8000
               name: http
@@ -264,7 +266,7 @@ spec:
     - name: metrics
       port: 9064
       targetPort: 9064
-  type: LoadBalancer
+  type: NodePort
 
 ---
 # ── service-b ─────────────────────────────────────────────────────
@@ -293,7 +295,7 @@ spec:
     spec:
       containers:
         - name: service-b
-          image: gcr.io/cicdtraining-498421/service-b:1.0.0
+          image: 192.168.0.20:30500/service-b:1.0.0
           ports:
             - containerPort: 8001
               name: http
@@ -365,7 +367,7 @@ spec:
     spec:
       containers:
         - name: data-service
-          image: gcr.io/cicdtraining-498421/data-service:1.0.0
+          image: 192.168.0.20:30500/data-service:1.0.0
           ports:
             - containerPort: 8002
               name: http
@@ -465,7 +467,7 @@ spec:
     - name: otlp-grpc
       port: 4317
       targetPort: 4317
-  type: LoadBalancer
+  type: NodePort
 
 ---
 # ── Prometheus ────────────────────────────────────────────────────

@@ -70,7 +70,7 @@ data:
             key: cloud.project
             value: ${env:GCP_PROJECT_ID}
       resourcedetection:
-        detectors: [env, gcp, k8s_node]
+        detectors: [env, system]
         timeout: 10s
         override: false
       filter/health:
@@ -118,7 +118,7 @@ data:
         logs:
           receivers: [otlp]
           processors: [memory_limiter, resource, batch]
-          exporters: [googlecloud, logging]
+          exporters: [logging]   # "googlecloud" quitado: sin credenciales GCP en el cluster local
       telemetry:
         logs:
           level: info
