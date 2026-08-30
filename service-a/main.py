@@ -118,7 +118,6 @@ logger = logging.getLogger("service-a")
 # FastAPIInstrumentor crea spans automáticos para cada endpoint HTTP
 # HTTPXClientInstrumentor propaga el W3C TraceContext hacia service-b
 # Psycopg2Instrumentor crea spans para cada query SQL
-FastAPIInstrumentor().instrument(tracer_provider=tracer_provider)
 HTTPXClientInstrumentor().instrument(tracer_provider=tracer_provider)
 Psycopg2Instrumentor().instrument(tracer_provider=tracer_provider)
 
@@ -143,6 +142,12 @@ app = FastAPI(
     version=APP_VERSION,
     lifespan=lifespan,
 )
+
+# FastAPIInstrumentor.instrument_app(app) — en versiones >=0.48b0 el patch
+# global FastAPIInstrumentor().instrument() ya no engancha instancias nuevas de
+# FastAPI; hay que instrumentar la instancia explicitamente para que la
+# extraccion del header traceparent entrante funcione.
+FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer_provider)
 
 # ── Endpoints ─────────────────────────────────────────────────────────────────
 
