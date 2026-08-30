@@ -1,0 +1,39 @@
+═══════════════════════════════════════════════════════════════
+  GAME DAY — REPORTE UNIFICADO
+═══════════════════════════════════════════════════════════════
+
+── EXPERIMENTO 1 — NetworkChaos delay 200 ms  (exp1-20260830-001312)
+   p50 línea base       42.4 ms      p95     93.6 ms
+   p50 con chaos       441.9 ms      p95    486.1 ms
+   latencia añadida    399.6 ms  sobre 200 ms inyectados
+   rollback: vuelve a la línea base a t+300 s (nominal 300 s)
+   RESTARTS de service-b: 0   (control — deben ser 0)
+
+── EXPERIMENTO 2A — path: "*"        (health check DENTRO)   (exp2-A-20260830-002635)
+   error rate durante el chaos    10.7 %   (56/524)
+   error rate después del TTL      8.0 %   (33/411)
+   último error                  t+ 534.8 s   (nominal 300 s)
+   desfase del rollback          +234.8 s
+   RESTARTS del pod objetivo     6
+   finalizer forzado en limpieza: SÍ
+
+── EXPERIMENTO 2B — path: "/data/*"  (health check FUERA)   (exp2-B-20260830-004059)
+   error rate durante el chaos     9.0 %   (69/764)
+   error rate después del TTL      0.3 %   (2/636)
+   último error                  t+ 307.7 s   (nominal 300 s)
+   desfase del rollback            +7.7 s
+   RESTARTS del pod objetivo     0
+   finalizer forzado en limpieza: no
+
+═══ COMPARACIÓN A vs B — ¿funciona la remediación #1? ═══
+
+                                   A (path "*")   B (path "/data/*")
+   error rate inyectado                10.7 %            9.0 %
+   desfase del rollback              +234.8 s           +7.7 s
+   reinicios del pod objetivo             6                0
+   hubo que forzar el finalizer          SÍ               no
+
+   VEREDICTO: la remediación FUNCIONA — con el health check fuera del
+   blast radius el pod no reinicia y el rollback por TTL cierra limpio.
+
+Evidencia completa en: results/gameday-20260830-001312

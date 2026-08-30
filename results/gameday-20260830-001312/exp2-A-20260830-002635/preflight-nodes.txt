@@ -1,0 +1,5 @@
+NAME      STATUS   ROLES           AGE     VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION   CONTAINER-RUNTIME
+kube-cp   Ready    control-plane   7d14h   v1.35.8   192.168.0.20   <none>        Debian GNU/Linux 12 (bookworm)   6.1.0-52-arm64   containerd://2.3.3
+kube-w1   Ready    worker          7d11h   v1.35.8   192.168.0.21   <none>        Debian GNU/Linux 12 (bookworm)   6.1.0-52-arm64   containerd://2.3.3
+kube-w2   Ready    worker          7d12h   v1.35.8   192.168.0.22   <none>        Debian GNU/Linux 12 (bookworm)   6.1.0-52-arm64   containerd://2.3.3
+error: Metrics API not available

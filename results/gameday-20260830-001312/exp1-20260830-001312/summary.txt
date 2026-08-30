@@ -1,0 +1,18 @@
+═══ RESUMEN EXPERIMENTO 1 — NetworkChaos 200 ms ±10 ms ═══
+
+LÍNEA BASE: n=228  errores=0 (0.0%)
+   p50=   42.4 ms   p95=   93.6 ms   p99=  246.0 ms   máx=  313.7 ms
+
+CHAOS (0-300s): n=598  errores=0 (0.0%)
+   p50=  441.9 ms   p95=  486.1 ms   p99=  541.7 ms   máx=  565.9 ms
+
+POST-ROLLBACK: n=626  errores=0 (0.0%)
+   p50=   30.3 ms   p95=   60.0 ms   p99=  104.1 ms   máx=  156.9 ms
+
+LATENCIA AÑADIDA (p50 chaos − p50 base): 399.6 ms
+   inyectado 200 ms en direction:to → esperado ~200-400 ms según ida/vuelta
+   amplificación observada: 2.00× el delay inyectado
+
+ROLLBACK: latencia de vuelta bajo 2× la línea base a t+300.0 s (fin nominal 300 s) → desfase +0.0 s
+
+RESTARTS de service-b durante el experimento: ['1', '2']  (control: deben quedarse en 0)

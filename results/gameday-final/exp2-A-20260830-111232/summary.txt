@@ -1,0 +1,27 @@
+═══ RESUMEN EXPERIMENTO 2 (repetición instrumentada) ═══
+
+LÍNEA BASE: n=232  errores=0 (0.0%)
+   OK    p50=17ms  p95=34ms  max=48ms
+
+CHAOS (0-300s): n=544  errores=47 (8.6%)
+   OK    p50=16ms  p95=26ms  max=54ms
+   ERR   códigos={'000': 47}  duración media=7.17s  min=0.01s  max=9.44s
+
+POST-ROLLBACK (300s+): n=476  errores=26 (5.5%)
+   OK    p50=16ms  p95=29ms  max=62ms
+   ERR   códigos={'000': 26}  duración media=9.35s  min=9.33s  max=9.42s
+
+TIMELINE DEL ROLLBACK
+   primer error:  t+   9.9s   (MTTD del cliente)
+   último error:  t+ 466.8s
+   fin nominal:   t+ 300.0s
+   → ROLLBACK TARDÍO: 166.8s de errores después del duration
+
+BLIND SPOT DE TRAZAS
+   trazas de data-service en la ventana: 1413
+   status codes vistos en spans: {'200': 2477}
+   errores del lado cliente en la misma ventana: 73
+   → CONFIRMADO: el APM no registra ni un error.
+     target: Response aborta en el camino de VUELTA: la app ya proceso
+     la request y emitio su span 200 cuando Chaos Mesh corta la conexion.
+     La telemetria no tiene un hueco: afirma exito para requests fallidas.

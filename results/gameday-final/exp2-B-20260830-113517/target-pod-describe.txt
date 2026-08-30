@@ -1,0 +1,69 @@
+Name:             data-service-7fd57b5499-642qt
+Namespace:        otel-lab
+Priority:         0
+Service Account:  default
+Node:             kube-w1/192.168.0.21
+Start Time:       Sun, 30 Aug 2026 11:36:48 -0500
+Labels:           app=data-service
+                  chaos.target=true
+                  pod-template-hash=7fd57b5499
+                  version=1.0.0
+Annotations:      cni.projectcalico.org/containerID: cc74aec616f4597460f22825080633fa7c37b38fda63bbcfc265525b401287f7
+                  cni.projectcalico.org/podIP: 10.244.179.83/32
+                  cni.projectcalico.org/podIPs: 10.244.179.83/32
+                  prometheus.io/port: 9066
+                  prometheus.io/scrape: true
+Status:           Running
+IP:               10.244.179.83
+IPs:
+  IP:           10.244.179.83
+Controlled By:  ReplicaSet/data-service-7fd57b5499
+Containers:
+  data-service:
+    Container ID:   containerd://f5d36846969cf49fd75fea4516b0f7af3da422c279391db82b2816a8a7d1ac39
+    Image:          192.168.0.20:30500/data-service:1.0.1
+    Image ID:       192.168.0.20:30500/data-service@sha256:3c2f1de16a251ff039851955ca541404bce448a15eebe05f9aa734e1f827b785
+    Ports:          8002/TCP, 9066/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Sun, 30 Aug 2026 11:36:49 -0500
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:     100m
+      memory:  128Mi
+    Liveness:  http-get http://:8002/health delay=20s timeout=1s period=20s #success=1 #failure=3
+    Environment Variables from:
+      otel-lab-config  ConfigMap  Optional: false
+    Environment:
+      PROMETHEUS_PORT:  9066
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-852c7 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-852c7:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  9m32s  default-scheduler  Successfully assigned otel-lab/data-service-7fd57b5499-642qt to kube-w1
+  Normal  Pulled     9m31s  kubelet            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+  Normal  Created    9m31s  kubelet            Container created
+  Normal  Started    9m31s  kubelet            Container started

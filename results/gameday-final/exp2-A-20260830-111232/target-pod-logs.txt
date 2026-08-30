@@ -1,0 +1,5 @@
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+{"asctime": "2026-08-30 16:23:28,681", "levelname": "INFO", "name": "data-service", "message": "data-service iniciando", "taskName": "Task-2", "cloud_provider": "gcp", "db_dsn_host": "postgres-svc:5432", "service": "data-service"}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)

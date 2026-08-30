@@ -85,16 +85,17 @@ data:
           },
           "targets": [
             {
-              "expr": "histogram_quantile(0.95, sum by (le) (rate(otelcol_http_server_duration_milliseconds_bucket[$__rate_interval])))",
-              "legendFormat": "p95",
+              "expr": "histogram_quantile(0.95, sum by (le, exported_job) (rate(otelcol_http_server_duration_milliseconds_bucket[$__rate_interval])))",
+              "legendFormat": "p95 {{exported_job}}",
               "refId": "A"
             },
             {
-              "expr": "histogram_quantile(0.50, sum by (le) (rate(otelcol_http_server_duration_milliseconds_bucket[$__rate_interval])))",
-              "legendFormat": "p50",
+              "expr": "histogram_quantile(0.50, sum by (le, exported_job) (rate(otelcol_http_server_duration_milliseconds_bucket[$__rate_interval])))",
+              "legendFormat": "p50 {{exported_job}}",
               "refId": "B"
             }
-          ]
+          ],
+          "description": "Desglosado por servicio. En el Experimento 1 el p95 de service-b se queda bajo mientras el cliente sufre +400 ms: la latencia vive en el enlace, no en la dependencia (debilidad D2 del Plan de Game Day)."
         },
         {
           "id": 2,
@@ -114,8 +115,8 @@ data:
           },
           "targets": [
             {
-              "expr": "sum(rate(otelcol_http_server_duration_milliseconds_count[$__rate_interval]))",
-              "legendFormat": "requests/s",
+              "expr": "sum by (exported_job) (rate(otelcol_http_server_duration_milliseconds_count[$__rate_interval]))",
+              "legendFormat": "{{exported_job}}",
               "refId": "A"
             }
           ]
@@ -180,10 +181,122 @@ data:
               "refId": "C"
             }
           ]
+        },
+        {
+          "id": 5,
+          "title": "SLI de borde — disponibilidad por endpoint (blackbox)",
+          "type": "timeseries",
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 16
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percentunit",
+              "min": 0,
+              "max": 1
+            },
+            "overrides": []
+          },
+          "targets": [
+            {
+              "expr": "avg_over_time(probe_success{job=\"blackbox-http\"}[1m])",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "description": "Sonda HTTP desde fuera del proceso instrumentado. Es la unica fuente de este tablero que puede ver las requests abortadas por HTTPChaos: el abort ocurre en el proxy, antes de que la request llegue al codigo, asi que ni las trazas ni las metricas de la app la registran."
+        },
+        {
+          "id": 6,
+          "title": "SLI de borde — latencia de la sonda",
+          "type": "timeseries",
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 16
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "targets": [
+            {
+              "expr": "probe_duration_seconds{job=\"blackbox-http\"}",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "description": "Un abort se manifiesta como corte (~0,02 s) o como cuelgue hasta el timeout."
+        },
+        {
+          "id": 7,
+          "title": "data-service — requests procesadas por la app, por replica",
+          "type": "timeseries",
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 24
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "reqps"
+            },
+            "overrides": []
+          },
+          "targets": [
+            {
+              "expr": "sum by (exported_instance) (rate(otelcol_data_requests_total[$__rate_interval]))",
+              "legendFormat": "réplica {{exported_instance}}",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(rate(otelcol_data_requests_total[$__rate_interval]))",
+              "legendFormat": "TOTAL registrado por la app",
+              "refId": "B"
+            }
+          ],
+          "description": "Una serie por replica (service.instance.id). Durante el chaos NINGUNA baja: el HTTPChaos usa target: Response, o sea que aborta en el camino de vuelta. La aplicacion procesa la request, responde 200 y emite su span; el cliente nunca recibe la respuesta. Por eso el APM no muestra un hueco sino exito."
+        },
+        {
+          "id": 8,
+          "title": "Blind spot — quien ve la falla",
+          "type": "timeseries",
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 24
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "min": 0
+            },
+            "overrides": []
+          },
+          "targets": [
+            {
+              "expr": "100 * (1 - avg_over_time(probe_success{job=\"blackbox-http\", instance=\"http://data-service-svc:8002/data/products\"}[2m]))",
+              "legendFormat": "error rate visto desde el borde",
+              "refId": "A"
+            },
+            {
+              "expr": "100 * (sum(rate(otelcol_http_server_duration_milliseconds_count{exported_job=\"data-service\", http_status_code=~\"5..\"}[2m])) / sum(rate(otelcol_http_server_duration_milliseconds_count{exported_job=\"data-service\"}[2m]))) or vector(0)",
+              "legendFormat": "error rate visto por el APM (5xx)",
+              "refId": "B"
+            }
+          ],
+          "description": "Las dos lineas miden el mismo incidente. La del APM se queda en 0 porque la aplicacion respondio 200 a todas: el corte ocurre despues, en la conexion."
         }
       ]
     }
-
 ---
 apiVersion: apps/v1
 kind: Deployment

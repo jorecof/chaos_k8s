@@ -1,0 +1,21 @@
+NAME                            READY   STATUS    RESTARTS   AGE     IP               NODE      NOMINATED NODE   READINESS GATES
+data-service-7fd57b5499-52tzf   1/1     Running   0          4h21m   10.244.58.179    kube-w2   <none>           <none>
+data-service-7fd57b5499-7ls75   1/1     Running   0          2s      10.244.179.76    kube-w1   <none>           <none>
+data-service-7fd57b5499-7vdlk   1/1     Running   0          2s      10.244.179.74    kube-w1   <none>           <none>
+data-service-7fd57b5499-96wsl   1/1     Running   0          2s      10.244.58.189    kube-w2   <none>           <none>
+data-service-7fd57b5499-bgwpm   1/1     Running   0          2s      10.244.58.187    kube-w2   <none>           <none>
+data-service-7fd57b5499-c45qm   1/1     Running   0          10h     10.244.179.124   kube-w1   <none>           <none>
+data-service-7fd57b5499-l86c5   1/1     Running   0          2s      10.244.58.188    kube-w2   <none>           <none>
+data-service-7fd57b5499-m6646   1/1     Running   0          2s      10.244.58.190    kube-w2   <none>           <none>
+data-service-7fd57b5499-q6rjh   1/1     Running   0          2s      10.244.179.81    kube-w1   <none>           <none>
+data-service-7fd57b5499-wwshb   1/1     Running   0          2s      10.244.179.75    kube-w1   <none>           <none>
+data-service-7fd57b5499-52tzf   kube-w2   0
+data-service-7fd57b5499-7ls75   kube-w1   0
+data-service-7fd57b5499-7vdlk   kube-w1   0
+data-service-7fd57b5499-96wsl   kube-w2   0
+data-service-7fd57b5499-bgwpm   kube-w2   0
+data-service-7fd57b5499-c45qm   kube-w1   0
+data-service-7fd57b5499-l86c5   kube-w2   0
+data-service-7fd57b5499-m6646   kube-w2   0
+data-service-7fd57b5499-q6rjh   kube-w1   0
+data-service-7fd57b5499-wwshb   kube-w1   0

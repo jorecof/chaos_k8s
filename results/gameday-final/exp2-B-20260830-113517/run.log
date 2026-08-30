@@ -1,0 +1,74 @@
+──────────────────────────────────────────────────────────
+[11:35:17] FASE 0 — preflight
+[11:35:17] reloj del apiserver verificado (desfase 0s)
+[11:35:17] target: http://192.168.0.20:31726/data/products
+[11:35:17] smoke test OK
+[11:35:17] catálogo de métricas de Prometheus guardado
+──────────────────────────────────────────────────────────
+[11:35:17] FASE 1 — línea base (90 s, 4 workers cada 1.5s)
+[11:36:48] línea base terminada
+──────────────────────────────────────────────────────────
+[11:36:48] FASE 2 — escalando data-service a 10 réplicas
+deployment.apps/data-service scaled
+Waiting for deployment "data-service" rollout to finish: 2 out of 10 new replicas have been updated...
+Waiting for deployment "data-service" rollout to finish: 2 of 10 updated replicas are available...
+Waiting for deployment "data-service" rollout to finish: 3 of 10 updated replicas are available...
+Waiting for deployment "data-service" rollout to finish: 4 of 10 updated replicas are available...
+Waiting for deployment "data-service" rollout to finish: 5 of 10 updated replicas are available...
+Waiting for deployment "data-service" rollout to finish: 6 of 10 updated replicas are available...
+Waiting for deployment "data-service" rollout to finish: 7 of 10 updated replicas are available...
+Waiting for deployment "data-service" rollout to finish: 8 of 10 updated replicas are available...
+Waiting for deployment "data-service" rollout to finish: 9 of 10 updated replicas are available...
+deployment "data-service" successfully rolled out
+[11:36:50] réplicas listas — distribución por nodo:
+   1 NODE
+   5 kube-w1
+   5 kube-w2
+──────────────────────────────────────────────────────────
+[11:37:00] FASE 3 — aplicando HTTPChaos (duration del manifiesto: 300s)
+httpchaos.chaos-mesh.org/error-rate-data-service-10pct-remediado created
+[11:37:05] pod(s) objetivo seleccionado(s): otel-lab/data-service-7fd57b5499-642qt
+[11:37:05] inyeccion confirmada (phase: Injected)
+[11:37:05] carga durante 540s (300s de chaos + 240s de observación post-rollback)
+──────────────────────────────────────────────────────────
+[11:46:19] FASE 4 — recolectando evidencia
+[11:46:21] trazas de Jaeger de la ventana guardadas
+[11:46:21] 1620 requests registradas
+──────────────────────────────────────────────────────────
+[11:46:21] LIMPIEZA — borrando chaos y volviendo a 2 réplicas
+httpchaos.chaos-mesh.org "error-rate-data-service-10pct-remediado" deleted
+pod "data-service-7fd57b5499-642qt" deleted
+deployment.apps/data-service scaled
+[11:46:29] limpieza terminada
+──────────────────────────────────────────────────────────
+[11:46:29] FASE 5 — análisis
+═══ RESUMEN EXPERIMENTO 2 (repetición instrumentada) ═══
+
+LÍNEA BASE: n=232  errores=0 (0.0%)
+   OK    p50=17ms  p95=33ms  max=44ms
+
+CHAOS (0-300s): n=760  errores=90 (11.8%)
+   OK    p50=17ms  p95=30ms  max=241ms
+   ERR   códigos={'000': 90}  duración media=0.02s  min=0.01s  max=0.22s
+
+POST-ROLLBACK (300s+): n=628  errores=0 (0.0%)
+   OK    p50=16ms  p95=27ms  max=44ms
+
+TIMELINE DEL ROLLBACK
+   primer error:  t+   6.8s   (MTTD del cliente)
+   último error:  t+ 298.0s
+   fin nominal:   t+ 300.0s
+   → rollback dentro de lo esperado (-2.0s)
+
+BLIND SPOT DE TRAZAS
+   trazas de data-service en la ventana: 1882
+   status codes vistos en spans: {'200': 3381}
+   errores del lado cliente en la misma ventana: 90
+   → CONFIRMADO: el APM no registra ni un error.
+     target: Response aborta en el camino de VUELTA: la app ya proceso
+     la request y emitio su span 200 cuando Chaos Mesh corta la conexion.
+     La telemetria no tiene un hueco: afirma exito para requests fallidas.
+──────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────
+[11:46:30] TODO EN: results/gameday-final/exp2-B-20260830-113517
+[11:46:30] Pásame  results/gameday-final/exp2-B-20260830-113517/summary.txt  y, si querés, results/gameday-final/exp2-B-20260830-113517/chaos-describe.txt

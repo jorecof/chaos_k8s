@@ -1,0 +1,10 @@
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                               AGE
+blackbox-exporter-svc   ClusterIP   10.105.243.56    <none>        9115/TCP                              11h
+data-service-svc        NodePort    10.106.30.121    <none>        8002:31726/TCP                        18h
+grafana-svc             ClusterIP   10.103.68.29     <none>        3000/TCP                              16h
+jaeger-svc              NodePort    10.100.28.41     <none>        16686:31837/TCP,4317:32105/TCP        18h
+otel-collector-svc      ClusterIP   10.101.82.216    <none>        4317/TCP,4318/TCP,8889/TCP,8888/TCP   18h
+postgres-svc            ClusterIP   10.109.70.92     <none>        5432/TCP                              18h
+prometheus-svc          ClusterIP   10.108.38.86     <none>        9090/TCP                              18h
+service-a-svc           NodePort    10.109.124.205   <none>        8000:31646/TCP,9064:31763/TCP         18h
+service-b-svc           ClusterIP   10.102.77.225    <none>        8001/TCP                              18h

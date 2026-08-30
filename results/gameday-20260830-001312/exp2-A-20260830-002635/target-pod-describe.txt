@@ -1,0 +1,78 @@
+Name:             data-service-7fd57b5499-mqdrp
+Namespace:        otel-lab
+Priority:         0
+Service Account:  default
+Node:             kube-w2/192.168.0.22
+Start Time:       Sun, 30 Aug 2026 00:28:06 -0500
+Labels:           app=data-service
+                  chaos.target=true
+                  pod-template-hash=7fd57b5499
+                  version=1.0.0
+Annotations:      cni.projectcalico.org/containerID: b7708ee35d17dc8aabc6b50c8b691564e1d07e5f04ebe4a71f90e800289e5da0
+                  cni.projectcalico.org/podIP: 10.244.58.174/32
+                  cni.projectcalico.org/podIPs: 10.244.58.174/32
+                  prometheus.io/port: 9066
+                  prometheus.io/scrape: true
+Status:           Running
+IP:               10.244.58.174
+IPs:
+  IP:           10.244.58.174
+Controlled By:  ReplicaSet/data-service-7fd57b5499
+Containers:
+  data-service:
+    Container ID:   containerd://e8834a17f9956fd5323dccace2ca9c8e5ea7728fb7eef184b30422ac96a67a01
+    Image:          192.168.0.20:30500/data-service:1.0.1
+    Image ID:       192.168.0.20:30500/data-service@sha256:3c2f1de16a251ff039851955ca541404bce448a15eebe05f9aa734e1f827b785
+    Ports:          8002/TCP, 9066/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Sun, 30 Aug 2026 00:35:57 -0500
+      Finished:     Sun, 30 Aug 2026 00:37:17 -0500
+    Ready:          False
+    Restart Count:  6
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:     100m
+      memory:  128Mi
+    Liveness:  http-get http://:8002/health delay=20s timeout=1s period=20s #success=1 #failure=3
+    Environment Variables from:
+      otel-lab-config  ConfigMap  Optional: false
+    Environment:
+      PROMETHEUS_PORT:  9066
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-mr78m (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-mr78m:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                    From               Message
+  ----     ------     ----                   ----               -------
+  Normal   Scheduled  9m29s                  default-scheduler  Successfully assigned otel-lab/data-service-7fd57b5499-mqdrp to kube-w2
+  Warning  Unhealthy  8m9s (x3 over 8m49s)   kubelet            Liveness probe failed: Get "http://10.244.58.174:8002/health": EOF
+  Normal   Started    2m58s (x6 over 9m28s)  kubelet            Container started
+  Normal   Pulled     99s (x7 over 9m28s)    kubelet            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+  Normal   Created    99s (x7 over 9m28s)    kubelet            Container created
+  Normal   Killing    99s (x6 over 8m9s)     kubelet            Container data-service failed liveness probe, will be restarted
+  Warning  Unhealthy  19s (x18 over 7m48s)   kubelet            Liveness probe failed: Get "http://10.244.58.174:8002/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+  Warning  BackOff    18s (x2 over 18s)      kubelet            Back-off restarting failed container data-service in pod data-service-7fd57b5499-mqdrp_otel-lab(7a812f62-0c11-46db-a38b-2bfbe246e22b)

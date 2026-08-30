@@ -1,0 +1,83 @@
+LAST SEEN   TYPE      REASON                    OBJECT                                       MESSAGE
+21m         Normal    SuccessfulCreate          replicaset/blackbox-exporter-56f8658cc9      Created pod: blackbox-exporter-56f8658cc9-2xvk9
+21m         Normal    Scheduled                 pod/blackbox-exporter-56f8658cc9-2xvk9       Successfully assigned otel-lab/blackbox-exporter-56f8658cc9-2xvk9 to kube-w2
+21m         Normal    ScalingReplicaSet         deployment/blackbox-exporter                 Scaled up replica set blackbox-exporter-56f8658cc9 from 0 to 1
+21m         Normal    Pulled                    pod/grafana-6dd59489c8-7dzgk                 Container image "grafana/grafana:11.1.0" already present on machine and can be accessed by the pod
+21m         Normal    Scheduled                 pod/prometheus-579b9cb5cf-77s9w              Successfully assigned otel-lab/prometheus-579b9cb5cf-77s9w to kube-cp
+21m         Normal    Created                   pod/blackbox-exporter-56f8658cc9-2xvk9       Container created
+21m         Normal    Pulled                    pod/blackbox-exporter-56f8658cc9-2xvk9       Successfully pulled image "192.168.0.20:30500/blackbox-exporter:v0.25.0" in 484ms (484ms including waiting). Image size: 12004758 bytes.
+21m         Normal    Scheduled                 pod/grafana-6dd59489c8-7dzgk                 Successfully assigned otel-lab/grafana-6dd59489c8-7dzgk to kube-cp
+21m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled up replica set prometheus-579b9cb5cf from 0 to 1
+21m         Normal    Created                   pod/grafana-6dd59489c8-7dzgk                 Container created
+21m         Normal    Started                   pod/blackbox-exporter-56f8658cc9-2xvk9       Container started
+21m         Normal    Pulled                    pod/prometheus-579b9cb5cf-77s9w              Container image "prom/prometheus:v2.52.0" already present on machine and can be accessed by the pod
+21m         Normal    SuccessfulCreate          replicaset/grafana-6dd59489c8                Created pod: grafana-6dd59489c8-7dzgk
+21m         Normal    Created                   pod/prometheus-579b9cb5cf-77s9w              Container created
+21m         Normal    Started                   pod/prometheus-579b9cb5cf-77s9w              Container started
+21m         Normal    SuccessfulCreate          replicaset/prometheus-579b9cb5cf             Created pod: prometheus-579b9cb5cf-77s9w
+21m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled up replica set grafana-6dd59489c8 from 0 to 1
+21m         Normal    Pulling                   pod/blackbox-exporter-56f8658cc9-2xvk9       Pulling image "192.168.0.20:30500/blackbox-exporter:v0.25.0"
+21m         Normal    Started                   pod/grafana-6dd59489c8-7dzgk                 Container started
+21m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled down replica set prometheus-7d9d799c5d from 1 to 0
+21m         Normal    SuccessfulDelete          replicaset/prometheus-7d9d799c5d             Deleted pod: prometheus-7d9d799c5d-rd7jr
+21m         Normal    Killing                   pod/prometheus-7d9d799c5d-rd7jr              Stopping container prometheus
+21m         Normal    Killing                   pod/grafana-7dfdc4cff-7g2mh                  Stopping container grafana
+21m         Normal    SuccessfulDelete          replicaset/grafana-7dfdc4cff                 Deleted pod: grafana-7dfdc4cff-7g2mh
+21m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled down replica set grafana-7dfdc4cff from 1 to 0
+19m         Normal    SuccessfulCreate          replicaset/prometheus-656f759db4             Created pod: prometheus-656f759db4-4g2rw
+19m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled up replica set prometheus-656f759db4 from 0 to 1
+19m         Normal    Scheduled                 pod/grafana-f87d67947-9dfhp                  Successfully assigned otel-lab/grafana-f87d67947-9dfhp to kube-cp
+19m         Normal    SuccessfulCreate          replicaset/grafana-f87d67947                 Created pod: grafana-f87d67947-9dfhp
+19m         Normal    Scheduled                 pod/prometheus-656f759db4-4g2rw              Successfully assigned otel-lab/prometheus-656f759db4-4g2rw to kube-w1
+19m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled up replica set grafana-f87d67947 from 0 to 1
+19m         Normal    SuccessfulDelete          replicaset/prometheus-579b9cb5cf             Deleted pod: prometheus-579b9cb5cf-77s9w
+19m         Normal    Started                   pod/prometheus-656f759db4-4g2rw              Container started
+19m         Normal    Created                   pod/prometheus-656f759db4-4g2rw              Container created
+19m         Normal    Pulled                    pod/prometheus-656f759db4-4g2rw              Container image "prom/prometheus:v2.52.0" already present on machine and can be accessed by the pod
+19m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled down replica set prometheus-579b9cb5cf from 1 to 0
+19m         Normal    Started                   pod/grafana-f87d67947-9dfhp                  Container started
+19m         Normal    Created                   pod/grafana-f87d67947-9dfhp                  Container created
+19m         Normal    Killing                   pod/prometheus-579b9cb5cf-77s9w              Stopping container prometheus
+19m         Normal    Pulled                    pod/grafana-f87d67947-9dfhp                  Container image "grafana/grafana:11.1.0" already present on machine and can be accessed by the pod
+19m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled down replica set grafana-6dd59489c8 from 1 to 0
+19m         Normal    SuccessfulDelete          replicaset/grafana-6dd59489c8                Deleted pod: grafana-6dd59489c8-7dzgk
+19m         Normal    Killing                   pod/grafana-6dd59489c8-7dzgk                 Stopping container grafana
+17m         Normal    SuccessfulCreate          replicaset/grafana-bd6f46896                 Created pod: grafana-bd6f46896-6bmbg
+17m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled up replica set grafana-bd6f46896 from 0 to 1
+17m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled up replica set prometheus-74dc799585 from 0 to 1
+17m         Normal    Scheduled                 pod/grafana-bd6f46896-6bmbg                  Successfully assigned otel-lab/grafana-bd6f46896-6bmbg to kube-cp
+17m         Normal    SuccessfulCreate          replicaset/prometheus-74dc799585             Created pod: prometheus-74dc799585-plbdg
+17m         Normal    Scheduled                 pod/prometheus-74dc799585-plbdg              Successfully assigned otel-lab/prometheus-74dc799585-plbdg to kube-cp
+17m         Normal    Started                   pod/grafana-bd6f46896-6bmbg                  Container started
+17m         Normal    Killing                   pod/prometheus-656f759db4-4g2rw              Stopping container prometheus
+17m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled down replica set prometheus-656f759db4 from 1 to 0
+17m         Normal    Pulled                    pod/grafana-bd6f46896-6bmbg                  Container image "grafana/grafana:11.1.0" already present on machine and can be accessed by the pod
+17m         Normal    Created                   pod/grafana-bd6f46896-6bmbg                  Container created
+17m         Normal    Started                   pod/prometheus-74dc799585-plbdg              Container started
+17m         Normal    Created                   pod/prometheus-74dc799585-plbdg              Container created
+17m         Normal    Pulled                    pod/prometheus-74dc799585-plbdg              Container image "prom/prometheus:v2.52.0" already present on machine and can be accessed by the pod
+17m         Normal    SuccessfulDelete          replicaset/prometheus-656f759db4             Deleted pod: prometheus-656f759db4-4g2rw
+17m         Normal    Killing                   pod/grafana-f87d67947-9dfhp                  Stopping container grafana
+17m         Normal    SuccessfulDelete          replicaset/grafana-f87d67947                 Deleted pod: grafana-f87d67947-9dfhp
+17m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled down replica set grafana-f87d67947 from 1 to 0
+9m17s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update finalizer of resource
+9m17s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+9m17s       Normal    FinalizerInited           networkchaos/latency-service-b-200ms         Finalizer has been inited
+9m17s       Normal    Updated                   podnetworkchaos/service-b-6768ff647d-zjf2c   Successfully update ObservedGeneration and FailedMessage of resource
+9m17s       Normal    Updated                   podnetworkchaos/service-b-6768ff647d-jb9hx   Successfully update ObservedGeneration and FailedMessage of resource
+9m17s       Normal    Started                   networkchaos/latency-service-b-200ms         Experiment has started
+9m17s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update desiredPhase of resource
+9m17s       Normal    Applied                   networkchaos/latency-service-b-200ms         Successfully apply chaos for otel-lab/service-b-6768ff647d-zjf2c
+9m17s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+9m17s       Normal    Applied                   networkchaos/latency-service-b-200ms         Successfully apply chaos for otel-lab/service-b-6768ff647d-jb9hx
+9m16s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+4m17s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update desiredPhase of resource
+4m17s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+4m17s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+4m17s       Normal    Recovered                 networkchaos/latency-service-b-200ms         Successfully recover chaos for otel-lab/service-b-6768ff647d-jb9hx
+4m17s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+4m17s       Normal    TimeUp                    networkchaos/latency-service-b-200ms         Time up according to the duration
+4m17s       Normal    Updated                   podnetworkchaos/service-b-6768ff647d-jb9hx   Successfully update ObservedGeneration and FailedMessage of resource
+4m17s       Normal    Recovered                 networkchaos/latency-service-b-200ms         Successfully recover chaos for otel-lab/service-b-6768ff647d-zjf2c
+4m17s       Normal    Updated                   podnetworkchaos/service-b-6768ff647d-zjf2c   Successfully update ObservedGeneration and FailedMessage of resource
+4m12s       Warning   FailedGetResourceMetric   horizontalpodautoscaler/service-a-hpa        failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server could not find the requested resource (get pods.metrics.k8s.io)

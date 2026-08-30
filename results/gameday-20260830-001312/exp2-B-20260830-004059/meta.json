@@ -1,0 +1,5 @@
+{"t_base_start": 1788068460.368, "t_base_end": 1788068551.480,
+ "t_chaos": 1788068563.765, "t_end": 1788069119.163,
+ "chaos_secs": 300, "post_secs": 240,
+ "workers": 4, "interval": 1.5, "replicas": 10,
+ "url": "http://192.168.0.20:31726/data/products", "target": "otel-lab/data-service-7fd57b5499-xzlkd"}

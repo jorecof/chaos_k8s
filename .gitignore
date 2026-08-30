@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+results/
+_to_delete/
+*.zip
+jaeger-traces.json

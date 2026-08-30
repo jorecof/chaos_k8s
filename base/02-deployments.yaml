@@ -365,6 +365,13 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9066"
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: DoesNotExist
       containers:
         - name: data-service
           image: 192.168.0.20:30500/data-service:1.0.1
@@ -406,7 +413,7 @@ spec:
     - name: http
       port: 8002
       targetPort: 8002
-  type: ClusterIP
+  type: NodePort
 
 ---
 # ── Jaeger ────────────────────────────────────────────────────────
@@ -441,15 +448,18 @@ spec:
               value: "true"
             - name: SPAN_STORAGE_TYPE
               value: memory
+            # 100000 trazas no caben en 512Mi: Jaeger moria OOMKilled y se
+            # llevaba la evidencia del experimento con el. Cada corrida
+            # genera ~2000 trazas, asi que 20000 sobra de largo.
             - name: MEMORY_MAX_TRACES
-              value: "100000"
+              value: "20000"
           resources:
             requests:
               cpu: 100m
               memory: 256Mi
             limits:
               cpu: 500m
-              memory: 512Mi
+              memory: 1Gi
 
 ---
 apiVersion: v1

@@ -1,0 +1,177 @@
+LAST SEEN   TYPE      REASON                    OBJECT                                       MESSAGE
+35m         Normal    Scheduled                 pod/blackbox-exporter-56f8658cc9-2xvk9       Successfully assigned otel-lab/blackbox-exporter-56f8658cc9-2xvk9 to kube-w2
+35m         Normal    SuccessfulCreate          replicaset/blackbox-exporter-56f8658cc9      Created pod: blackbox-exporter-56f8658cc9-2xvk9
+35m         Normal    ScalingReplicaSet         deployment/blackbox-exporter                 Scaled up replica set blackbox-exporter-56f8658cc9 from 0 to 1
+35m         Normal    SuccessfulCreate          replicaset/grafana-6dd59489c8                Created pod: grafana-6dd59489c8-7dzgk
+35m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled up replica set prometheus-579b9cb5cf from 0 to 1
+35m         Normal    Created                   pod/blackbox-exporter-56f8658cc9-2xvk9       Container created
+35m         Normal    Pulled                    pod/blackbox-exporter-56f8658cc9-2xvk9       Successfully pulled image "192.168.0.20:30500/blackbox-exporter:v0.25.0" in 484ms (484ms including waiting). Image size: 12004758 bytes.
+35m         Normal    Pulled                    pod/grafana-6dd59489c8-7dzgk                 Container image "grafana/grafana:11.1.0" already present on machine and can be accessed by the pod
+35m         Normal    Created                   pod/grafana-6dd59489c8-7dzgk                 Container created
+35m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled up replica set grafana-6dd59489c8 from 0 to 1
+35m         Normal    Pulling                   pod/blackbox-exporter-56f8658cc9-2xvk9       Pulling image "192.168.0.20:30500/blackbox-exporter:v0.25.0"
+35m         Normal    SuccessfulCreate          replicaset/prometheus-579b9cb5cf             Created pod: prometheus-579b9cb5cf-77s9w
+35m         Normal    Started                   pod/prometheus-579b9cb5cf-77s9w              Container started
+35m         Normal    Scheduled                 pod/prometheus-579b9cb5cf-77s9w              Successfully assigned otel-lab/prometheus-579b9cb5cf-77s9w to kube-cp
+35m         Normal    Pulled                    pod/prometheus-579b9cb5cf-77s9w              Container image "prom/prometheus:v2.52.0" already present on machine and can be accessed by the pod
+35m         Normal    Scheduled                 pod/grafana-6dd59489c8-7dzgk                 Successfully assigned otel-lab/grafana-6dd59489c8-7dzgk to kube-cp
+35m         Normal    Started                   pod/blackbox-exporter-56f8658cc9-2xvk9       Container started
+35m         Normal    Created                   pod/prometheus-579b9cb5cf-77s9w              Container created
+35m         Normal    Killing                   pod/prometheus-7d9d799c5d-rd7jr              Stopping container prometheus
+35m         Normal    SuccessfulDelete          replicaset/prometheus-7d9d799c5d             Deleted pod: prometheus-7d9d799c5d-rd7jr
+35m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled down replica set prometheus-7d9d799c5d from 1 to 0
+35m         Normal    Started                   pod/grafana-6dd59489c8-7dzgk                 Container started
+35m         Normal    SuccessfulDelete          replicaset/grafana-7dfdc4cff                 Deleted pod: grafana-7dfdc4cff-7g2mh
+35m         Normal    Killing                   pod/grafana-7dfdc4cff-7g2mh                  Stopping container grafana
+35m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled down replica set grafana-7dfdc4cff from 1 to 0
+32m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled up replica set grafana-f87d67947 from 0 to 1
+32m         Normal    SuccessfulCreate          replicaset/prometheus-656f759db4             Created pod: prometheus-656f759db4-4g2rw
+32m         Normal    SuccessfulCreate          replicaset/grafana-f87d67947                 Created pod: grafana-f87d67947-9dfhp
+32m         Normal    Scheduled                 pod/grafana-f87d67947-9dfhp                  Successfully assigned otel-lab/grafana-f87d67947-9dfhp to kube-cp
+32m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled up replica set prometheus-656f759db4 from 0 to 1
+32m         Normal    Scheduled                 pod/prometheus-656f759db4-4g2rw              Successfully assigned otel-lab/prometheus-656f759db4-4g2rw to kube-w1
+32m         Normal    Created                   pod/grafana-f87d67947-9dfhp                  Container created
+32m         Normal    Pulled                    pod/grafana-f87d67947-9dfhp                  Container image "grafana/grafana:11.1.0" already present on machine and can be accessed by the pod
+32m         Normal    Killing                   pod/prometheus-579b9cb5cf-77s9w              Stopping container prometheus
+32m         Normal    Started                   pod/prometheus-656f759db4-4g2rw              Container started
+32m         Normal    Started                   pod/grafana-f87d67947-9dfhp                  Container started
+32m         Normal    Pulled                    pod/prometheus-656f759db4-4g2rw              Container image "prom/prometheus:v2.52.0" already present on machine and can be accessed by the pod
+32m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled down replica set prometheus-579b9cb5cf from 1 to 0
+32m         Normal    SuccessfulDelete          replicaset/prometheus-579b9cb5cf             Deleted pod: prometheus-579b9cb5cf-77s9w
+32m         Normal    Created                   pod/prometheus-656f759db4-4g2rw              Container created
+32m         Normal    SuccessfulDelete          replicaset/grafana-6dd59489c8                Deleted pod: grafana-6dd59489c8-7dzgk
+32m         Normal    Killing                   pod/grafana-6dd59489c8-7dzgk                 Stopping container grafana
+32m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled down replica set grafana-6dd59489c8 from 1 to 0
+31m         Normal    SuccessfulCreate          replicaset/grafana-bd6f46896                 Created pod: grafana-bd6f46896-6bmbg
+31m         Normal    Scheduled                 pod/prometheus-74dc799585-plbdg              Successfully assigned otel-lab/prometheus-74dc799585-plbdg to kube-cp
+31m         Normal    SuccessfulCreate          replicaset/prometheus-74dc799585             Created pod: prometheus-74dc799585-plbdg
+31m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled up replica set prometheus-74dc799585 from 0 to 1
+31m         Normal    Scheduled                 pod/grafana-bd6f46896-6bmbg                  Successfully assigned otel-lab/grafana-bd6f46896-6bmbg to kube-cp
+31m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled up replica set grafana-bd6f46896 from 0 to 1
+31m         Normal    Started                   pod/prometheus-74dc799585-plbdg              Container started
+31m         Normal    ScalingReplicaSet         deployment/prometheus                        Scaled down replica set prometheus-656f759db4 from 1 to 0
+31m         Normal    Created                   pod/prometheus-74dc799585-plbdg              Container created
+31m         Normal    Pulled                    pod/prometheus-74dc799585-plbdg              Container image "prom/prometheus:v2.52.0" already present on machine and can be accessed by the pod
+31m         Normal    SuccessfulDelete          replicaset/prometheus-656f759db4             Deleted pod: prometheus-656f759db4-4g2rw
+31m         Normal    Killing                   pod/prometheus-656f759db4-4g2rw              Stopping container prometheus
+31m         Normal    Pulled                    pod/grafana-bd6f46896-6bmbg                  Container image "grafana/grafana:11.1.0" already present on machine and can be accessed by the pod
+31m         Normal    Created                   pod/grafana-bd6f46896-6bmbg                  Container created
+31m         Normal    Started                   pod/grafana-bd6f46896-6bmbg                  Container started
+30m         Normal    SuccessfulDelete          replicaset/grafana-f87d67947                 Deleted pod: grafana-f87d67947-9dfhp
+30m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled down replica set grafana-f87d67947 from 1 to 0
+30m         Normal    Killing                   pod/grafana-f87d67947-9dfhp                  Stopping container grafana
+22m         Normal    Applied                   networkchaos/latency-service-b-200ms         Successfully apply chaos for otel-lab/service-b-6768ff647d-zjf2c
+22m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+22m         Normal    Updated                   podnetworkchaos/service-b-6768ff647d-zjf2c   Successfully update ObservedGeneration and FailedMessage of resource
+22m         Normal    Updated                   podnetworkchaos/service-b-6768ff647d-jb9hx   Successfully update ObservedGeneration and FailedMessage of resource
+22m         Normal    Applied                   networkchaos/latency-service-b-200ms         Successfully apply chaos for otel-lab/service-b-6768ff647d-jb9hx
+22m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update desiredPhase of resource
+22m         Normal    Started                   networkchaos/latency-service-b-200ms         Experiment has started
+22m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update finalizer of resource
+22m         Normal    FinalizerInited           networkchaos/latency-service-b-200ms         Finalizer has been inited
+22m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+22m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+17m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+17m         Normal    Recovered                 networkchaos/latency-service-b-200ms         Successfully recover chaos for otel-lab/service-b-6768ff647d-zjf2c
+17m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+17m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+17m         Normal    TimeUp                    networkchaos/latency-service-b-200ms         Time up according to the duration
+17m         Normal    Recovered                 networkchaos/latency-service-b-200ms         Successfully recover chaos for otel-lab/service-b-6768ff647d-jb9hx
+17m         Normal    Updated                   podnetworkchaos/service-b-6768ff647d-jb9hx   Successfully update ObservedGeneration and FailedMessage of resource
+17m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update desiredPhase of resource
+17m         Normal    Updated                   podnetworkchaos/service-b-6768ff647d-zjf2c   Successfully update ObservedGeneration and FailedMessage of resource
+13m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update finalizer of resource
+13m         Normal    FinalizerInited           networkchaos/latency-service-b-200ms         Finalizer has been removed
+9m29s       Normal    SuccessfulCreate          replicaset/data-service-7fd57b5499           Created pod: data-service-7fd57b5499-44hz8
+9m29s       Normal    ScalingReplicaSet         deployment/data-service                      Scaled up replica set data-service-7fd57b5499 from 2 to 10
+9m29s       Normal    Scheduled                 pod/data-service-7fd57b5499-44hz8            Successfully assigned otel-lab/data-service-7fd57b5499-44hz8 to kube-w1
+9m29s       Normal    Scheduled                 pod/data-service-7fd57b5499-4gmlp            Successfully assigned otel-lab/data-service-7fd57b5499-4gmlp to kube-w2
+9m29s       Normal    Scheduled                 pod/data-service-7fd57b5499-8gd5p            Successfully assigned otel-lab/data-service-7fd57b5499-8gd5p to kube-w1
+9m29s       Normal    Scheduled                 pod/data-service-7fd57b5499-mqdrp            Successfully assigned otel-lab/data-service-7fd57b5499-mqdrp to kube-w2
+9m29s       Normal    Scheduled                 pod/data-service-7fd57b5499-qcbkr            Successfully assigned otel-lab/data-service-7fd57b5499-qcbkr to kube-w2
+9m29s       Normal    Scheduled                 pod/data-service-7fd57b5499-qrcgs            Successfully assigned otel-lab/data-service-7fd57b5499-qrcgs to kube-w1
+9m29s       Normal    Scheduled                 pod/data-service-7fd57b5499-vc9tg            Successfully assigned otel-lab/data-service-7fd57b5499-vc9tg to kube-w1
+9m29s       Normal    Scheduled                 pod/data-service-7fd57b5499-xwbr6            Successfully assigned otel-lab/data-service-7fd57b5499-xwbr6 to kube-w2
+9m29s       Normal    SuccessfulCreate          replicaset/data-service-7fd57b5499           Created pod: data-service-7fd57b5499-vc9tg
+9m29s       Normal    SuccessfulCreate          replicaset/data-service-7fd57b5499           Created pod: data-service-7fd57b5499-qcbkr
+9m29s       Normal    SuccessfulCreate          replicaset/data-service-7fd57b5499           Created pod: data-service-7fd57b5499-mqdrp
+9m29s       Normal    SuccessfulCreate          replicaset/data-service-7fd57b5499           Created pod: data-service-7fd57b5499-qrcgs
+9m29s       Normal    SuccessfulCreate          replicaset/data-service-7fd57b5499           Created pod: data-service-7fd57b5499-xwbr6
+9m29s       Normal    SuccessfulCreate          replicaset/data-service-7fd57b5499           Created pod: data-service-7fd57b5499-8gd5p
+9m29s       Normal    SuccessfulCreate          replicaset/data-service-7fd57b5499           Created pod: data-service-7fd57b5499-4gmlp
+9m28s       Normal    Pulled                    pod/data-service-7fd57b5499-qcbkr            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+9m28s       Normal    Pulled                    pod/data-service-7fd57b5499-44hz8            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+9m28s       Normal    Started                   pod/data-service-7fd57b5499-8gd5p            Container started
+9m28s       Normal    Created                   pod/data-service-7fd57b5499-8gd5p            Container created
+9m28s       Normal    Pulled                    pod/data-service-7fd57b5499-8gd5p            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+9m28s       Normal    Started                   pod/data-service-7fd57b5499-4gmlp            Container started
+9m28s       Normal    Created                   pod/data-service-7fd57b5499-qcbkr            Container created
+9m28s       Normal    Started                   pod/data-service-7fd57b5499-qcbkr            Container started
+9m28s       Normal    Pulled                    pod/data-service-7fd57b5499-qrcgs            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+9m28s       Normal    Created                   pod/data-service-7fd57b5499-qrcgs            Container created
+9m28s       Normal    Started                   pod/data-service-7fd57b5499-qrcgs            Container started
+9m28s       Normal    Created                   pod/data-service-7fd57b5499-4gmlp            Container created
+9m28s       Normal    Pulled                    pod/data-service-7fd57b5499-vc9tg            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+9m28s       Normal    Created                   pod/data-service-7fd57b5499-vc9tg            Container created
+9m28s       Normal    Started                   pod/data-service-7fd57b5499-vc9tg            Container started
+9m28s       Normal    Pulled                    pod/data-service-7fd57b5499-4gmlp            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+9m28s       Normal    Pulled                    pod/data-service-7fd57b5499-xwbr6            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+9m28s       Normal    Created                   pod/data-service-7fd57b5499-xwbr6            Container created
+9m28s       Normal    Started                   pod/data-service-7fd57b5499-xwbr6            Container started
+9m28s       Normal    Started                   pod/data-service-7fd57b5499-44hz8            Container started
+9m28s       Normal    Created                   pod/data-service-7fd57b5499-44hz8            Container created
+9m25s       Normal    FinalizerInited           httpchaos/error-rate-data-service-10pct      Finalizer has been inited
+9m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+9m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update desiredPhase of resource
+9m25s       Normal    Started                   httpchaos/error-rate-data-service-10pct      Experiment has started
+9m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update finalizer of resource
+9m24s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+9m24s       Normal    Applied                   httpchaos/error-rate-data-service-10pct      Successfully apply chaos for otel-lab/data-service-7fd57b5499-mqdrp
+8m9s        Warning   Unhealthy                 pod/data-service-7fd57b5499-mqdrp            Liveness probe failed: Get "http://10.244.58.174:8002/health": EOF
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Normal    TimeUp                    httpchaos/error-rate-data-service-10pct      Time up according to the duration
+4m25s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update desiredPhase of resource
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m25s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m25s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m25s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m24s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m24s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m24s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m24s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m23s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m23s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m23s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m23s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m18s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m18s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+4m18s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+4m18s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+3m57s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+3m57s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+3m57s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+3m57s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+2m58s       Normal    Started                   pod/data-service-7fd57b5499-mqdrp            Container started
+2m37s       Warning   FailedGetResourceMetric   horizontalpodautoscaler/service-a-hpa        failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server could not find the requested resource (get pods.metrics.k8s.io)
+2m35s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+2m35s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+2m35s       Normal    Updated                   httpchaos/error-rate-data-service-10pct      Successfully update records of resource
+2m35s       Warning   Failed                    httpchaos/error-rate-data-service-10pct      Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+101s        Warning   Failed                    podhttpchaos/data-service-7fd57b5499-mqdrp   failed to apply for pod otel-lab/data-service-7fd57b5499-mqdrp: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+99s         Normal    Killing                   pod/data-service-7fd57b5499-mqdrp            Container data-service failed liveness probe, will be restarted
+99s         Normal    Pulled                    pod/data-service-7fd57b5499-mqdrp            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+99s         Normal    Created                   pod/data-service-7fd57b5499-mqdrp            Container created
+19s         Warning   Unhealthy                 pod/data-service-7fd57b5499-mqdrp            Liveness probe failed: Get "http://10.244.58.174:8002/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+18s         Warning   BackOff                   pod/data-service-7fd57b5499-mqdrp            Back-off restarting failed container data-service in pod data-service-7fd57b5499-mqdrp_otel-lab(7a812f62-0c11-46db-a38b-2bfbe246e22b)

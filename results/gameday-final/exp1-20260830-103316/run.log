@@ -1,0 +1,45 @@
+──────────────────────────────────────────────────────────
+[10:33:16] FASE 0 — preflight
+[10:33:16] reloj del apiserver verificado (desfase 0s)
+[10:33:17] target: http://192.168.0.20:31646/order/ord-001  (smoke test OK)
+[10:33:17] blackbox exporter: 3 series de probe_success
+──────────────────────────────────────────────────────────
+[10:33:17] FASE 1 — línea base (90 s, 4 workers cada 1.5s)
+──────────────────────────────────────────────────────────
+[10:34:48] FASE 2 — aplicando NetworkChaos (delay 200ms ±10ms sobre service-b)
+networkchaos.chaos-mesh.org/latency-service-b-200ms created
+[10:34:53] pods afectados: otel-lab/service-b-6768ff647d-jb9hx otel-lab/service-b-6768ff647d-zjf2c
+[10:34:53] carga durante 540s (300s de chaos + 240s post-rollback)
+──────────────────────────────────────────────────────────
+[10:44:07] FASE 3 — recolectando evidencia
+[10:44:09] trazas de service-a de la ventana guardadas
+[10:44:09] 1448 requests registradas
+──────────────────────────────────────────────────────────
+[10:44:09] LIMPIEZA
+networkchaos.chaos-mesh.org "latency-service-b-200ms" deleted
+[10:44:12] limpieza terminada
+──────────────────────────────────────────────────────────
+[10:44:12] FASE 4 — análisis
+──────────────────────────────────────────────────────────
+═══ RESUMEN EXPERIMENTO 1 — NetworkChaos 200 ms ±10 ms ═══
+
+LÍNEA BASE: n=229  errores=0 (0.0%)
+   p50=   40.1 ms   p95=   76.2 ms   p99=  156.6 ms   máx=  195.4 ms
+
+CHAOS (0-300s): n=600  errores=0 (0.0%)
+   p50=  434.7 ms   p95=  484.1 ms   p99=  536.4 ms   máx=  830.1 ms
+
+POST-ROLLBACK: n=619  errores=0 (0.0%)
+   p50=   40.3 ms   p95=   76.4 ms   p99=  105.8 ms   máx=  114.7 ms
+
+LATENCIA AÑADIDA (p50 chaos − p50 base): 394.7 ms
+   inyectado 200 ms en direction:to → esperado ~200-400 ms según ida/vuelta
+   amplificación observada: 1.97× el delay inyectado
+
+ROLLBACK: latencia de vuelta bajo 2× la línea base a t+301.0 s (fin nominal 300 s) → desfase +1.0 s
+
+REINICIOS DURANTE EL EXPERIMENTO: 0   (control: debe ser 0)
+   service-b-6768ff647d-jb9hx: contador 1 → 1   (delta 0)
+   service-b-6768ff647d-zjf2c: contador 2 → 2   (delta 0)
+──────────────────────────────────────────────────────────
+[10:44:12] TODO EN: results/exp1-20260830-103316

@@ -1,0 +1,76 @@
+Name:         error-rate-data-service-10pct-remediado
+Namespace:    otel-lab
+Labels:       <none>
+Annotations:  experiment.chaos/burn-rate-expected: 14.4x+ en ventana 1h
+              experiment.chaos/objective: MTTD < 2 minutos
+              experiment.chaos/slo-impact: error rate > 0.5% → SLO violado
+              experiment.chaos/target: data-service
+              experiment.chaos/type: http-error
+API Version:  chaos-mesh.org/v1alpha1
+Kind:         HTTPChaos
+Metadata:
+  Creation Timestamp:  2026-08-30T16:37:00Z
+  Finalizers:
+    chaos-mesh/records
+  Generation:        12
+  Resource Version:  190559
+  UID:               badb4a39-33a4-4fd0-9663-840a2787f85f
+Spec:
+  Abort:     true
+  Duration:  5m
+  Mode:      fixed-percent
+  Path:      /data/*
+  Port:      8002
+  Replace:
+    Headers:
+      X - Chaos - Active:      true
+      X - Chaos - Experiment:  error-rate-10pct-remediado
+  Selector:
+    Label Selectors:
+      App:  data-service
+    Namespaces:
+      otel-lab
+  Target:  Response
+  Value:   10
+Status:
+  Conditions:
+    Status:  True
+    Type:    Selected
+    Status:  False
+    Type:    AllInjected
+    Status:  True
+    Type:    AllRecovered
+    Status:  False
+    Type:    Paused
+  Experiment:
+    Container Records:
+      Events:
+        Operation:      Apply
+        Timestamp:      2026-08-30T16:37:00Z
+        Type:           Succeeded
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:42:00Z
+        Type:           Succeeded
+      Id:               otel-lab/data-service-7fd57b5499-642qt
+      Injected Count:   1
+      Phase:            Not Injected
+      Recovered Count:  1
+      Selector Key:     .
+    Desired Phase:      Stop
+  Instances:
+    otel-lab/data-service-7fd57b5499-642qt:  2
+Events:
+  Type    Reason           Age    From            Message
+  ----    ------           ----   ----            -------
+  Normal  FinalizerInited  9m19s  initFinalizers  Finalizer has been inited
+  Normal  Updated          9m19s  initFinalizers  Successfully update finalizer of resource
+  Normal  Started          9m19s  desiredphase    Experiment has started
+  Normal  Updated          9m19s  desiredphase    Successfully update desiredPhase of resource
+  Normal  Updated          9m19s  records         Successfully update records of resource
+  Normal  Applied          9m19s  records         Successfully apply chaos for otel-lab/data-service-7fd57b5499-642qt
+  Normal  Updated          9m19s  records         Successfully update records of resource
+  Normal  TimeUp           4m19s  desiredphase    Time up according to the duration
+  Normal  Updated          4m19s  desiredphase    Successfully update desiredPhase of resource
+  Normal  Updated          4m19s  records         Successfully update records of resource
+  Normal  Recovered        4m19s  records         Successfully recover chaos for otel-lab/data-service-7fd57b5499-642qt
+  Normal  Updated          4m19s  records         Successfully update records of resource

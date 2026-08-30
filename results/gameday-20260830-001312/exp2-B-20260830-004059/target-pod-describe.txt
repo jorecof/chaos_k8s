@@ -1,0 +1,63 @@
+Name:             data-service-7fd57b5499-xzlkd
+Namespace:        otel-lab
+Priority:         0
+Service Account:  default
+Node:             kube-w1/192.168.0.21
+Start Time:       Sat, 29 Aug 2026 22:19:25 -0500
+Labels:           app=data-service
+                  chaos.target=true
+                  pod-template-hash=7fd57b5499
+                  version=1.0.0
+Annotations:      cni.projectcalico.org/containerID: 8cde185146387e8cd59c117556266c477b8e9d97cf64cb1fa09241902679a5e9
+                  cni.projectcalico.org/podIP: 10.244.179.112/32
+                  cni.projectcalico.org/podIPs: 10.244.179.112/32
+                  prometheus.io/port: 9066
+                  prometheus.io/scrape: true
+Status:           Running
+IP:               10.244.179.112
+IPs:
+  IP:           10.244.179.112
+Controlled By:  ReplicaSet/data-service-7fd57b5499
+Containers:
+  data-service:
+    Container ID:   containerd://c4bfe090cf8407045cbb87ec66e64503bbb0f607c2fa2cb2a47e8e7bfad78070
+    Image:          192.168.0.20:30500/data-service:1.0.1
+    Image ID:       192.168.0.20:30500/data-service@sha256:3c2f1de16a251ff039851955ca541404bce448a15eebe05f9aa734e1f827b785
+    Ports:          8002/TCP, 9066/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Sat, 29 Aug 2026 22:19:25 -0500
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:     100m
+      memory:  128Mi
+    Liveness:  http-get http://:8002/health delay=20s timeout=1s period=20s #success=1 #failure=3
+    Environment Variables from:
+      otel-lab-config  ConfigMap  Optional: false
+    Environment:
+      PROMETHEUS_PORT:  9066
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-9rnjl (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-9rnjl:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

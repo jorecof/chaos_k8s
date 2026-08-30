@@ -1,0 +1,200 @@
+INFO:     192.168.0.20:32011 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:00,944", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1436", "rows": 3, "category": "all", "duration": 0.0085, "cloud": "gcp", "trace_id": "206339993833f87ba6403eb85be80b01", "span_id": "f121efd5180ec64a", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:61337 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:07,108", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1437", "rows": 3, "category": "all", "duration": 0.0089, "cloud": "gcp", "trace_id": "8dac0a453c2312956b0e25f2186e8637", "span_id": "d01058508b631c5e", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:41232 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:07,116", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1438", "rows": 3, "category": "all", "duration": 0.0078, "cloud": "gcp", "trace_id": "55fbf33755702c8c84761c752b75a3af", "span_id": "29975b2246ffc70f", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:20306 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:14,832", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1439", "rows": 3, "category": "all", "duration": 0.0091, "cloud": "gcp", "trace_id": "d789cb6520ed0a5d6d60353da864b93f", "span_id": "121fa2dc2fedbd86", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:29885 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:55200 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:17,913", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1441", "rows": 3, "category": "all", "duration": 0.0084, "cloud": "gcp", "trace_id": "bb5ba2b6d35ec43da7bd88543fbfb785", "span_id": "8ce5196a794fcb4a", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:38914 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     10.244.58.170:59412 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:20,995", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1443", "rows": 3, "category": "all", "duration": 0.0076, "cloud": "gcp", "trace_id": "bd48a2ad3302e6854742c77564c40dd9", "span_id": "e3867bdc0e9e2418", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:30325 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:25,619", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1444", "rows": 3, "category": "all", "duration": 0.0075, "cloud": "gcp", "trace_id": "aa46ac416c054ddfa4fdc008ff818c26", "span_id": "f21e38ebb087dad0", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:8793 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:25,627", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1445", "rows": 3, "category": "all", "duration": 0.0066, "cloud": "gcp", "trace_id": "7dcafda944d93a391b14b45961a11dd6", "span_id": "b1d4d13dbad33fec", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:29232 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:25,634", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1446", "rows": 3, "category": "all", "duration": 0.006, "cloud": "gcp", "trace_id": "f5ecf709e854f3f5fdd1b5a113ec1bcf", "span_id": "c79d563b12ce5ae1", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:45711 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:30,249", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1447", "rows": 3, "category": "all", "duration": 0.0087, "cloud": "gcp", "trace_id": "64aba40ecc0a6cf7e2f2169eb5cfb47d", "span_id": "c99380746a5193fa", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:3714 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:30,257", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1448", "rows": 3, "category": "all", "duration": 0.0074, "cloud": "gcp", "trace_id": "054c1c01ca5e4609f421c31bb0e00309", "span_id": "65092663b7cc8a44", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:56639 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:45392 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:34,894", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1450", "rows": 3, "category": "all", "duration": 0.0093, "cloud": "gcp", "trace_id": "8c25e57d1e9a90bc47598983d63792ea", "span_id": "9d0ac482ea4cf9de", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:55761 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:42,598", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1451", "rows": 3, "category": "all", "duration": 0.0068, "cloud": "gcp", "trace_id": "aa9161007ebd9da30212b7c2ba7ae175", "span_id": "b0edc8987eccf628", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:25126 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:50,321", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1452", "rows": 3, "category": "all", "duration": 0.0086, "cloud": "gcp", "trace_id": "b5effc1d44493fd931028521ec89a3a2", "span_id": "c85a877409bc5830", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:46956 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:50,328", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1453", "rows": 3, "category": "all", "duration": 0.0067, "cloud": "gcp", "trace_id": "951f10702b6106f3e4cb77db2fbff0ae", "span_id": "d1b7f3e38dea507d", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:29281 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:49380 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:54,968", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1455", "rows": 3, "category": "all", "duration": 0.0078, "cloud": "gcp", "trace_id": "ef7f73a8f60b5888ce8731f1681f0f9f", "span_id": "6b8df2e6d8224c28", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:3405 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:47:58,043", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1456", "rows": 3, "category": "all", "duration": 0.0078, "cloud": "gcp", "trace_id": "b47ae131e71b9aa547df36bd20bb830f", "span_id": "24dbca619deb6ee2", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:63176 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:01,126", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1457", "rows": 3, "category": "all", "duration": 0.0083, "cloud": "gcp", "trace_id": "633499d9100e24bcfef55d285c6bb9cd", "span_id": "e49eaa9ff21456c9", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:56588 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:05,761", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1458", "rows": 3, "category": "all", "duration": 0.0107, "cloud": "gcp", "trace_id": "8351e52d4936088e9fef997ef64d36d9", "span_id": "c74c7ae258e23f9d", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:29969 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:07,317", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1459", "rows": 3, "category": "all", "duration": 0.0104, "cloud": "gcp", "trace_id": "5d9cc7015a73adcb30978468e2f918db", "span_id": "974ec0d3b3df8af2", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:19063 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:08,869", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1460", "rows": 3, "category": "all", "duration": 0.0094, "cloud": "gcp", "trace_id": "949096187a66f66a337283c055f6345f", "span_id": "8895c88ceabf1a18", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:45770 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:11,962", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1461", "rows": 3, "category": "all", "duration": 0.0086, "cloud": "gcp", "trace_id": "ffaab7679d38122c0675a1941989c9ed", "span_id": "e612dca823435bb1", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:36906 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:13,498", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1462", "rows": 3, "category": "all", "duration": 0.0083, "cloud": "gcp", "trace_id": "5ddf5fecfba1e63c7ae775883c20d7e4", "span_id": "d8f8dac1ee87f9cc", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:49902 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:60776 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:15,046", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1464", "rows": 3, "category": "all", "duration": 0.0077, "cloud": "gcp", "trace_id": "2dfe26117544ced4da96da59c5ce8a94", "span_id": "22b26fe398806d45", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:30425 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:18,115", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1465", "rows": 3, "category": "all", "duration": 0.0069, "cloud": "gcp", "trace_id": "c89d694d27b4c2edf3dc38f1ba863e3b", "span_id": "538f004cbdf6f692", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:58042 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:18,123", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1466", "rows": 3, "category": "all", "duration": 0.0076, "cloud": "gcp", "trace_id": "dd6230275734ce849bbc99e4a38bf99f", "span_id": "c4262bee272964a2", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:59118 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:19,660", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1467", "rows": 3, "category": "all", "duration": 0.0082, "cloud": "gcp", "trace_id": "973b5a1f0d0a4be2ce7d4357d06c3f13", "span_id": "88b35fbc9b4465a9", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:27597 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:27,391", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1468", "rows": 3, "category": "all", "duration": 0.0104, "cloud": "gcp", "trace_id": "b2f73b624e0e5d4321d119fed903953d", "span_id": "3c3cc19fe1ca18a6", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:28629 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:30,484", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1469", "rows": 3, "category": "all", "duration": 0.0078, "cloud": "gcp", "trace_id": "9256e436d67bc04add50cddf0822e9e0", "span_id": "b225fed7f69f5b03", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:61670 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:33984 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:42,826", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1471", "rows": 3, "category": "all", "duration": 0.0082, "cloud": "gcp", "trace_id": "707064945e10397be45cce1974b81571", "span_id": "7068a8923c85086c", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:62315 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:44,375", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1472", "rows": 3, "category": "all", "duration": 0.0095, "cloud": "gcp", "trace_id": "1be1ef922f290349b0246a933102b0a1", "span_id": "3f1c9970c05e5f2d", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:37044 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:45,920", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1473", "rows": 3, "category": "all", "duration": 0.0074, "cloud": "gcp", "trace_id": "67aa00e116ce8a0a729133c70a2d8867", "span_id": "d8b03637bb3c719b", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:5731 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:45,929", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1474", "rows": 3, "category": "all", "duration": 0.0078, "cloud": "gcp", "trace_id": "eb24dff05cff45dcf4cd97e78a260253", "span_id": "2b4fd091f75b5f28", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:1925 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:45,936", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1475", "rows": 3, "category": "all", "duration": 0.0066, "cloud": "gcp", "trace_id": "b01d04bcaca1139f31548b2d843b0039", "span_id": "889573069d5da4eb", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:59371 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:47,469", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1476", "rows": 3, "category": "all", "duration": 0.008, "cloud": "gcp", "trace_id": "dc236bbf43e863b30a8180d304e1a06d", "span_id": "ee4afd767c2813a9", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:13095 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:50,544", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1477", "rows": 3, "category": "all", "duration": 0.0084, "cloud": "gcp", "trace_id": "823f844e8d353d29c115d126e59a4223", "span_id": "2b4cd7b3f2dcb10d", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:13485 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:53,639", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1478", "rows": 3, "category": "all", "duration": 0.0077, "cloud": "gcp", "trace_id": "9d10006773e965c9611cc0e0f03edb9a", "span_id": "66eeaf8a8a01b8db", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:12508 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:52900 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:48:55,190", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1480", "rows": 3, "category": "all", "duration": 0.0129, "cloud": "gcp", "trace_id": "c2f967913a253fb4b57b34583f8595c7", "span_id": "565d0380b63f39a8", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:3290 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:01,365", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1481", "rows": 3, "category": "all", "duration": 0.0085, "cloud": "gcp", "trace_id": "754b2b391593da1323ed2088dcece60a", "span_id": "d544ee67efa90d26", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:53022 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:04,444", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1482", "rows": 3, "category": "all", "duration": 0.0117, "cloud": "gcp", "trace_id": "752e4046cb7a50e6d013bb26ebdcc996", "span_id": "80258545cc2386aa", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:23843 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:05,986", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1483", "rows": 3, "category": "all", "duration": 0.0073, "cloud": "gcp", "trace_id": "ea666e641375e1b667861f26f1082d93", "span_id": "e198eacdad4a7b42", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:61954 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:09,076", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1484", "rows": 3, "category": "all", "duration": 0.0092, "cloud": "gcp", "trace_id": "09a8f887ef83f08e4cb37a423b72a791", "span_id": "ee3cd1c0f10cfbf9", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:22009 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:13,706", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1485", "rows": 3, "category": "all", "duration": 0.0098, "cloud": "gcp", "trace_id": "6f687048248e608f65744c527942c527", "span_id": "70eee776068e150b", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:2631 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:13,714", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1486", "rows": 3, "category": "all", "duration": 0.007, "cloud": "gcp", "trace_id": "519531ede13ee0fa002c285faf67af6a", "span_id": "a75bbac206669b30", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:20010 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:52112 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:16,794", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1488", "rows": 3, "category": "all", "duration": 0.0094, "cloud": "gcp", "trace_id": "df5d6fc938218f93c8f4fba30527f294", "span_id": "1cd91499a7049f1a", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:20365 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:17,949", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1489", "rows": 3, "category": "all", "duration": 0.0084, "cloud": "gcp", "trace_id": "ed66df8ba94577d576158eb4740b7d67", "span_id": "8617c2d681ee914f", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     10.244.58.170:50578 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     10.244.58.170:50594 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:22,961", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1491", "rows": 3, "category": "all", "duration": 0.0075, "cloud": "gcp", "trace_id": "b533ec4403221be977ee4359849df321", "span_id": "0636b1a9f6efbb29", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:54444 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:27,592", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1492", "rows": 3, "category": "all", "duration": 0.0084, "cloud": "gcp", "trace_id": "08cd714a96c90ff5215472e79ffeddb4", "span_id": "9fed44d1f0893212", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:33694 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:30,673", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1493", "rows": 3, "category": "all", "duration": 0.0092, "cloud": "gcp", "trace_id": "f309ff9cb9a4593ee691ecf724cdc724", "span_id": "2886fd14861a9047", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:50000 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:33,776", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1494", "rows": 3, "category": "all", "duration": 0.0156, "cloud": "gcp", "trace_id": "fe1ed6a8cdd8f9763f3ae6f86c363d17", "span_id": "33a5f0156d888616", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:44702 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:58228 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:38,420", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1496", "rows": 3, "category": "all", "duration": 0.01, "cloud": "gcp", "trace_id": "c5f331d5ae913cdc323fc1e7b78576d1", "span_id": "fe7a2287fe0b9ea0", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:64235 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:39,968", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1497", "rows": 3, "category": "all", "duration": 0.0098, "cloud": "gcp", "trace_id": "0f51c5ff4d6189470e4600c442ffe676", "span_id": "0d4493cb7240bcc4", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:33726 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:41,514", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1498", "rows": 3, "category": "all", "duration": 0.0078, "cloud": "gcp", "trace_id": "f7e8c30782bd4362fb1b586962b0afcd", "span_id": "c1d32ea4a6144ea2", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:4732 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:44,588", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1499", "rows": 3, "category": "all", "duration": 0.009, "cloud": "gcp", "trace_id": "727903515aa514ba320154b0b9d06772", "span_id": "0574c976c8b95324", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:16692 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:46,128", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1500", "rows": 3, "category": "all", "duration": 0.0075, "cloud": "gcp", "trace_id": "a512f5c265e988ea2a717d47a309dfeb", "span_id": "9219a37f91edfe6b", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:33335 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:50,762", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1501", "rows": 3, "category": "all", "duration": 0.0106, "cloud": "gcp", "trace_id": "6ea60a9e65b960cd60579c2f7f9ad95e", "span_id": "f7ecc3db1c828621", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:61391 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:53,866", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1502", "rows": 3, "category": "all", "duration": 0.008, "cloud": "gcp", "trace_id": "7c081390c2ebdfa4f700807e18776307", "span_id": "c12230198403d16b", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:39081 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:38616 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:49:55,413", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1504", "rows": 3, "category": "all", "duration": 0.0151, "cloud": "gcp", "trace_id": "823f4bf9b36205154bbe1870099fb310", "span_id": "b0e212b27c3e1db3", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:46840 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:06,220", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1505", "rows": 3, "category": "all", "duration": 0.0074, "cloud": "gcp", "trace_id": "0a6fdb409f73ec389c5990a12dfe0eef", "span_id": "d771fb2bfc3b6bc2", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:54755 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:06,228", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1506", "rows": 3, "category": "all", "duration": 0.007, "cloud": "gcp", "trace_id": "3d1f5bd4c64aeba733fa4f18d421628d", "span_id": "fa5fa05a00abd8b2", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:32456 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:12,415", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1507", "rows": 3, "category": "all", "duration": 0.0125, "cloud": "gcp", "trace_id": "5a067226b0b3c33b602527e4e7c808a6", "span_id": "9787031c178e8f06", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:40964 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:13,950", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1508", "rows": 3, "category": "all", "duration": 0.0076, "cloud": "gcp", "trace_id": "b525e63dd6df689e6981240f3f7be73c", "span_id": "19a577d4997daa78", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:28767 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:52558 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:15,491", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1510", "rows": 3, "category": "all", "duration": 0.0077, "cloud": "gcp", "trace_id": "0dc39a64cfdc0a3717f1510d011adefe", "span_id": "4da9cadab60157e8", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:65515 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     10.244.58.170:39774 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:26,308", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1512", "rows": 3, "category": "all", "duration": 0.0141, "cloud": "gcp", "trace_id": "7245408f9c98e1146a8599e1a477be40", "span_id": "3f14a494c14e873f", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:37657 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:34,032", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1513", "rows": 3, "category": "all", "duration": 0.0086, "cloud": "gcp", "trace_id": "648b11670a128d615091a17c893e171d", "span_id": "ee3ef3d59157af91", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:38570 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:46696 - "GET /health HTTP/1.1" 200 OK
+INFO:     10.244.58.170:40330 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:35,585", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1516", "rows": 3, "category": "all", "duration": 0.0102, "cloud": "gcp", "trace_id": "51ba2452e1b242152828924c3e7e4bcc", "span_id": "9e741f6d849c7695", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:9579 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:35,593", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1517", "rows": 3, "category": "all", "duration": 0.0069, "cloud": "gcp", "trace_id": "7138b506e1ebd9ff8207db45f9412fed", "span_id": "2b2f5781530a675a", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:46356 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:37,119", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1518", "rows": 3, "category": "all", "duration": 0.0073, "cloud": "gcp", "trace_id": "25fe4a2eae1719599c2332cfd213f111", "span_id": "bfa6822af7c2316a", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:48486 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:37,954", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1519", "rows": 3, "category": "all", "duration": 0.0122, "cloud": "gcp", "trace_id": "e70c4c5acd9f0fafee512701b593ab79", "span_id": "6b6db0332f4a0509", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     10.244.58.170:40338 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:40,214", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1520", "rows": 3, "category": "all", "duration": 0.009, "cloud": "gcp", "trace_id": "50df2d86f240743686957cc646f8f5a3", "span_id": "955bf387a9a6623f", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:18804 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     10.244.58.170:35322 - "GET /health HTTP/1.1" 200 OK
+INFO:     192.168.0.20:53704 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:54,105", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1522", "rows": 3, "category": "all", "duration": 0.0094, "cloud": "gcp", "trace_id": "929599f7024bc7b62d832f68bfabf5ce", "span_id": "29368797af72b437", "service": "data-service", "cloud_provider": "gcp"}
+{"asctime": "2026-08-30 05:50:54,113", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1523", "rows": 3, "category": "all", "duration": 0.0071, "cloud": "gcp", "trace_id": "38ed18175f2660e1b5e3eeba69d5273b", "span_id": "e52d90046406a27b", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:21103 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:45722 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:57,194", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1525", "rows": 3, "category": "all", "duration": 0.0087, "cloud": "gcp", "trace_id": "cf502f490b77f24ce8bbf176ce62b51b", "span_id": "11a801873393a447", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:45051 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:50:58,741", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1526", "rows": 3, "category": "all", "duration": 0.0088, "cloud": "gcp", "trace_id": "3671b3b4a182307cb56742e3de1d3dbb", "span_id": "28f07f09d58722f2", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:43012 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:00,280", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1527", "rows": 3, "category": "all", "duration": 0.0071, "cloud": "gcp", "trace_id": "d3507ab11fca35dd71cdf411bab2b36b", "span_id": "91a785cddde4945a", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:6945 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:01,821", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1528", "rows": 3, "category": "all", "duration": 0.0075, "cloud": "gcp", "trace_id": "90cc7474329a82166da3ebec23ba4821", "span_id": "2394fd85bc2274d2", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:19190 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:01,829", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1529", "rows": 3, "category": "all", "duration": 0.0064, "cloud": "gcp", "trace_id": "2f3e05f9731295453665442083963925", "span_id": "c1abcbbb7bee8b28", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:5889 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:04,906", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1530", "rows": 3, "category": "all", "duration": 0.0135, "cloud": "gcp", "trace_id": "6fc76821680a5a3278bd5298265f540b", "span_id": "83fe55cfa830f822", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:44696 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:11,080", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1531", "rows": 3, "category": "all", "duration": 0.0118, "cloud": "gcp", "trace_id": "0a5e546b613529726b67c6b69d9e868e", "span_id": "3b407d4472787666", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:61585 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:54870 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:17,260", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1533", "rows": 3, "category": "all", "duration": 0.0095, "cloud": "gcp", "trace_id": "4ab47ae778802cd901469b36a4f2d75e", "span_id": "2fac6d0ff60cab06", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:42153 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:18,800", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1534", "rows": 3, "category": "all", "duration": 0.0079, "cloud": "gcp", "trace_id": "ca389d13c3e5f62c205deb35d186a52f", "span_id": "d66d3b919873e4fe", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:61847 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:18,816", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1535", "rows": 3, "category": "all", "duration": 0.0147, "cloud": "gcp", "trace_id": "abfb84220eadfdd3c03569a922c08e97", "span_id": "a97c834baedf70ab", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:50895 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:20,339", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1536", "rows": 3, "category": "all", "duration": 0.0076, "cloud": "gcp", "trace_id": "6b4ed352e8b2b58cbbe31f3ef5285293", "span_id": "d628fb1a4969e8aa", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:51130 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:20,356", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1537", "rows": 3, "category": "all", "duration": 0.0106, "cloud": "gcp", "trace_id": "878bfb76d3f85d31cfded0de160943c3", "span_id": "c1d48d4af0075a42", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:17052 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:24,971", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1538", "rows": 3, "category": "all", "duration": 0.0083, "cloud": "gcp", "trace_id": "c362b4e410da90e68bb6bc7faa669a29", "span_id": "545031d80b259596", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:13039 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:24,979", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1539", "rows": 3, "category": "all", "duration": 0.0072, "cloud": "gcp", "trace_id": "d4e9cc1c6955bf6277847c2cae20576e", "span_id": "bcbc5d1c4a6ab748", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:28853 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:28,052", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1540", "rows": 3, "category": "all", "duration": 0.0074, "cloud": "gcp", "trace_id": "1dcf90a2a5e81a3a12adf5f1da63b319", "span_id": "24178698a722a31f", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:15018 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:32,674", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1541", "rows": 3, "category": "all", "duration": 0.0087, "cloud": "gcp", "trace_id": "1c9fb9fa624b5aed24961cd64884e3b5", "span_id": "240971d94009561b", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:59766 - "GET /data/products HTTP/1.1" 200 OK
+INFO:     192.168.0.21:38564 - "GET /health HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:38,863", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1543", "rows": 3, "category": "all", "duration": 0.0074, "cloud": "gcp", "trace_id": "833e9ed0f2b40e44345090d9c924cf85", "span_id": "6f05bf98be5666c7", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:22177 - "GET /data/products HTTP/1.1" 200 OK
+{"asctime": "2026-08-30 05:51:38,872", "levelname": "INFO", "name": "data-service", "message": "Products query completada", "taskName": "Task-1544", "rows": 3, "category": "all", "duration": 0.0076, "cloud": "gcp", "trace_id": "60009b6503fa36991431a89ce5a88e0e", "span_id": "1fd76274fcabd305", "service": "data-service", "cloud_provider": "gcp"}
+INFO:     192.168.0.20:53829 - "GET /data/products HTTP/1.1" 200 OK

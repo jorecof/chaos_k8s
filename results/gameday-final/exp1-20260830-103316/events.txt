@@ -1,0 +1,66 @@
+LAST SEEN   TYPE      REASON                    OBJECT                                       MESSAGE
+69m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update desiredPhase of resource
+69m         Normal    Applied                   networkchaos/latency-service-b-200ms         Successfully apply chaos for otel-lab/service-b-6768ff647d-zjf2c
+69m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update finalizer of resource
+69m         Normal    Updated                   podnetworkchaos/service-b-6768ff647d-zjf2c   Successfully update ObservedGeneration and FailedMessage of resource
+69m         Normal    Started                   networkchaos/latency-service-b-200ms         Experiment has started
+69m         Normal    FinalizerInited           networkchaos/latency-service-b-200ms         Finalizer has been inited
+69m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+69m         Normal    Applied                   networkchaos/latency-service-b-200ms         Successfully apply chaos for otel-lab/service-b-6768ff647d-jb9hx
+69m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+69m         Normal    Updated                   podnetworkchaos/service-b-6768ff647d-jb9hx   Successfully update ObservedGeneration and FailedMessage of resource
+69m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+64m         Normal    Recovered                 networkchaos/latency-service-b-200ms         Successfully recover chaos for otel-lab/service-b-6768ff647d-jb9hx
+64m         Normal    Updated                   podnetworkchaos/service-b-6768ff647d-jb9hx   Successfully update ObservedGeneration and FailedMessage of resource
+64m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update desiredPhase of resource
+64m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+64m         Normal    TimeUp                    networkchaos/latency-service-b-200ms         Time up according to the duration
+64m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+64m         Normal    Updated                   podnetworkchaos/service-b-6768ff647d-zjf2c   Successfully update ObservedGeneration and FailedMessage of resource
+64m         Normal    Recovered                 networkchaos/latency-service-b-200ms         Successfully recover chaos for otel-lab/service-b-6768ff647d-zjf2c
+64m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+60m         Normal    Created                   pod/jaeger-554689987c-4gjwq                  Container created
+60m         Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update finalizer of resource
+60m         Normal    FinalizerInited           networkchaos/latency-service-b-200ms         Finalizer has been removed
+60m         Normal    Started                   pod/jaeger-554689987c-4gjwq                  Container started
+60m         Normal    Pulled                    pod/jaeger-554689987c-4gjwq                  Container image "jaegertracing/all-in-one:1.58" already present on machine and can be accessed by the pod
+57m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled up replica set grafana-f589db4cb from 0 to 1
+57m         Normal    Scheduled                 pod/grafana-f589db4cb-pd8l4                  Successfully assigned otel-lab/grafana-f589db4cb-pd8l4 to kube-cp
+57m         Normal    Pulled                    pod/grafana-f589db4cb-pd8l4                  Container image "grafana/grafana:11.1.0" already present on machine and can be accessed by the pod
+57m         Normal    Created                   pod/grafana-f589db4cb-pd8l4                  Container created
+57m         Normal    Started                   pod/grafana-f589db4cb-pd8l4                  Container started
+57m         Normal    SuccessfulCreate          replicaset/grafana-f589db4cb                 Created pod: grafana-f589db4cb-pd8l4
+57m         Normal    ScalingReplicaSet         deployment/grafana                           Scaled down replica set grafana-bd6f46896 from 1 to 0
+57m         Normal    Killing                   pod/grafana-bd6f46896-6bmbg                  Stopping container grafana
+57m         Normal    SuccessfulDelete          replicaset/grafana-bd6f46896                 Deleted pod: grafana-bd6f46896-6bmbg
+43m         Normal    Scheduled                 pod/jaeger-677b666bbc-xjm2r                  Successfully assigned otel-lab/jaeger-677b666bbc-xjm2r to kube-w1
+43m         Normal    SuccessfulCreate          replicaset/jaeger-677b666bbc                 Created pod: jaeger-677b666bbc-xjm2r
+43m         Normal    ScalingReplicaSet         deployment/jaeger                            Scaled up replica set jaeger-677b666bbc from 0 to 1
+43m         Normal    ScalingReplicaSet         deployment/jaeger                            Scaled down replica set jaeger-554689987c from 1 to 0
+43m         Normal    Killing                   pod/jaeger-554689987c-4gjwq                  Stopping container jaeger
+43m         Normal    SuccessfulDelete          replicaset/jaeger-554689987c                 Deleted pod: jaeger-554689987c-4gjwq
+20m         Normal    Pulling                   pod/jaeger-677b666bbc-xjm2r                  Pulling image "jaegertracing/all-in-one:1.58"
+20m         Normal    Pulled                    pod/jaeger-677b666bbc-xjm2r                  Successfully pulled image "jaegertracing/all-in-one:1.58" in 3.255s (3.255s including waiting). Image size: 33235863 bytes.
+20m         Normal    Created                   pod/jaeger-677b666bbc-xjm2r                  Container created
+20m         Normal    Started                   pod/jaeger-677b666bbc-xjm2r                  Container started
+9m19s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update finalizer of resource
+9m19s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update desiredPhase of resource
+9m19s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+9m19s       Normal    Applied                   networkchaos/latency-service-b-200ms         Successfully apply chaos for otel-lab/service-b-6768ff647d-jb9hx
+9m19s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+9m19s       Normal    Started                   networkchaos/latency-service-b-200ms         Experiment has started
+9m19s       Normal    Updated                   podnetworkchaos/service-b-6768ff647d-jb9hx   Successfully update ObservedGeneration and FailedMessage of resource
+9m19s       Normal    FinalizerInited           networkchaos/latency-service-b-200ms         Finalizer has been inited
+9m18s       Normal    Applied                   networkchaos/latency-service-b-200ms         Successfully apply chaos for otel-lab/service-b-6768ff647d-zjf2c
+9m18s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+9m18s       Normal    Updated                   podnetworkchaos/service-b-6768ff647d-zjf2c   Successfully update ObservedGeneration and FailedMessage of resource
+4m19s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+4m19s       Normal    Recovered                 networkchaos/latency-service-b-200ms         Successfully recover chaos for otel-lab/service-b-6768ff647d-zjf2c
+4m19s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+4m19s       Normal    Recovered                 networkchaos/latency-service-b-200ms         Successfully recover chaos for otel-lab/service-b-6768ff647d-jb9hx
+4m19s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update records of resource
+4m19s       Normal    Updated                   networkchaos/latency-service-b-200ms         Successfully update desiredPhase of resource
+4m19s       Normal    Updated                   podnetworkchaos/service-b-6768ff647d-jb9hx   Successfully update ObservedGeneration and FailedMessage of resource
+4m19s       Normal    TimeUp                    networkchaos/latency-service-b-200ms         Time up according to the duration
+4m19s       Normal    Updated                   podnetworkchaos/service-b-6768ff647d-zjf2c   Successfully update ObservedGeneration and FailedMessage of resource
+2m28s       Warning   FailedGetResourceMetric   horizontalpodautoscaler/service-a-hpa        failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server could not find the requested resource (get pods.metrics.k8s.io)

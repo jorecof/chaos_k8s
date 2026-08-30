@@ -1,0 +1,67 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  annotations:
+    experiment.chaos/objective: MTTD < 2 minutos
+    experiment.chaos/owner: equipo-sre
+    experiment.chaos/slo-impact: p99 latencia > 500ms
+    experiment.chaos/target: service-b
+    experiment.chaos/type: network-latency
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"chaos-mesh.org/v1alpha1","kind":"NetworkChaos","metadata":{"annotations":{"experiment.chaos/objective":"MTTD \u003c 2 minutos","experiment.chaos/owner":"equipo-sre","experiment.chaos/slo-impact":"p99 latencia \u003e 500ms","experiment.chaos/target":"service-b","experiment.chaos/type":"network-latency"},"name":"latency-service-b-200ms","namespace":"otel-lab"},"spec":{"action":"delay","delay":{"correlation":"100","jitter":"10ms","latency":"200ms"},"direction":"to","duration":"5m","mode":"all","selector":{"labelSelectors":{"app":"service-b"},"namespaces":["otel-lab"]}}}
+  creationTimestamp: "2026-08-30T15:34:48Z"
+  finalizers:
+  - chaos-mesh/records
+  generation: 8
+  name: latency-service-b-200ms
+  namespace: otel-lab
+  resourceVersion: "175828"
+  uid: 7d2012a2-2981-42de-b072-1e2d7adfebbf
+spec:
+  action: delay
+  delay:
+    correlation: "100"
+    jitter: 10ms
+    latency: 200ms
+  direction: to
+  duration: 5m
+  mode: all
+  selector:
+    labelSelectors:
+      app: service-b
+    namespaces:
+    - otel-lab
+status:
+  conditions:
+  - status: "False"
+    type: Paused
+  - status: "True"
+    type: Selected
+  - status: "True"
+    type: AllInjected
+  - status: "False"
+    type: AllRecovered
+  experiment:
+    containerRecords:
+    - events:
+      - operation: Apply
+        timestamp: "2026-08-30T15:34:48Z"
+        type: Succeeded
+      id: otel-lab/service-b-6768ff647d-jb9hx
+      injectedCount: 1
+      phase: Injected
+      recoveredCount: 0
+      selectorKey: .
+    - events:
+      - operation: Apply
+        timestamp: "2026-08-30T15:34:49Z"
+        type: Succeeded
+      id: otel-lab/service-b-6768ff647d-zjf2c
+      injectedCount: 1
+      phase: Injected
+      recoveredCount: 0
+      selectorKey: .
+    desiredPhase: Run
+  instances:
+    otel-lab/service-b-6768ff647d-jb9hx: 13
+    otel-lab/service-b-6768ff647d-zjf2c: 13

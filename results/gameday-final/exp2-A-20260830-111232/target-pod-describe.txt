@@ -1,0 +1,78 @@
+Name:             data-service-7fd57b5499-wwshb
+Namespace:        otel-lab
+Priority:         0
+Service Account:  default
+Node:             kube-w1/192.168.0.21
+Start Time:       Sun, 30 Aug 2026 11:14:03 -0500
+Labels:           app=data-service
+                  chaos.target=true
+                  pod-template-hash=7fd57b5499
+                  version=1.0.0
+Annotations:      cni.projectcalico.org/containerID: 325bc2000d56fdf36bfbed79272a5f992f53271ac05ad58f1b6ccf273fe085fd
+                  cni.projectcalico.org/podIP: 10.244.179.75/32
+                  cni.projectcalico.org/podIPs: 10.244.179.75/32
+                  prometheus.io/port: 9066
+                  prometheus.io/scrape: true
+Status:           Running
+IP:               10.244.179.75
+IPs:
+  IP:           10.244.179.75
+Controlled By:  ReplicaSet/data-service-7fd57b5499
+Containers:
+  data-service:
+    Container ID:   containerd://80ca6369933779ddbc0aa2c2fe88630e57b18f308668870d1431a1cc633a21a7
+    Image:          192.168.0.20:30500/data-service:1.0.1
+    Image ID:       192.168.0.20:30500/data-service@sha256:3c2f1de16a251ff039851955ca541404bce448a15eebe05f9aa734e1f827b785
+    Ports:          8002/TCP, 9066/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Sun, 30 Aug 2026 11:23:27 -0500
+    Last State:     Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Sun, 30 Aug 2026 11:20:45 -0500
+      Finished:     Sun, 30 Aug 2026 11:22:05 -0500
+    Ready:          True
+    Restart Count:  6
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:     100m
+      memory:  128Mi
+    Liveness:  http-get http://:8002/health delay=20s timeout=1s period=20s #success=1 #failure=3
+    Environment Variables from:
+      otel-lab-config  ConfigMap  Optional: false
+    Environment:
+      PROMETHEUS_PORT:  9066
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-drbzb (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-drbzb:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                    From               Message
+  ----     ------     ----                   ----               -------
+  Normal   Scheduled  9m32s                  default-scheduler  Successfully assigned otel-lab/data-service-7fd57b5499-wwshb to kube-w1
+  Warning  Unhealthy  8m12s (x3 over 8m52s)  kubelet            Liveness probe failed: Get "http://10.244.179.75:8002/health": EOF
+  Normal   Started    2m50s (x6 over 9m31s)  kubelet            Container started
+  Normal   Killing    91s (x6 over 8m12s)    kubelet            Container data-service failed liveness probe, will be restarted
+  Warning  Unhealthy  91s (x15 over 7m31s)   kubelet            Liveness probe failed: Get "http://10.244.179.75:8002/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+  Warning  BackOff    25s (x3 over 90s)      kubelet            Back-off restarting failed container data-service in pod data-service-7fd57b5499-wwshb_otel-lab(0e7e7d39-c455-4786-9acf-6f8bb5efb251)
+  Normal   Pulled     8s (x7 over 9m31s)     kubelet            Container image "192.168.0.20:30500/data-service:1.0.1" already present on machine and can be accessed by the pod
+  Normal   Created    8s (x7 over 9m31s)     kubelet            Container created

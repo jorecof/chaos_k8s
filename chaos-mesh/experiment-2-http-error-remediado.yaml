@@ -1,0 +1,84 @@
+# Experimento 2-B (remediado): HTTPChaos error-rate 10% sobre data-service,
+# con el health check FUERA del blast radius. Comparar contra
+# experiment-2-http-error.yaml, que usa path: "*".
+# Requiere escalar data-service a 10 replicas antes de aplicar
+# (kubectl -n otel-lab scale deploy data-service --replicas=10)
+# para que mode: fixed-percent, value: "10" seleccione 1 de 10 pods
+# y el abort:true de ese pod produzca ~10% de error rate agregado.
+# ════════════════════════════════════════════════════════════════
+# chaos-mesh/experiment-2-http-error.yaml
+#
+# Experimento 2: Error rate 10% en data-service via HTTPChaos
+# Chaos Mesh intercepta las responses HTTP a nivel de proxy
+# sin modificar el código de la aplicación.
+#
+# Diferencia con el laboratorio Docker:
+#   Antes: if random.random() < 0.1: raise HTTPException(500)
+#          en el código de data-service/main.py
+#   Ahora: Chaos Mesh intercepta 10% de responses y retorna 500
+#          El código de data-service NO tiene ningún random() —
+#          el fault es completamente externo a la aplicación
+#
+# Requisito: Chaos Mesh debe estar instalado con soporte HTTPChaos
+#   helm install chaos-mesh ... --set features.httpChaos.enabled=true
+# ════════════════════════════════════════════════════════════════
+
+apiVersion: chaos-mesh.org/v1alpha1
+kind: HTTPChaos
+metadata:
+  name: error-rate-data-service-10pct-remediado
+  namespace: otel-lab
+  annotations:
+    experiment.chaos/type: "http-error"
+    experiment.chaos/target: "data-service"
+    experiment.chaos/objective: "MTTD < 2 minutos"
+    experiment.chaos/slo-impact: "error rate > 0.5% → SLO violado"
+    experiment.chaos/burn-rate-expected: "14.4x+ en ventana 1h"
+spec:
+  # ── Seleccionar pods de data-service ─────────────────────────
+  selector:
+    namespaces:
+      - otel-lab
+    labelSelectors:
+      "app": "data-service"
+
+  # ── Interceptar responses salientes ──────────────────────────
+  # target: Response = interceptar las respuestas que SALEN del pod
+  # port: el puerto en que escucha data-service
+  target: Response
+  port: 8002
+  # ── REMEDIACION #1 del addendum ──────────────────────────────
+  # path: "*" incluia GET /health, o sea la livenessProbe. El kubelet
+  # veia el health check abortado, mataba el contenedor cada ~80 s, el
+  # reinicio destruia el netns con las reglas del tproxy y Chaos Mesh
+  # se quedaba sin poder revertir (18 eventos Recover/Failed
+  # "unexpected EOF", 196 s de fallas mas alla del duration).
+  # Acotando el path al camino de datos, el health check queda fuera
+  # del blast radius y el rollback por TTL deberia funcionar limpio.
+  path: "/data/*"
+
+  # ── Tipo de fault: abortar (retornar 5xx) ────────────────────
+  # abort: true → Chaos Mesh retorna error 500 sin pasar por la app
+  abort: true
+
+  # ── Probabilidad: 10% de los requests ────────────────────────
+  # Chaos Mesh aplica el fault a ~10% de las requests
+  # El 90% restante pasa normalmente por la aplicación
+  # Esto simula exactamente el CHAOS_ERROR_RATE=0.1 del laboratorio
+  # pero a nivel de red, no de código
+  # Nota: HTTPChaos no tiene campo probability directo en v1alpha1
+  # Se logra con el selector de proporción de pods:
+  mode: fixed-percent
+  value: "10"    # con data-service escalado a 10 replicas, esto selecciona
+                 # 1 pod -> ese pod aborta 100% de SUS requests -> ~10% de
+                 # error rate agregado en el total de requests a data-service
+
+  # ── Duración ─────────────────────────────────────────────────
+  duration: "5m"
+
+  # ── Headers para identificar requests con chaos ──────────────
+  # Permite que el OTel Collector identifique spans durante el chaos
+  replace:
+    headers:
+      X-Chaos-Experiment: "error-rate-10pct-remediado"
+      X-Chaos-Active: "true"

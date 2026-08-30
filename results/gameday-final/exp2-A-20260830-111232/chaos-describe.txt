@@ -1,0 +1,185 @@
+Name:         error-rate-data-service-10pct
+Namespace:    otel-lab
+Labels:       <none>
+Annotations:  experiment.chaos/burn-rate-expected: 14.4x+ en ventana 1h
+              experiment.chaos/objective: MTTD < 2 minutos
+              experiment.chaos/slo-impact: error rate > 0.5% → SLO violado
+              experiment.chaos/target: data-service
+              experiment.chaos/type: http-error
+API Version:  chaos-mesh.org/v1alpha1
+Kind:         HTTPChaos
+Metadata:
+  Creation Timestamp:  2026-08-30T16:14:16Z
+  Finalizers:
+    chaos-mesh/records
+  Generation:        29
+  Resource Version:  185493
+  UID:               05eb5e5e-98c7-4862-b349-93bf78fa16de
+Spec:
+  Abort:     true
+  Duration:  5m
+  Mode:      fixed-percent
+  Path:      *
+  Port:      8002
+  Replace:
+    Headers:
+      X - Chaos - Active:      true
+      X - Chaos - Experiment:  error-rate-10pct
+  Selector:
+    Label Selectors:
+      App:  data-service
+    Namespaces:
+      otel-lab
+  Target:  Response
+  Value:   10
+Status:
+  Conditions:
+    Status:  False
+    Type:    Paused
+    Status:  True
+    Type:    Selected
+    Status:  False
+    Type:    AllInjected
+    Status:  False
+    Type:    AllRecovered
+  Experiment:
+    Container Records:
+      Events:
+        Operation:      Apply
+        Timestamp:      2026-08-30T16:14:16Z
+        Type:           Succeeded
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: read |0: file already closed
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: read |0: file already closed
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:16Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:17Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:17Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:20Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:20Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: read |0: file already closed
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:21Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: read |0: file already closed
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:21Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:26Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:26Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:30Z
+        Type:           Failed
+        Message:        failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+        Operation:      Recover
+        Timestamp:      2026-08-30T16:19:30Z
+        Type:           Failed
+      Id:               otel-lab/data-service-7fd57b5499-wwshb
+      Injected Count:   1
+      Phase:            Injected/Wait
+      Recovered Count:  0
+      Selector Key:     .
+    Desired Phase:      Stop
+  Instances:
+    otel-lab/data-service-7fd57b5499-wwshb:  2
+Events:
+  Type     Reason           Age    From            Message
+  ----     ------           ----   ----            -------
+  Normal   FinalizerInited  9m19s  initFinalizers  Finalizer has been inited
+  Normal   Updated          9m19s  initFinalizers  Successfully update finalizer of resource
+  Normal   Started          9m19s  desiredphase    Experiment has started
+  Normal   Updated          9m19s  desiredphase    Successfully update desiredPhase of resource
+  Normal   Updated          9m19s  records         Successfully update records of resource
+  Normal   Applied          9m19s  records         Successfully apply chaos for otel-lab/data-service-7fd57b5499-wwshb
+  Normal   Updated          9m19s  records         Successfully update records of resource
+  Normal   TimeUp           4m19s  desiredphase    Time up according to the duration
+  Normal   Updated          4m19s  desiredphase    Successfully update desiredPhase of resource
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: read |0: file already closed
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: read |0: file already closed
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m19s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m19s  records         Successfully update records of resource
+  Warning  Failed           4m18s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m18s  records         Successfully update records of resource
+  Warning  Failed           4m18s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m18s  records         Successfully update records of resource
+  Warning  Failed           4m15s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m15s  records         Successfully update records of resource
+  Warning  Failed           4m15s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m15s  records         Successfully update records of resource
+  Warning  Failed           4m14s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: read |0: file already closed
+  Normal   Updated          4m14s  records         Successfully update records of resource
+  Warning  Failed           4m14s  records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: read |0: file already closed
+  Normal   Updated          4m14s  records         Successfully update records of resource
+  Warning  Failed           4m9s   records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m9s   records         Successfully update records of resource
+  Warning  Failed           4m9s   records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m9s   records         Successfully update records of resource
+  Warning  Failed           4m5s   records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m5s   records         Successfully update records of resource
+  Warning  Failed           4m5s   records         Failed to recover chaos: failed to apply for pod otel-lab/data-service-7fd57b5499-wwshb: rpc error: code = Unknown desc = apply config: send http request: unexpected EOF
+  Normal   Updated          4m5s   records         Successfully update records of resource

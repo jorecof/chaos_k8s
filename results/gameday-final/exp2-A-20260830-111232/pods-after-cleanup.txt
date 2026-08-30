@@ -1,0 +1,4 @@
+NAME                            READY   STATUS    RESTARTS   AGE     IP               NODE      NOMINATED NODE   READINESS GATES
+data-service-7fd57b5499-52tzf   1/1     Running   0          4h31m   10.244.58.179    kube-w2   <none>           <none>
+data-service-7fd57b5499-c45qm   1/1     Running   0          10h     10.244.179.124   kube-w1   <none>           <none>
+No resources found in otel-lab namespace.

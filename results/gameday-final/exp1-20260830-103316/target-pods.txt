@@ -1,0 +1,1 @@
+otel-lab/service-b-6768ff647d-jb9hx otel-lab/service-b-6768ff647d-zjf2c

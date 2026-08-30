@@ -1,0 +1,6 @@
+{"experimento": "E1-network-latency",
+ "t_base_start": 1788066793.567, "t_base_end": 1788066884.368,
+ "t_chaos": 1788066884.656, "t_end": 1788067441.124,
+ "chaos_secs": 300, "post_secs": 240,
+ "workers": 4, "interval": 1.5,
+ "url": "http://192.168.0.20:31646/order/ord-001", "target": "otel-lab/service-b-6768ff647d-jb9hx otel-lab/service-b-6768ff647d-zjf2c"}

@@ -1,0 +1,60 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: HTTPChaos
+metadata:
+  annotations:
+    experiment.chaos/burn-rate-expected: 14.4x+ en ventana 1h
+    experiment.chaos/objective: MTTD < 2 minutos
+    experiment.chaos/slo-impact: error rate > 0.5% → SLO violado
+    experiment.chaos/target: data-service
+    experiment.chaos/type: http-error
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"chaos-mesh.org/v1alpha1","kind":"HTTPChaos","metadata":{"annotations":{"experiment.chaos/burn-rate-expected":"14.4x+ en ventana 1h","experiment.chaos/objective":"MTTD \u003c 2 minutos","experiment.chaos/slo-impact":"error rate \u003e 0.5% → SLO violado","experiment.chaos/target":"data-service","experiment.chaos/type":"http-error"},"name":"error-rate-data-service-10pct","namespace":"otel-lab"},"spec":{"abort":true,"duration":"5m","mode":"fixed-percent","path":"*","port":8002,"replace":{"headers":{"X-Chaos-Active":"true","X-Chaos-Experiment":"error-rate-10pct"}},"selector":{"labelSelectors":{"app":"data-service"},"namespaces":["otel-lab"]},"target":"Response","value":"10"}}
+  creationTimestamp: "2026-08-30T16:14:16Z"
+  finalizers:
+  - chaos-mesh/records
+  generation: 7
+  name: error-rate-data-service-10pct
+  namespace: otel-lab
+  resourceVersion: "184281"
+  uid: 05eb5e5e-98c7-4862-b349-93bf78fa16de
+spec:
+  abort: true
+  duration: 5m
+  mode: fixed-percent
+  path: '*'
+  port: 8002
+  replace:
+    headers:
+      X-Chaos-Active: "true"
+      X-Chaos-Experiment: error-rate-10pct
+  selector:
+    labelSelectors:
+      app: data-service
+    namespaces:
+    - otel-lab
+  target: Response
+  value: "10"
+status:
+  conditions:
+  - status: "True"
+    type: Selected
+  - status: "True"
+    type: AllInjected
+  - status: "False"
+    type: AllRecovered
+  - status: "False"
+    type: Paused
+  experiment:
+    containerRecords:
+    - events:
+      - operation: Apply
+        timestamp: "2026-08-30T16:14:16Z"
+        type: Succeeded
+      id: otel-lab/data-service-7fd57b5499-wwshb
+      injectedCount: 1
+      phase: Injected
+      recoveredCount: 0
+      selectorKey: .
+    desiredPhase: Run
+  instances:
+    otel-lab/data-service-7fd57b5499-wwshb: 1

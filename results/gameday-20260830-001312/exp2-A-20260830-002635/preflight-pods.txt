@@ -1,0 +1,17 @@
+NAME                                 READY   STATUS      RESTARTS       AGE     IP               NODE      NOMINATED NODE   READINESS GATES
+blackbox-exporter-56f8658cc9-2xvk9   1/1     Running     0              24m     10.244.58.170    kube-w2   <none>           <none>
+data-service-7fd57b5499-xzlkd        1/1     Running     0              127m    10.244.179.112   kube-w1   <none>           <none>
+data-service-7fd57b5499-zjtt9        1/1     Running     0              127m    10.244.58.163    kube-w2   <none>           <none>
+grafana-bd6f46896-6bmbg              1/1     Running     0              20m     10.244.55.180    kube-cp   <none>           <none>
+jaeger-554689987c-4gjwq              1/1     Running     2 (133m ago)   7h29m   10.244.55.186    kube-cp   <none>           <none>
+otel-collector-6j9hg                 1/1     Running     2 (136m ago)   7h16m   10.244.179.99    kube-w1   <none>           <none>
+otel-collector-hwnlf                 1/1     Running     1 (130m ago)   7h16m   10.244.58.153    kube-w2   <none>           <none>
+otel-collector-n9fgl                 1/1     Running     2 (133m ago)   7h16m   10.244.55.188    kube-cp   <none>           <none>
+otel-lab-pod-failure-runner          0/1     Completed   0              7h3m    <none>           kube-cp   <none>           <none>
+pod-delete-75sv87-8g7vj              0/1     Completed   0              7h2m    <none>           kube-cp   <none>           <none>
+postgres-d4cbd848b-9qdz2             1/1     Running     2 (133m ago)   7h29m   10.244.55.171    kube-cp   <none>           <none>
+prometheus-74dc799585-plbdg          1/1     Running     0              20m     10.244.55.179    kube-cp   <none>           <none>
+service-a-c998c94d5-9gchc            1/1     Running     2 (136m ago)   4h40m   10.244.179.100   kube-w1   <none>           <none>
+service-a-c998c94d5-hsl4g            1/1     Running     2 (133m ago)   4h40m   10.244.55.141    kube-cp   <none>           <none>
+service-b-6768ff647d-jb9hx           1/1     Running     1 (130m ago)   4h40m   10.244.58.154    kube-w2   <none>           <none>
+service-b-6768ff647d-zjf2c           1/1     Running     2 (133m ago)   4h40m   10.244.55.173    kube-cp   <none>           <none>

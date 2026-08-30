@@ -1,0 +1,641 @@
+[2m2026-08-30T05:28:10.996613Z[0m [34mDEBUG[0m [1mhandle[0m[1m{[0m[3mproxy[0m[2m=[0mProxy { opt: ProxyOpt { ipc_path: "/tmp/09e76d0f-b30f-49dd-b5bc-3c38a74b0560.sock", verbose: 2 }, net_env: NetEnv { netns: "34fa7cef-9840ns", device: "eth0", ip: "10.244.58.174/32", bridge1: "34fa7cef-9840b1", bridge2: "34fa7cef-9840b2", veth1: "34fa7cef-9840v1", veth2: "veth0", veth3: "veth1", veth4: "34fa7cef-9840v4", save_routes: [RouteMessage { header: RouteHeader { address_family: 2, destination_prefix_length: 32, source_prefix_length: 0, tos: 0, table: 254, protocol: 3, scope: 253, kind: 1, flags: (empty) }, nlas: [Table(254), Destination([169, 254, 1, 1]), Oif(2)] }, RouteMessage { header: RouteHeader { address_family: 2, destination_prefix_length: 0, source_prefix_length: 0, tos: 0, table: 254, protocol: 3, scope: 0, kind: 1, flags: (empty) }, nlas: [Table(254), Gateway([169, 254, 1, 1]), Oif(2)] }] }, rtnl_handle: Handle(ConnectionHandle { requests_tx: UnboundedSender(Some(UnboundedSenderInner { inner: UnboundedInner { state: 9223372036854775808, message_queue: Queue { head: 0xaaaac022db80, tail: UnsafeCell { .. } }, num_senders: 1, recv_task: AtomicWaker } })) }), sender: Some(Sender { inner: Some(Inner { state: State { is_complete: false, is_closed: false, is_rx_task_set: false, is_tx_task_set: false } }) }), rx: Some(Receiver { inner: Some(Inner { state: State { is_complete: false, is_closed: false, is_rx_task_set: false, is_tx_task_set: false } }) }), task: None } [3mrequest[0m[2m=[0mRequest { method: PUT, uri: /, version: HTTP/1.1, headers: {"host": "", "user-agent": "Go-http-client/1.1", "content-length": "203"}, body: Body(Streaming) }[1m}[0m[2m:[0m [2mchaos_tproxy::proxy::net::bridge[0m[2m:[0m stdout : net.ipv4.conf.all.rp_filter = 0
+
+[2m2026-08-30T05:28:10.999921Z[0m [32m INFO[0m [2mchaos_tproxy::proxy::uds_server[0m[2m:[0m Uds listener listening on "/tmp/211a9fa5-08f4-41da-b414-8eafaacb8618.sock"
+[2m2026-08-30T05:28:11.024996Z[0m [34mDEBUG[0m [1mhandle[0m[1m{[0m[3mproxy[0m[2m=[0mProxy { opt: ProxyOpt { ipc_path: "/tmp/09e76d0f-b30f-49dd-b5bc-3c38a74b0560.sock", verbose: 2 }, net_env: NetEnv { netns: "34fa7cef-9840ns", device: "eth0", ip: "10.244.58.174/32", bridge1: "34fa7cef-9840b1", bridge2: "34fa7cef-9840b2", veth1: "34fa7cef-9840v1", veth2: "veth0", veth3: "veth1", veth4: "34fa7cef-9840v4", save_routes: [RouteMessage { header: RouteHeader { address_family: 2, destination_prefix_length: 32, source_prefix_length: 0, tos: 0, table: 254, protocol: 3, scope: 253, kind: 1, flags: (empty) }, nlas: [Table(254), Destination([169, 254, 1, 1]), Oif(2)] }, RouteMessage { header: RouteHeader { address_family: 2, destination_prefix_length: 0, source_prefix_length: 0, tos: 0, table: 254, protocol: 3, scope: 0, kind: 1, flags: (empty) }, nlas: [Table(254), Gateway([169, 254, 1, 1]), Oif(2)] }] }, rtnl_handle: Handle(ConnectionHandle { requests_tx: UnboundedSender(Some(UnboundedSenderInner { inner: UnboundedInner { state: 9223372036854775808, message_queue: Queue { head: 0xaaaac022db80, tail: UnsafeCell { .. } }, num_senders: 1, recv_task: AtomicWaker } })) }), sender: Some(Sender { inner: Some(Inner { state: State { is_complete: false, is_closed: false, is_rx_task_set: false, is_tx_task_set: false } }) }), rx: Some(Receiver { inner: Some(Inner { state: State { is_complete: false, is_closed: false, is_rx_task_set: false, is_tx_task_set: false } }) }), task: None } [3mrequest[0m[2m=[0mRequest { method: PUT, uri: /, version: HTTP/1.1, headers: {"host": "", "user-agent": "Go-http-client/1.1", "content-length": "203"}, body: Body(Streaming) }[1m}[0m[2m:[0m [2mchaos_tproxy::proxy::net::ping[0m[2m:[0m ping gateway 169.254.1.1
+[2m2026-08-30T05:28:11.025171Z[0m [32m INFO[0m [2mchaos_tproxy::proxy::exec[0m[2m:[0m Proxy executor Starting proxy.
+2026-08-30T05:28:11.025Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	http chaos applied	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+[2m2026-08-30T05:28:11.025446Z[0m [32m INFO[0m [2mchaos_tproxy::proxy::exec[0m[2m:[0m Proxy executor Proxy is running.
+[2m2026-08-30T05:28:11.028642Z[0m [32m INFO[0m [2mchaos_tproxy_proxy[0m[2m:[0m Proxy get uds path "/tmp/211a9fa5-08f4-41da-b414-8eafaacb8618.sock"
+[2m2026-08-30T05:28:11.028680Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::uds_client[0m[2m:[0m try connect path : "/tmp/211a9fa5-08f4-41da-b414-8eafaacb8618.sock"
+[2m2026-08-30T05:28:11.028806Z[0m [32m INFO[0m [2mchaos_tproxy::proxy::uds_server[0m[2m:[0m Uds server Config successfully transferred.
+[2m2026-08-30T05:28:11.028855Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::uds_client[0m[2m:[0m Read data successfully.
+[2m2026-08-30T05:28:11.028937Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::uds_client[0m[2m:[0m Deserialize data successfully.
+[2m2026-08-30T05:28:11.029039Z[0m [32m INFO[0m [2mchaos_tproxy_proxy[0m[2m:[0m Proxy Starting
+[2m2026-08-30T05:28:11.029128Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m Proxy Listening
+[2m2026-08-30T05:28:17.556363Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:48064, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:17.574210Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:48064, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:17.574255Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:17.933228Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 10.244.58.170:32904, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:17.943121Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 10.244.58.170:32904, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:17.943205Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:19.104053Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:11964, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:19.105858Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:24841, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:19.117454Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:24841, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:19.117526Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:19.124569Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:11964, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:19.124641Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:20.646318Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:55300, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:20.658979Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:55300, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:20.659192Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:31.449337Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:59544, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:31.458896Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:59544, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:31.458925Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:37.933402Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 10.244.58.170:50090, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:37.944097Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 10.244.58.170:50090, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:37.944150Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:40.750720Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:11843, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:40.760459Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:11843, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:40.760507Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:42.934878Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 10.244.58.170:52698, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:42.945741Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 10.244.58.170:52698, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:42.945804Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:45.392856Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:1629, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:45.408150Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:1629, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:45.408339Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:46.675403Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.22:59582, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:46.676243Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.22:59582, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:46.676275Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:51.579882Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:22168, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:51.579882Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:29821, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:51.580135Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:48313, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:51.590268Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:22168, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:51.590335Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:51.599086Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:29821, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:51.599142Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:51.606246Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:48313, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:51.606306Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:54.666410Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:63533, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:54.667309Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:54078, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:54.680310Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:63533, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:54.680366Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:54.687051Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:54078, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:54.687105Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:59.303230Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:9340, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:59.315102Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:9340, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:59.315173Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:28:59.866437Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 10.244.58.170:50158, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:28:59.867719Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 10.244.58.170:50158, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:28:59.867755Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:29:05.487529Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:20564, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:29:05.497742Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:20564, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:29:05.497801Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:29:06.676088Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.22:55002, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:29:06.677040Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.22:55002, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:29:06.677070Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:29:16.266480Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:54055, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:29:16.278330Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:54055, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:29:16.278398Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:29:22.445832Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:33284, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:29:22.455012Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.20:33284, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:29:22.455042Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+[2m2026-08-30T05:29:26.675771Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.22:54490, target = 10.244.58.174:8002 } : Proxy is handling http request
+[2m2026-08-30T05:29:26.676882Z[0m [34mDEBUG[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m {remote = 192.168.0.22:54490, target = 10.244.58.174:8002 } : response matched
+[2m2026-08-30T05:29:26.676911Z[0m [32m INFO[0m [2mchaos_tproxy_proxy::proxy::http::server[0m[2m:[0m fail to serve http: error from user's Service: Abort applied
+2026-08-30T05:29:26.869Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "9c95dc42-8158-4451-bcf7-0b0650e6a270", "pid": 19612}
+2026-08-30T05:33:19.095Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:19.097Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:19.099Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:19.100Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:19.107Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "78cb2ac2-03b7-4d8f-bab1-d642bebe247d", "pid": 20437}
+2026-08-30T05:33:19.107Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "78cb2ac2-03b7-4d8f-bab1-d642bebe247d"}
+2026-08-30T05:33:19.132Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:19.134Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:19.135Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:19.135Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:19.138Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "d4a49c27-bb94-4188-a81c-0d9acfac2e82", "pid": 20441}
+2026-08-30T05:33:19.138Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "d4a49c27-bb94-4188-a81c-0d9acfac2e82", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T05:33:19.162Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:19.163Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:19.164Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:19.164Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:19.166Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "4ae92607-0a5e-41b3-9544-054e0e6047bb", "pid": 20445}
+2026-08-30T05:33:19.166Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "4ae92607-0a5e-41b3-9544-054e0e6047bb", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T05:33:19.198Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:19.199Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:19.199Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:19.199Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:19.202Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "d28725f8-ed15-4d7b-8033-ed910a680642", "pid": 20449}
+2026-08-30T05:33:19.202Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "d28725f8-ed15-4d7b-8033-ed910a680642"}
+2026-08-30T05:33:19.251Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:19.253Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:19.253Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:19.253Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:19.256Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "900f7f48-2a0c-4c0b-bd76-943c633d3d60", "pid": 20453}
+2026-08-30T05:33:19.256Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "900f7f48-2a0c-4c0b-bd76-943c633d3d60"}
+2026-08-30T05:33:19.344Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:19.345Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:19.345Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:19.345Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:19.347Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "15579a97-babd-4f11-9fd5-99643368d9c7", "pid": 20457}
+2026-08-30T05:33:19.347Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "15579a97-babd-4f11-9fd5-99643368d9c7"}
+2026-08-30T05:33:19.519Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:19.520Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:19.521Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:19.521Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:19.523Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "4402facf-6bcd-4fa1-9d7d-355acb8e66a1", "pid": 20461}
+2026-08-30T05:33:19.523Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "4402facf-6bcd-4fa1-9d7d-355acb8e66a1"}
+2026-08-30T05:33:19.855Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:19.856Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:19.856Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:19.856Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:19.859Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "9412bcc1-2b64-47e4-bbc4-f9ec4035e9b3", "pid": 20465}
+2026-08-30T05:33:19.859Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "9412bcc1-2b64-47e4-bbc4-f9ec4035e9b3"}
+2026-08-30T05:33:20.512Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:20.513Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:20.513Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:20.513Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:20.516Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "1377b98f-af4e-4f8b-bfcd-6d077a2f7dcb", "pid": 20469}
+2026-08-30T05:33:20.516Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "1377b98f-af4e-4f8b-bfcd-6d077a2f7dcb"}
+2026-08-30T05:33:21.809Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:21.811Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:21.811Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:21.812Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:21.816Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "4b9a2bd0-e9bf-423f-89b2-a34e2d232f43", "pid": 20473}
+2026-08-30T05:33:21.816Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "4b9a2bd0-e9bf-423f-89b2-a34e2d232f43"}
+2026-08-30T05:33:24.393Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:24.393Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:24.394Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:24.394Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:24.396Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "493488a9-903e-4acd-aeb7-574a02f32794", "pid": 20477}
+2026-08-30T05:33:24.396Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "493488a9-903e-4acd-aeb7-574a02f32794", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T05:33:29.528Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:29.528Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:29.529Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:29.529Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:29.531Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "1930f347-47cf-4397-87f1-37d3409040be", "pid": 20508}
+2026-08-30T05:33:29.531Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "1930f347-47cf-4397-87f1-37d3409040be", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T05:33:39.781Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:33:39.782Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:33:39.782Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:33:39.782Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:33:39.785Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "1164b573-e3c1-4c34-aa8a-eb27694389ce", "pid": 20519}
+2026-08-30T05:33:39.785Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "1164b573-e3c1-4c34-aa8a-eb27694389ce"}
+2026-08-30T05:34:00.274Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:34:00.276Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20409/ns/net -p /proc/20409/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:34:00.276Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:34:00.276Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:34:00.278Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "8c71be46-fff2-4ec8-ac87-f6d8cd1b35d3", "pid": 20575}
+2026-08-30T05:34:00.278Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "8c71be46-fff2-4ec8-ac87-f6d8cd1b35d3"}
+2026-08-30T05:34:41.249Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:34:41.250Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20647/ns/net -p /proc/20647/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:34:41.251Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:34:41.251Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:34:41.254Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "a8c12a49-e95d-4eb0-972f-2fe966339d9b", "pid": 20676}
+2026-08-30T05:34:41.254Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "a8c12a49-e95d-4eb0-972f-2fe966339d9b"}
+2026-08-30T05:36:03.189Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp"}
+2026-08-30T05:36:03.191Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "command": "/usr/local/bin/nsexec -l -n /proc/20838/ns/net -p /proc/20838/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T05:36:03.191Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "length": 0}
+2026-08-30T05:36:03.191Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T05:36:03.195Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "204cd778-745f-4da4-a23a-ea3400766f4a", "pid": 20888}
+2026-08-30T05:36:03.195Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-mqdrp", "uid": "204cd778-745f-4da4-a23a-ea3400766f4a"}
+Chaos-daemon Version: version.Info{GitVersion:"chart-2.8.4", GitCommit:"0bfee5d117f859ab0e3f433a370e622283badd91", BuildDate:"2026-08-18T07:33:50Z", GoVersion:"go1.25.11", Compiler:"gc", Platform:"linux/arm64"}
+2026-08-30T03:14:36.717Z	INFO	chaos-daemon.daemon-server	chaos-daemon/main.go:80	grant access to /dev/fuse
+2026-08-30T03:14:36.719Z	ERROR	chaos-daemon.daemon-server	chaos-daemon/main.go:83	grant access to /dev/fuse	{"error": "fail to find device cgroup", "errorVerbose": "fail to find device cgroup\ngithub.com/chaos-mesh/chaos-mesh/pkg/fusedev.GrantAccess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/fusedev/fusedev_linux.go:60\nmain.main\n\t/home/runner/work/chaos-mesh/chaos-mesh/cmd/chaos-daemon/main.go:81\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:285\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+main.main
+	/home/runner/work/chaos-mesh/chaos-mesh/cmd/chaos-daemon/main.go:83
+runtime.main
+	/usr/local/go/src/runtime/proc.go:285
+2026-08-30T03:14:36.719Z	INFO	chaos-daemon.daemon-server	chaos-daemon/main.go:86	remount /sys with read-write permission
+2026-08-30T03:14:36.733Z	INFO	chaos-daemon.daemon-server	runtime/asm_arm64.s:1268	Starting grpc endpoint	{"address": "0.0.0.0:31767", "runtime": "containerd"}
+2026-08-30T03:14:36.734Z	INFO	chaos-daemon.daemon-server	runtime/asm_arm64.s:1268	Starting http endpoint	{"address": "0.0.0.0:31766"}
+2026-08-30T05:14:44.891Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	flush ipset	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "request": "container_id:\"containerd://a1b451d51d2d8353a69dfd717677205bd4903efae70c4fbe6c064f49ae12a021\" enterNS:true pod_uid:\"dcea3821-980d-441f-9ec7-d09414b74796\""}
+2026-08-30T05:14:44.900Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	Set iptables chains	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "request": "container_id:\"containerd://a1b451d51d2d8353a69dfd717677205bd4903efae70c4fbe6c064f49ae12a021\" enterNS:true pod_uid:\"dcea3821-980d-441f-9ec7-d09414b74796\""}
+2026-08-30T05:14:44.904Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:176	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -N CHAOS-INPUT"}
+2026-08-30T05:14:44.930Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:216	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -F CHAOS-INPUT"}
+2026-08-30T05:14:44.932Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:184	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -S INPUT"}
+2026-08-30T05:14:44.934Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:184	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -A INPUT -j CHAOS-INPUT"}
+2026-08-30T05:14:44.937Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:176	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -N CHAOS-OUTPUT"}
+2026-08-30T05:14:44.939Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:216	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -F CHAOS-OUTPUT"}
+2026-08-30T05:14:44.940Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:184	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -S OUTPUT"}
+2026-08-30T05:14:44.943Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:184	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -A OUTPUT -j CHAOS-OUTPUT"}
+2026-08-30T05:14:44.947Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	handling tc request	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "tcs": "tcs:{netem:{time:\"200ms\" jitter:\"10ms\" delay_corr:100}} container_id:\"containerd://a1b451d51d2d8353a69dfd717677205bd4903efae70c4fbe6c064f49ae12a021\" enterNS:true pod_uid:\"dcea3821-980d-441f-9ec7-d09414b74796\""}
+2026-08-30T05:14:44.949Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/tc_server.go:128	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- ip -j addr show"}
+2026-08-30T05:14:44.963Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4233	get interfaces from ip command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "ifaces": ["lo", "eth0"]}
+2026-08-30T05:14:44.963Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/tc_server.go:134	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- tc qdisc del dev lo root"}
+2026-08-30T05:14:44.970Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/tc_server.go:134	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- tc qdisc del dev eth0 root"}
+2026-08-30T05:14:44.972Z	INFO	chaos-daemon.daemon-server	chaosdaemon/tc_server.go:181	add tc	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "tc": "netem:{time:\"200ms\" jitter:\"10ms\" delay_corr:100} device:\"eth0\""}
+2026-08-30T05:14:44.972Z	INFO	chaos-daemon.daemon-server	chaosdaemon/tc_server.go:219	adding netem	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "device": "eth0", "parent": "root", "handle": "handle 1:"}
+2026-08-30T05:14:44.972Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/tc_server.go:346	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- tc qdisc add dev eth0 root handle 1: netem delay 200ms 10ms 100.000000"}
+2026-08-30T05:19:44.059Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	flush ipset	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "request": "container_id:\"containerd://a1b451d51d2d8353a69dfd717677205bd4903efae70c4fbe6c064f49ae12a021\" enterNS:true pod_uid:\"dcea3821-980d-441f-9ec7-d09414b74796\""}
+2026-08-30T05:19:44.064Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	Set iptables chains	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "request": "container_id:\"containerd://a1b451d51d2d8353a69dfd717677205bd4903efae70c4fbe6c064f49ae12a021\" enterNS:true pod_uid:\"dcea3821-980d-441f-9ec7-d09414b74796\""}
+2026-08-30T05:19:44.067Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:176	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -N CHAOS-INPUT"}
+2026-08-30T05:19:44.070Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:216	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -F CHAOS-INPUT"}
+2026-08-30T05:19:44.072Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:184	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -S INPUT"}
+2026-08-30T05:19:44.073Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:176	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -N CHAOS-OUTPUT"}
+2026-08-30T05:19:44.074Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:216	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -F CHAOS-OUTPUT"}
+2026-08-30T05:19:44.075Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/iptables_server.go:184	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- iptables -w -S OUTPUT"}
+2026-08-30T05:19:44.077Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	handling tc request	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "tcs": "container_id:\"containerd://a1b451d51d2d8353a69dfd717677205bd4903efae70c4fbe6c064f49ae12a021\" enterNS:true pod_uid:\"dcea3821-980d-441f-9ec7-d09414b74796\""}
+2026-08-30T05:19:44.079Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/tc_server.go:128	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- ip -j addr show"}
+2026-08-30T05:19:44.081Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4233	get interfaces from ip command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "ifaces": ["lo", "eth0"]}
+2026-08-30T05:19:44.081Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/tc_server.go:134	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- tc qdisc del dev lo root"}
+2026-08-30T05:19:44.084Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/tc_server.go:134	build command	{"namespacedName": "otel-lab/service-b-6768ff647d-zjf2c", "command": "/usr/local/bin/nsexec -n /proc/5152/ns/net -- tc qdisc del dev eth0 root"}
+2026-08-30T03:29:08.070Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "177a8078-71f3-4d4b-a78c-3799982c8182", "pid": 8639}
+2026-08-30T03:29:08.070Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "177a8078-71f3-4d4b-a78c-3799982c8182", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T03:29:08.090Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:08.091Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:08.092Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:08.092Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:08.097Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "0d7c2bcb-10ec-4a00-bd0b-eb2f8ece8542", "pid": 8643}
+2026-08-30T03:29:08.097Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "0d7c2bcb-10ec-4a00-bd0b-eb2f8ece8542"}
+2026-08-30T03:29:08.122Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:08.123Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:08.123Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:08.123Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:08.127Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "0c053b08-0b0f-489a-be29-7e4720baed5d", "pid": 8647}
+2026-08-30T03:29:08.128Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "0c053b08-0b0f-489a-be29-7e4720baed5d"}
+2026-08-30T03:29:08.160Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:08.161Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:08.161Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:08.161Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:08.165Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "11999047-e0be-45cb-be88-81d833249b24", "pid": 8651}
+2026-08-30T03:29:08.165Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "11999047-e0be-45cb-be88-81d833249b24", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T03:29:08.218Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:08.219Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:08.220Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:08.220Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:08.223Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "f18216a2-9006-4517-a3f4-0e235a1756a1", "pid": 8655}
+2026-08-30T03:29:08.223Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "f18216a2-9006-4517-a3f4-0e235a1756a1", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T03:29:08.314Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:08.316Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:08.316Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:08.316Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:08.320Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "c9111505-3ffa-42ba-b641-f77eb53bf3f5", "pid": 8659}
+2026-08-30T03:29:08.320Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "c9111505-3ffa-42ba-b641-f77eb53bf3f5"}
+2026-08-30T03:29:08.491Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:08.493Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:08.493Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:08.493Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:08.496Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "0d22121f-0513-4241-91ce-0e3ea02a41da", "pid": 8663}
+2026-08-30T03:29:08.496Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "0d22121f-0513-4241-91ce-0e3ea02a41da"}
+2026-08-30T03:29:08.827Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:08.828Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:08.829Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:08.829Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:08.832Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "87ca4322-480b-4b68-80b9-2c1642708e99", "pid": 8667}
+2026-08-30T03:29:08.832Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "87ca4322-480b-4b68-80b9-2c1642708e99"}
+2026-08-30T03:29:09.487Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:09.489Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:09.489Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:09.489Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:09.495Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "b3e41e1a-b90b-4a55-9e23-ec2e0d5a291b", "pid": 8671}
+2026-08-30T03:29:09.495Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "b3e41e1a-b90b-4a55-9e23-ec2e0d5a291b", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T03:29:10.787Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:10.789Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:10.789Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:10.790Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:10.794Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "368a8d0b-68f7-4337-92d9-a9e66afb6da2", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T03:29:10.794Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "368a8d0b-68f7-4337-92d9-a9e66afb6da2", "pid": 8675}
+2026-08-30T03:29:13.368Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:13.370Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:13.370Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:13.370Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:13.375Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "ce27d3dd-ca5f-475f-a2ad-9e5a54d4a0cf", "pid": 8679}
+2026-08-30T03:29:13.375Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "ce27d3dd-ca5f-475f-a2ad-9e5a54d4a0cf", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T03:29:18.511Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:18.512Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:18.513Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:18.513Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:18.517Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "59b71168-9cdf-44af-a924-c2fda34190c1", "pid": 8683}
+2026-08-30T03:29:18.517Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "59b71168-9cdf-44af-a924-c2fda34190c1"}
+2026-08-30T03:29:28.770Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:28.773Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:28.775Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:28.775Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:28.781Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "8651aa73-70a7-42c7-9884-5a0df2c050d7", "pid": 8710}
+2026-08-30T03:29:28.781Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "8651aa73-70a7-42c7-9884-5a0df2c050d7", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T03:29:49.272Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:29:49.273Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8577/ns/net -p /proc/8577/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:29:49.274Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:29:49.274Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:29:49.278Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "7da54d74-9ace-49ea-9f2a-7022cb5a620c", "pid": 8748}
+2026-08-30T03:29:49.278Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "7da54d74-9ace-49ea-9f2a-7022cb5a620c"}
+2026-08-30T03:30:30.252Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:30:30.254Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/8817/ns/net -p /proc/8817/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:30:30.255Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:30:30.255Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:30:30.260Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "50e80952-5a78-4d55-a21c-cd23ae503912", "pid": 8880}
+2026-08-30T03:30:30.260Z	ERROR	chaos-daemon.daemon-server	chaosdaemon/server.go:187	kill tproxy	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "50e80952-5a78-4d55-a21c-cd23ae503912", "error": "send SIGTERM to process: os: process already finished", "errorVerbose": "os: process already finished\nsend SIGTERM to process\ngithub.com/chaos-mesh/chaos-mesh/pkg/bpm.(*BackgroundProcessManager).KillBackgroundProcess\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/bpm/bpm.go:304\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.(*DaemonServer).ApplyHttpChaos\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/httpchaos_server.go:100\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler.func1\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4413\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6\n\t/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34\ngithub.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler\n\t/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415\ngoogle.golang.org/grpc.(*Server).processUnaryRPC\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429\ngoogle.golang.org/grpc.(*Server).handleStream\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855\ngoogle.golang.org/grpc.(*Server).serveStreams.func2.1\n\t/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_arm64.s:1268"}
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.MetadataExtractor.func4
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/server.go:187
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.(*ServerMetrics).UnaryServerInterceptor.func3
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0/server_metrics.go:107
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/grpc.TimeoutServerInterceptor
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/grpc/utils.go:207
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6.1.1
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:25
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon.newGRPCServer.WithUnaryServerChain.ChainUnaryServer.func6
+	/tmp/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.3.0/chain.go:34
+github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb._ChaosDaemon_ApplyHttpChaos_Handler
+	/home/runner/work/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb/chaosdaemon.pb.go:4415
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1429
+google.golang.org/grpc.(*Server).handleStream
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1855
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/tmp/go/pkg/mod/google.golang.org/grpc@v1.79.3/server.go:1064
+2026-08-30T03:31:52.197Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:34:36.056Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}
+2026-08-30T03:34:36.058Z	INFO	chaos-daemon.daemon-server.background-process-manager.process-builder	chaosdaemon/httpchaos_server.go:93	build command	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "command": "/usr/local/bin/nsexec -l -n /proc/9288/ns/net -p /proc/9288/ns/pid -- /usr/local/bin/tproxy -i -vv"}
+2026-08-30T03:34:36.059Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	the length of actions	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "length": 0}
+2026-08-30T03:34:36.059Z	INFO	chaos-daemon.daemon-server	pb/chaosdaemon.pb.go:4413	ready to apply	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "config": "{\"rules\":[]}"}
+thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', chaos-tproxy-controller/src/proxy/net/bridge.rs:54:36
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-08-30T03:34:36.064Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:247	process stopped	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "0e753c7d-e4fd-4145-9365-af8d4ca2bef7", "pid": 9373}
+2026-08-30T03:34:36.064Z	INFO	chaos-daemon.daemon-server.background-process-manager	bpm/bpm.go:309	Successfully killed process	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg", "uid": "0e753c7d-e4fd-4145-9365-af8d4ca2bef7"}
+2026-08-30T03:40:03.767Z	INFO	chaos-daemon.daemon-server	chaosdaemon/server.go:187	applying http chaos	{"namespacedName": "otel-lab/data-service-7fd57b5499-nwzzg"}

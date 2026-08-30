@@ -1,0 +1,104 @@
+# ════════════════════════════════════════════════════════════════
+# monitoring/blackbox-exporter.yaml
+#
+# SLI de borde: sonda HTTP externa al proceso instrumentado.
+#
+# Por qué existe: el HTTPChaos del Experimento 2 aborta las responses
+# a nivel de proxy, ANTES de que la request llegue al código de la app.
+# La instrumentación de FastAPI nunca se ejecuta para esas requests, así
+# que ni las trazas ni las métricas de la aplicación las registran — el
+# tablero se queda en verde mientras el 10 % de los usuarios recibe
+# conexiones abortadas. Un sondeo desde fuera del proceso sí las ve.
+#
+# Es la remediación #2 del addendum, implementada.
+#
+# Imagen: subirla al registry del cluster antes de aplicar
+#   docker pull --platform linux/arm64 prom/blackbox-exporter:v0.25.0
+#   docker tag  prom/blackbox-exporter:v0.25.0 192.168.0.20:30500/blackbox-exporter:v0.25.0
+#   docker push 192.168.0.20:30500/blackbox-exporter:v0.25.0
+# ════════════════════════════════════════════════════════════════
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blackbox-exporter-config
+  namespace: otel-lab
+data:
+  blackbox.yml: |
+    modules:
+      http_2xx:
+        prober: http
+        # 3 s: por debajo del cuelgue de ~11,7 s que produce el abort,
+        # para que la sonda falle rápido y no arrastre el scrape.
+        timeout: 3s
+        http:
+          method: GET
+          valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+          valid_status_codes: []      # vacío = cualquier 2xx
+          follow_redirects: false
+          preferred_ip_protocol: ip4
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blackbox-exporter
+  namespace: otel-lab
+  labels:
+    app: blackbox-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blackbox-exporter
+  template:
+    metadata:
+      labels:
+        app: blackbox-exporter
+        chaos.exclude: "true"      # nunca es objetivo de un experimento
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: DoesNotExist
+      containers:
+        - name: blackbox-exporter
+          image: 192.168.0.20:30500/blackbox-exporter:v0.25.0
+          imagePullPolicy: IfNotPresent
+          args:
+            - --config.file=/etc/blackbox/blackbox.yml
+          ports:
+            - containerPort: 9115
+              name: http
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+          volumeMounts:
+            - name: config
+              mountPath: /etc/blackbox
+      volumes:
+        - name: config
+          configMap:
+            name: blackbox-exporter-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blackbox-exporter-svc
+  namespace: otel-lab
+spec:
+  selector:
+    app: blackbox-exporter
+  ports:
+    - name: http
+      port: 9115
+      targetPort: 9115
+  type: ClusterIP

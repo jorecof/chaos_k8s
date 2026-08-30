@@ -86,6 +86,29 @@ data:
             regex: (.+);(.+)
             replacement: ${1}:${2}
 
+      # Blackbox exporter — SLI de borde, medido FUERA del proceso.
+      # Ve las requests abortadas por HTTPChaos, que la instrumentacion
+      # de la app no puede ver porque nunca llegan al codigo.
+      # scrape cada 5s para tener resolucion durante la ventana de chaos.
+      - job_name: blackbox-http
+        scrape_interval: 5s
+        scrape_timeout: 4s
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - http://data-service-svc:8002/health
+              - http://data-service-svc:8002/data/products
+              - http://service-a-svc:8000/health
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-svc:9115
+
       # LitmusChaos metrics
       - job_name: litmus-chaos-operator
         static_configs:

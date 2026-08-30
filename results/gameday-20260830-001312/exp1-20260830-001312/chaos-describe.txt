@@ -1,0 +1,90 @@
+Name:         latency-service-b-200ms
+Namespace:    otel-lab
+Labels:       <none>
+Annotations:  experiment.chaos/objective: MTTD < 2 minutos
+              experiment.chaos/owner: equipo-sre
+              experiment.chaos/slo-impact: p99 latencia > 500ms
+              experiment.chaos/target: service-b
+              experiment.chaos/type: network-latency
+API Version:  chaos-mesh.org/v1alpha1
+Kind:         NetworkChaos
+Metadata:
+  Creation Timestamp:  2026-08-30T05:14:44Z
+  Finalizers:
+    chaos-mesh/records
+  Generation:        14
+  Resource Version:  135799
+  UID:               d823c2f0-cf27-4cec-b408-18a3a8e04df4
+Spec:
+  Action:  delay
+  Delay:
+    Correlation:  100
+    Jitter:       10ms
+    Latency:      200ms
+  Direction:      to
+  Duration:       5m
+  Mode:           all
+  Selector:
+    Label Selectors:
+      App:  service-b
+    Namespaces:
+      otel-lab
+Status:
+  Conditions:
+    Status:  True
+    Type:    Selected
+    Status:  False
+    Type:    AllInjected
+    Status:  True
+    Type:    AllRecovered
+    Status:  False
+    Type:    Paused
+  Experiment:
+    Container Records:
+      Events:
+        Operation:      Apply
+        Timestamp:      2026-08-30T05:14:44Z
+        Type:           Succeeded
+        Operation:      Recover
+        Timestamp:      2026-08-30T05:19:44Z
+        Type:           Succeeded
+      Id:               otel-lab/service-b-6768ff647d-jb9hx
+      Injected Count:   1
+      Phase:            Not Injected
+      Recovered Count:  1
+      Selector Key:     .
+      Events:
+        Operation:      Apply
+        Timestamp:      2026-08-30T05:14:44Z
+        Type:           Succeeded
+        Operation:      Recover
+        Timestamp:      2026-08-30T05:19:44Z
+        Type:           Succeeded
+      Id:               otel-lab/service-b-6768ff647d-zjf2c
+      Injected Count:   1
+      Phase:            Not Injected
+      Recovered Count:  1
+      Selector Key:     .
+    Desired Phase:      Stop
+  Instances:
+    otel-lab/service-b-6768ff647d-jb9hx:  8
+    otel-lab/service-b-6768ff647d-zjf2c:  8
+Events:
+  Type    Reason           Age    From            Message
+  ----    ------           ----   ----            -------
+  Normal  FinalizerInited  9m17s  initFinalizers  Finalizer has been inited
+  Normal  Updated          9m17s  initFinalizers  Successfully update finalizer of resource
+  Normal  Started          9m17s  desiredphase    Experiment has started
+  Normal  Updated          9m17s  desiredphase    Successfully update desiredPhase of resource
+  Normal  Updated          9m17s  records         Successfully update records of resource
+  Normal  Applied          9m17s  records         Successfully apply chaos for otel-lab/service-b-6768ff647d-jb9hx
+  Normal  Updated          9m17s  records         Successfully update records of resource
+  Normal  Applied          9m17s  records         Successfully apply chaos for otel-lab/service-b-6768ff647d-zjf2c
+  Normal  Updated          9m16s  records         Successfully update records of resource
+  Normal  TimeUp           4m17s  desiredphase    Time up according to the duration
+  Normal  Updated          4m17s  desiredphase    Successfully update desiredPhase of resource
+  Normal  Updated          4m17s  records         Successfully update records of resource
+  Normal  Recovered        4m17s  records         Successfully recover chaos for otel-lab/service-b-6768ff647d-jb9hx
+  Normal  Updated          4m17s  records         Successfully update records of resource
+  Normal  Recovered        4m17s  records         Successfully recover chaos for otel-lab/service-b-6768ff647d-zjf2c
+  Normal  Updated          4m17s  records         Successfully update records of resource

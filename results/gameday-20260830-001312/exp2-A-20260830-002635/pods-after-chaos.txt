@@ -1,0 +1,21 @@
+NAME                            READY   STATUS             RESTARTS      AGE     IP               NODE      NOMINATED NODE   READINESS GATES
+data-service-7fd57b5499-44hz8   1/1     Running            0             9m29s   10.244.179.121   kube-w1   <none>           <none>
+data-service-7fd57b5499-4gmlp   1/1     Running            0             9m29s   10.244.58.171    kube-w2   <none>           <none>
+data-service-7fd57b5499-8gd5p   1/1     Running            0             9m29s   10.244.179.122   kube-w1   <none>           <none>
+data-service-7fd57b5499-mqdrp   0/1     CrashLoopBackOff   6 (18s ago)   9m29s   10.244.58.174    kube-w2   <none>           <none>
+data-service-7fd57b5499-qcbkr   1/1     Running            0             9m29s   10.244.58.172    kube-w2   <none>           <none>
+data-service-7fd57b5499-qrcgs   1/1     Running            0             9m29s   10.244.179.119   kube-w1   <none>           <none>
+data-service-7fd57b5499-vc9tg   1/1     Running            0             9m29s   10.244.179.120   kube-w1   <none>           <none>
+data-service-7fd57b5499-xwbr6   1/1     Running            0             9m29s   10.244.58.173    kube-w2   <none>           <none>
+data-service-7fd57b5499-xzlkd   1/1     Running            0             138m    10.244.179.112   kube-w1   <none>           <none>
+data-service-7fd57b5499-zjtt9   1/1     Running            0             138m    10.244.58.163    kube-w2   <none>           <none>
+data-service-7fd57b5499-44hz8   0     <none>
+data-service-7fd57b5499-4gmlp   0     <none>
+data-service-7fd57b5499-8gd5p   0     <none>
+data-service-7fd57b5499-mqdrp   6     Completed
+data-service-7fd57b5499-qcbkr   0     <none>
+data-service-7fd57b5499-qrcgs   0     <none>
+data-service-7fd57b5499-vc9tg   0     <none>
+data-service-7fd57b5499-xwbr6   0     <none>
+data-service-7fd57b5499-xzlkd   0     <none>
+data-service-7fd57b5499-zjtt9   0     <none>

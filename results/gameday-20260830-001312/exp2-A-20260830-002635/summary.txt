@@ -1,0 +1,24 @@
+═══ RESUMEN EXPERIMENTO 2 (repetición instrumentada) ═══
+
+LÍNEA BASE: n=232  errores=0 (0.0%)
+   OK    p50=14ms  p95=26ms  max=40ms
+
+CHAOS (0-300s): n=524  errores=56 (10.7%)
+   OK    p50=12ms  p95=21ms  max=34ms
+   ERR   códigos={'000': 56}  duración media=7.06s  min=0.01s  max=9.95s
+
+POST-ROLLBACK (300s+): n=411  errores=33 (8.0%)
+   OK    p50=12ms  p95=18ms  max=34ms
+   ERR   códigos={'000': 33}  duración media=9.86s  min=9.85s  max=9.92s
+
+TIMELINE DEL ROLLBACK
+   primer error:  t+   6.7s   (MTTD del cliente)
+   último error:  t+ 534.8s
+   fin nominal:   t+ 300.0s
+   → ROLLBACK TARDÍO: 234.8s de errores después del duration
+
+BLIND SPOT DE TRAZAS
+   trazas de data-service en la ventana: 1285
+   status codes vistos en spans: {'200': 2233}
+   errores del lado cliente en la misma ventana: 89
+   → CONFIRMADO: ningún abort generó traza

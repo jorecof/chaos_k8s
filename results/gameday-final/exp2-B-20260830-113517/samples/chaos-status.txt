@@ -1,0 +1,108 @@
+=== t=1788107825 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107841 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107856 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107871 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107887 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107902 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107918 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107933 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107948 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107964 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107979 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788107995 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108010 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108026 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108041 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108056 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108072 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108087 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108102 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108118 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'True'), ('AllRecovered', 'False'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Injected sel: .
+=== t=1788108133 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108149 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108164 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108179 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108195 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108210 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108226 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108241 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108256 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108272 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108287 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108302 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108318 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108333 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108349 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
+=== t=1788108364 ===
+conditions: [('Selected', 'True'), ('AllInjected', 'False'), ('AllRecovered', 'True'), ('Paused', 'False')]
+  record: otel-lab/data-service-7fd57b5499-642qt phase: Not Injected sel: .
