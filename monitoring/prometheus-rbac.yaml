@@ -1,0 +1,39 @@
+# ════════════════════════════════════════════════════════════════
+# monitoring/prometheus-rbac.yaml
+#
+# RBAC para que Prometheus pueda hacer service discovery de pods
+# (kubernetes_sd_configs, role: pod). Sin esto, el job "kubernetes-pods"
+# y el scrape per-pod del otel-collector fallan en silencio con 403,
+# y Prometheus queda dependiendo del Service (round-robin entre las 3
+# replicas del DaemonSet), perdiendo metricas de aplicacion al azar.
+# ════════════════════════════════════════════════════════════════
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+  namespace: otel-lab
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus-otel-lab
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "nodes", "endpoints", "services"]
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-otel-lab
+subjects:
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: otel-lab
+roleRef:
+  kind: ClusterRole
+  name: prometheus-otel-lab
+  apiGroup: rbac.authorization.k8s.io

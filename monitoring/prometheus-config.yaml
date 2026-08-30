@@ -16,17 +16,61 @@ data:
       - /etc/prometheus/rules/*.yaml
 
     scrape_configs:
-      # OTel Collector — métricas de los microservicios
+      # OTel Collector — metricas de aplicacion (puerto 8889)
+      #
+      # El Collector es un DaemonSet de 3 replicas detras de un unico
+      # Service ClusterIP. Si se scrapea el Service (otel-collector-svc),
+      # kube-proxy balancea cada scrape a una replica al azar via
+      # round-robin de conexion — como las apps mantienen su conexion
+      # gRPC OTLP pegada a UNA sola replica, casi siempre se termina
+      # scrapeando una replica distinta a la que tiene los datos, y las
+      # metricas de aplicacion (http_requests_total, inventory.*, etc.)
+      # aparecen intermitentes o directamente ausentes. Fix: descubrir
+      # los 3 pods por label y scrapearlos TODOS directamente, sin pasar
+      # por el Service.
       - job_name: otel-collector
-        static_configs:
-          - targets: ["otel-collector-svc:8889"]
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names: [otel-lab]
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            action: keep
+            regex: otel-collector
+          - source_labels: [__meta_kubernetes_pod_ip]
+            action: replace
+            target_label: __address__
+            regex: (.+)
+            replacement: ${1}:8889
+          - source_labels: [__meta_kubernetes_pod_node_name]
+            target_label: node
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
 
-      # Métricas internas del Collector
+      # Metricas internas del Collector (self-telemetry, puerto 8888)
+      # mismo fix: por pod, no por Service.
       - job_name: otel-collector-internal
-        static_configs:
-          - targets: ["otel-collector-svc:8888"]
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names: [otel-lab]
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            action: keep
+            regex: otel-collector
+          - source_labels: [__meta_kubernetes_pod_ip]
+            action: replace
+            target_label: __address__
+            regex: (.+)
+            replacement: ${1}:8888
+          - source_labels: [__meta_kubernetes_pod_node_name]
+            target_label: node
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
 
-      # Scraping de pods con anotaciones prometheus.io/scrape
+      # Scraping generico de pods con anotaciones prometheus.io/scrape
+      # (bug original: el relabel de __address__ usaba solo el puerto,
+      # perdiendo la IP del pod — quedaba "9065" en vez de "10.244.x.x:9065")
       - job_name: kubernetes-pods
         kubernetes_sd_configs:
           - role: pod
@@ -36,11 +80,11 @@ data:
           - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
             action: keep
             regex: "true"
-          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_port]
+          - source_labels: [__meta_kubernetes_pod_ip, __meta_kubernetes_pod_annotation_prometheus_io_port]
             action: replace
             target_label: __address__
-            regex: (.+)
-            replacement: ${1}
+            regex: (.+);(.+)
+            replacement: ${1}:${2}
 
       # LitmusChaos metrics
       - job_name: litmus-chaos-operator

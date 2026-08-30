@@ -218,7 +218,7 @@ spec:
     spec:
       containers:
         - name: service-a
-          image: 192.168.0.20:30500/service-a:1.0.0
+          image: 192.168.0.20:30500/service-a:1.0.1
           ports:
             - containerPort: 8000
               name: http
@@ -295,7 +295,7 @@ spec:
     spec:
       containers:
         - name: service-b
-          image: 192.168.0.20:30500/service-b:1.0.0
+          image: 192.168.0.20:30500/service-b:1.0.1
           ports:
             - containerPort: 8001
               name: http
@@ -367,7 +367,7 @@ spec:
     spec:
       containers:
         - name: data-service
-          image: 192.168.0.20:30500/data-service:1.0.0
+          image: 192.168.0.20:30500/data-service:1.0.1
           ports:
             - containerPort: 8002
               name: http
@@ -487,6 +487,7 @@ spec:
         app: prometheus
         chaos.exclude: "true"
     spec:
+      serviceAccountName: prometheus
       containers:
         - name: prometheus
           image: prom/prometheus:v2.52.0
