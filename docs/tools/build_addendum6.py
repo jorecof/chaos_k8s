@@ -23,7 +23,7 @@ IMG = {
     "jvacio":    b64("/root/.claude/uploads/a1f853ca-a576-52cc-a736-8fa2322e85c2/a277395a-image.png"),
     "j1500":     b64("/root/.claude/uploads/a1f853ca-a576-52cc-a736-8fa2322e85c2/fe6a8693-image.png"),
     "blind":     b64(f"{GD}/gd5-blindspot.png"),
-    "replicas":  b64(f"{SH}/b-panel-replicas.png"),
+    "replicas":  b64(f"{GD}/gd7-replicas.png"),
     "bgrafsli":  b64(f"{SH}/b-panel-sli.png"),
     "bgrafbli":  b64(f"{SH}/b-panel-blind.png"),
     "thr":       b64(f"{GD}/gd9-throughput-AB.png"),
@@ -330,10 +330,8 @@ aplicación —<b>2,8 req/s</b>— es incluso <i>superior</i> a las 2,4 req/s qu
 éxito, porque la aplicación también cuenta como atendidas las peticiones cuya respuesta se cortó en
 el camino de vuelta.</p>
 <figure><img src="{IMG['replicas']}" alt="Tráfico por réplica durante la corrida B">
-<figcaption><b>Figura 8.</b> Panel del tablero durante la corrida B (11:37–11:42). La línea superior
-es el total registrado por la aplicación; las diez de abajo, una por réplica. Una de ellas está
-abortando el 100 % de sus respuestas y es indistinguible de las otras nueve. La caída de las 11:46 es
-el reescalado a 2 réplicas al terminar la corrida.</figcaption></figure>
+<figcaption><b>Figura 8.</b> Una línea por réplica de data-service durante la corrida B. Una de ellas
+está abortando el 100 % de sus respuestas y es indistinguible de las otras nueve.</figcaption></figure>
 <div class="callout crit"><span class="lbl">Por qué esto es peor que un hueco de datos</span>
 <p>Un tablero sin datos delata que algo pasa: el operador ve una serie que se corta y sospecha. Aquí
 no hay hueco. La instrumentación produce telemetría completa, puntual y <b>equivocada</b>: 1 413
@@ -388,7 +386,9 @@ sonda —<code>livenessProbe: httpGet /health</code> con <code>periodSeconds: 20
 <code>failureThreshold: 3</code>, o sea 60 s de fallos— más la terminación del contenedor y el
 arranque del siguiente. El manifiesto declara <code>path: "*"</code>, así que la respuesta del health
 check se aborta igual que la del tráfico de negocio y el kubelet concluye, correctamente desde su
-punto de vista, que el contenedor está muerto.</p>
+punto de vista, que el contenedor está muerto. El blackbox exporter, que sondea el mismo endpoint cada
+5 s desde fuera del pod, registró <b>12 fallos de <code>/health</code></b> durante la corrida A y
+<b>ninguno</b> en la B: la causa del crash-loop queda medida, no inferida.</p>
 <p><b>Dos de esos cinco reinicios ocurrieron después del fin nominal</b>, en t+313 y t+405. El
 experimento seguía matando el contenedor casi dos minutos después del instante en que debía haberse
 revertido solo.</p>
@@ -437,6 +437,7 @@ efectiva en las dos —de hecho B aborta más—; lo que cambia es qué pasa al 
 <tr><td>Último error observado</td><td class="num a">t+466,8 s</td><td class="num b">t+298,0 s</td></tr>
 <tr><td>Desfase del rollback</td><td class="num a">+166,8 s</td><td class="num b">−2,0 s</td></tr>
 <tr><td>Reinicios del pod objetivo</td><td class="num a">6</td><td class="num b">0</td></tr>
+<tr><td>Sondas de <code>/health</code> fallidas (blackbox, 5 s)</td><td class="num a">12</td><td class="num b">0</td></tr>
 <tr><td>Eventos <code>Recover / Failed</code></td><td class="num a">19</td><td class="num b">0</td></tr>
 <tr><td>Estado final del record</td><td class="num a"><code>Injected/Wait</code></td><td class="num b"><code>Not Injected</code></td></tr>
 <tr><td>Condición <code>AllRecovered</code></td><td class="num a">False</td><td class="num b">True</td></tr>
@@ -458,11 +459,12 @@ esta comparación. Solo cae <code>/data/products</code> (verde, hasta el 92 %); 
 a fin. Como el kubelet nunca contabiliza un fallo de liveness, el crash-loop no existe y el rollback
 puede ejecutarse.</figcaption></figure>
 <figure><img src="{IMG['sondas']}" alt="Sondas fallidas por endpoint, corridas A y B">
-<figcaption><b>Figura 17.</b> Las mismas sondas en las dos corridas, sobre el muestreo cada 15 s que
-guarda el script. En A fallan tanto el endpoint de negocio como el health check; en B, ninguno de los
-tres. La sonda del borde tiene una probabilidad de ~1/10 de dar en la réplica inyectada, así que a
-esta resolución detecta unas pocas de las 90 peticiones que sí falló el cliente: el muestreo del SLI
-acota lo que se puede ver, y ese es un parámetro de diseño del indicador.</figcaption></figure>
+<figcaption><b>Figura 17.</b> Las mismas sondas en las dos corridas, a 5 s de resolución. En A fallan
+<b>12 sondas de <code>/health</code></b> y 8 de <code>/data/products</code>, varias de ellas después
+del fin nominal; en B, <b>ninguna de <code>/health</code></b> y solo 2 del endpoint de negocio.
+La sonda ataca el Service, así que tiene una probabilidad de ~1/10 de caer en la réplica inyectada:
+por eso detecta 2 fallos donde el cliente midió 90. El muestreo y el punto de medida acotan lo que un
+SLI puede ver, y eso es un parámetro de diseño, no un defecto.</figcaption></figure>
 
 <h3>7.1 El blind spot sobrevive a la remediación</h3>
 <p>La corrida B también sirve de control para el primer hallazgo, y el resultado importa: arreglar el

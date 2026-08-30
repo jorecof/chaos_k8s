@@ -258,45 +258,34 @@ TOP = header(fig, "El tablero de trazas sigue ciego, y no es culpa del crash-loo
 fig.subplots_adjust(top=TOP)
 fig.savefig(f"{OUT}/gd5-blindspot.png", dpi=200); plt.close(fig)
 
-# ══ FIG 6 — sondas del blackbox exporter, A vs B ══════════════════════
-def probes(d):
-    m = json.load(open(f"{d}/meta.json")); tc = m["t_chaos"]
-    txt = open(f"{d}/samples/prom.txt").read()
-    blk = re.split(r"=== t=(\d+) ===", txt)[1:]
-    out = {}
-    for i in range(0, len(blk), 2):
-        t = int(blk[i])
-        mm = re.search(r"-- borde: probe_success por endpoint --\n(.*)", blk[i+1])
-        if not mm: continue
-        try: js = json.loads(mm.group(1).splitlines()[0])
-        except Exception: continue
-        for r in js["data"]["result"]:
-            out.setdefault(r["metric"]["instance"], []).append((t-tc, r["value"][1]))
-    return out
-
+# ══ FIG 6 — sondas del blackbox exporter a 5 s, A vs B ════════════════
+PS = {r["metric"]["instance"]: [(float(t), v) for t, v in r["values"]]
+      for r in json.load(open(f"{GD}/series-probe-success.json"))["data"]["result"]}
 EP = [("http://data-service-svc:8002/data/products", "data-service /data/products"),
       ("http://data-service-svc:8002/health",        "data-service /health"),
       ("http://service-a-svc:8000/health",           "service-a /health  (control)")]
 fig, axes = plt.subplots(2, 1, figsize=(7.2, 5.1), sharex=True)
-fig.subplots_adjust(bottom=0.085, left=0.265, right=0.885, hspace=0.42)
-for ax, (d, ttl, sub) in zip(axes, [
-        (A, 'Corrida A — path: "*"',       "el chaos alcanza también al health check"),
-        (B, 'Corrida B — path: "/data/*"', "el health check queda fuera")]):
-    P = probes(d)
+fig.subplots_adjust(bottom=0.085, left=0.255, right=0.885, hspace=0.42)
+NF = {}
+for ax, (m, ttl, sub, k) in zip(axes, [
+        (mA, 'Corrida A — path: "*"',       "el chaos alcanza también al health check", "A"),
+        (mB, 'Corrida B — path: "/data/*"', "el health check queda fuera", "B")]):
+    tc = m["t_chaos"]
     ax.axvspan(0, NOM, color="#fdf0ef", zorder=0); ax.axvspan(NOM, 560, color=BAND, zorder=0)
     for i, (inst, lab) in enumerate(EP):
         y = len(EP) - 1 - i
-        pts = [(t, v) for t, v in P.get(inst, []) if -20 <= t <= 560]
+        pts = [(t - tc, v) for t, v in PS.get(inst, []) if -30 <= t - tc <= 560]
         okx = [t for t, v in pts if v == "1"]; badx = [t for t, v in pts if v == "0"]
-        ax.scatter(okx, [y]*len(okx), s=9, color="#d3d8d1", linewidths=0, zorder=2)
-        ax.scatter(badx, [y]*len(badx), s=58, marker="|", color=CRIT, linewidths=1.9, zorder=4)
+        NF[(k, lab)] = len(badx)
+        ax.scatter(okx, [y]*len(okx), s=3.5, color="#d6dad4", linewidths=0, zorder=2)
+        ax.scatter(badx, [y]*len(badx), s=56, marker="|", color=CRIT, linewidths=1.7, zorder=4)
         ax.text(572, y, f"{len(badx)} fallidas" if badx else "0", fontsize=8.2,
                 color=CRIT if badx else MUTED, va="center",
                 fontweight="bold" if badx else "normal")
     ax.axvline(0, color=CRIT, lw=1.3, zorder=5); ax.axvline(NOM, color=CRIT, lw=1.3, zorder=5)
     ax.set_yticks(range(len(EP)))
     ax.set_yticklabels([l for _, l in reversed(EP)], fontsize=8.1, color=INK)
-    ax.set_ylim(-0.6, len(EP)+0.05); ax.set_xlim(-30, 565)
+    ax.set_ylim(-0.6, len(EP)+0.05); ax.set_xlim(-35, 565)
     ax.grid(axis="y", visible=False)
     ax.set_title(ttl, loc="left", fontsize=9.6, fontweight="bold", color=INK, pad=12)
     ax.text(0, 1.02, sub, transform=ax.transAxes, fontsize=8.2, color=SEC, va="bottom")
@@ -305,11 +294,45 @@ axes[0].text(150, 2.48, "chaos activo", color=CRIT, fontsize=8, ha="center", fon
 axes[0].text(432, 2.48, "después del duration", color=SEC, fontsize=8, ha="center")
 axes[1].set_xlabel("segundos desde la inyección", color=SEC, fontsize=8.5)
 TOP = header(fig, "El SLI de borde ve la falla, y explica el crash-loop",
-    "Cada marca roja es una sonda del blackbox exporter que devolvió fallo, muestreada cada 15 s. En A el "
-    "health check del pod inyectado falla y el kubelet lo mata; en B no falla nunca. service-a, fuera del "
-    "blast radius, no se toca en ninguna de las dos corridas.", sw=100, gap=0.135)
+    "Cada marca roja es una sonda del blackbox exporter que devolvió fallo, una cada 5 s. En A falla "
+    "también el health check del pod inyectado y el kubelet lo mata; en B no falla ni una vez. "
+    "service-a, fuera del blast radius, no se toca en ninguna de las dos corridas.", sw=100, gap=0.135)
 fig.subplots_adjust(top=TOP)
 fig.savefig(f"{OUT}/gd6-sondas-AB.png", dpi=200); plt.close(fig)
+print("sondas fallidas:", NF)
+
+# ══ FIG 7 — la app procesa TODO, incluidas las abortadas ══════════════
+rep = json.load(open(f"{GD}/series-data-por-replica.json"))["data"]["result"]
+tc = mB["t_chaos"]
+fig, ax = plt.subplots(figsize=(7.2, 3.5))
+fig.subplots_adjust(bottom=0.145, left=0.085, right=0.985)
+ax.axvspan(0, NOM, color="#fdf0ef", zorder=0)
+nrep = 0
+for r in rep:
+    pts = [(float(t)-tc, float(v)) for t, v in r["values"] if 25 <= float(t)-tc <= 550]
+    ins = [v for t, v in pts if 60 <= t <= 290]
+    if len(pts) < 20 or not ins or st.mean(ins) < 0.05: continue
+    nrep += 1
+    ax.plot([t for t,_ in pts], [v for _,v in pts], lw=1.1, color=BLUE, alpha=0.55, zorder=3)
+ax.axvline(NOM, color=CRIT, lw=1.3, zorder=5)
+ax.set_xlim(25, 550); ax.set_ylim(0, 0.82)
+ax.set_xlabel("segundos desde la inyección", color=SEC, fontsize=8.5)
+ax.set_ylabel("req/s registradas por la app", color=SEC, fontsize=8.5)
+ax.text(163, 0.755, "chaos activo — una de estas diez réplicas\nestá abortando el 100 % de sus respuestas",
+        color=CRIT, fontsize=8.4, ha="center", va="top", fontweight="bold")
+ax.text(295, 0.60, "fin nominal", color=CRIT, fontsize=8, ha="right", va="top", fontweight="bold")
+ax.annotate("las diez líneas son indistinguibles:\nninguna baja", xy=(430, 0.33),
+            xytext=(455, 0.755), fontsize=8.4, color=SEC, ha="center", va="top",
+            arrowprops=dict(arrowstyle="-", color=BASE, lw=0.9))
+strip(ax)
+TOP = header(fig, "La aplicación no se entera: procesa y responde 200 a lo que el cliente nunca recibe",
+    f"Una línea por réplica de data-service durante la corrida B ({nrep} con tráfico), a 15 s de "
+    "resolución. El abort ocurre en el camino de RESPUESTA: la aplicación ya hizo el trabajo y emitió "
+    "su span cuando Chaos Mesh corta la conexión, así que ni la réplica inyectada baja su caudal.",
+    sw=100)
+fig.subplots_adjust(top=TOP)
+fig.savefig(f"{OUT}/gd7-replicas.png", dpi=200); plt.close(fig)
+print("replicas con trafico:", nrep)
 
 print("ok")
 for f in sorted(os.listdir(OUT)): print("  ", f)
