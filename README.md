@@ -93,6 +93,30 @@ kubectl apply -f litmus/chaosengine-experiment-2.yaml
 kubectl -n otel-lab get chaosengine,chaosresult
 ```
 
+### 6. Grafana (agregado, no estaba en el fork original)
+
+`scripts/setup.sh` menciona `grafana-svc` en `show_status()` pero nunca lo
+despliega. Se agrego **`monitoring/grafana.yaml`** (nuevo): Grafana con el
+datasource de Prometheus provisionado por ConfigMap (sin click-ops), anclado
+a `kube-cp` con `hostPath`.
+
+Bug encontrado y resuelto: la imagen oficial de Grafana corre como usuario
+no-root (uid 472) y no tiene un entrypoint que haga chown de su propio
+volumen (a diferencia de `postgres:16-alpine`, que si lo hace al arrancar
+como root). Un `hostPath` recien creado por kubelet queda `root:root`, asi
+que Grafana quedaba en `CrashLoopBackOff` con `mkdir: /var/lib/grafana:
+Permission denied`. Fix: pre-crear el directorio en el nodo con el owner
+correcto antes de desplegar:
+
+```bash
+ssh -t kubernet@192.168.0.20 "sudo mkdir -p /var/lib/lab-grafana && sudo chown -R 472:472 /var/lib/lab-grafana"
+kubectl apply -f monitoring/grafana.yaml
+kubectl -n otel-lab port-forward svc/grafana-svc 3000:3000
+```
+
+Acceder en http://localhost:3000 (`admin`/`admin`, pide cambiar password).
+
+
 `chaos-mesh/*.yaml` no necesitó cambios: ya usa `chaosDaemon.runtime=containerd`
 y `socketPath=/run/containerd/containerd.sock`, compatible con kubeadm tal cual.
 
