@@ -311,7 +311,7 @@ spec:
     spec:
       containers:
         - name: service-b
-          image: 192.168.0.20:30500/service-b:1.0.1
+          image: 192.168.0.20:30500/service-b:1.0.3
           ports:
             - containerPort: 8001
               name: http
