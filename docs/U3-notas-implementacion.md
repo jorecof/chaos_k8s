@@ -132,3 +132,34 @@ simple "la regla dinámica gana": la regla correlacionada
 latencia, y dos de las tres corridas reales (E1, latencia pura; E2-B,
 error rápido sin colgar la conexión) no cumplen esa condición aunque hay
 un incidente real. Se documenta como hallazgo, no se oculta.
+
+## 9. Logs por OTLP realmente inactivos hasta reiniciar los pods (envFrom no se recarga en caliente)
+
+Al ir a capturar la evidencia de correlación log↔traza en Loki (Módulo A) se
+encontró que, aunque `service-b` emite trazas y métricas por OTLP sin
+problema, ningún log llegaba nunca al Collector — ni con errores visibles ni
+con reintentos exitosos. Con el nivel de log del SDK en DEBUG se confirmó la
+causa exacta: `OTLPLogExporter` intentaba resolver `otel-collector:4317` (el
+nombre del *DaemonSet*, que no tiene entrada DNS propia) en vez de
+`otel-collector-svc:4317` (el Service real) — `errors resolving
+otel-collector:4317: ... Domain name not found`.
+
+Lo llamativo es que el valor correcto (`OTEL_EXPORTER_OTLP_ENDPOINT:
+"http://otel-collector-svc:4317"`) ya estaba bien puesto en el ConfigMap
+`otel-lab-config` (`base/01-configmaps.yaml`), heredado por los tres
+servicios vía `envFrom`. El problema no era el YAML sino que los pods de
+`service-a`, `service-b` y `data-service` llevaban corriendo desde *antes*
+de que ese valor se corrigiera en el ConfigMap, y las variables inyectadas
+por `envFrom`/`configMapRef` no se recargan en caliente en Kubernetes —
+solo se leen al crear el pod. Que trazas y métricas sí funcionaran todo
+este tiempo se debe a que sus canales gRPC quedaron abiertos desde el
+arranque del pod (con lo que sea que resolviera DNS en ese momento) y no
+necesitan volver a resolver mientras la conexión siga viva; una conexión
+nueva (como la de logs, que hasta ahora nunca se había establecido) sí
+necesita resolver DNS de nuevo y ahí fallaba.
+
+Se resolvió con `kubectl rollout restart` de los tres deployments (sin
+tocar ningún YAML — el repo ya estaba correcto). Queda como recordatorio
+operativo: un cambio en un ConfigMap consumido por `envFrom` exige
+reiniciar los pods que lo usan para que surta efecto; no hay recarga
+automática.
