@@ -65,10 +65,32 @@ Pasos (en tu propia terminal, con tu sesión de git/GitHub ya autenticada):
 
 ## Pendiente para cerrar la entrega (evidencia adicional, sección 10.4 del informe)
 
-- **Vista de Loki (Explore) filtrada por `traceid`** para un log de `service-b`: abre Grafana (`http://localhost:3000` vía tu `tunnels.sh`, o `kubectl port-forward svc/grafana-svc 3000:3000 -n otel-lab`), pestaña **Explore** → datasource **Loki** → query `{service_name="service-b"} | traceid=\"<un-trace-id-de-Jaeger>\"` (toma el trace_id de una traza reciente en Jaeger, `http://localhost:16686`). Captura la vista con el log y el trace_id visibles.
-- **`kubectl get events` / evidencia del incidente de Postgres (sección 4.4)**: si el historial del clúster todavía lo conserva, `kubectl get events -n otel-lab --sort-by=.metadata.creationTimestamp | grep -i postgres`; si ya rotó, revisa `results/` en el repo por si ya guardaste ese log en su momento, o repite el escenario (borrar/editar el ConfigMap `postgres-init` y reiniciar el pod) para volver a capturarlo limpio.
-- **Repetición limpia de D2-app** (recomendado en 10.4, para cerrar la comparación de MTTD del Módulo B.5):
-  1. Antes de inyectar, captura el dashboard de Grafana mostrando la línea base en 0% de error (reemplaza o acompaña la figura 10).
-  2. Lanza el experimento D2-app como ya lo hiciste (mismo script/workflow de Chaos Mesh).
-  3. Durante la ventana de error real, ten abiertas **dos pestañas a la vez**: el dashboard interno (`AIOpsCorrelatedAnomaly` / `HighBurnRate_PAGE`) y la consola de Cloud Monitoring en la política `data_service_error_forecast` (Monitoring → Alerting → esa política → pestaña de incidentes). Captura ambas mientras reaccionan, para tener el paralelo de las dos alertas sobre el mismo evento.
+### 1. Vista de Loki (Explore) filtrada por `traceid`, log de `service-b`
+
+1. `bash scripts/tunnels.sh start` (levanta grafana:3000, jaeger:16686, loki:3100, etc. — usa `status` para ver qué quedó arriba).
+2. Abre Jaeger `http://localhost:16686` → Search → Service `service-b` → abre una traza reciente → copia el **Trace ID** (arriba de la página, hex sin guiones).
+3. Abre Grafana `http://localhost:3000` → **Explore** (icono de brújula) → datasource **Loki**.
+4. Usa el "Label browser" para confirmar el label disponible (debería ser `job`) y arma la query:
+   `{job="service-b"} |= "<trace-id-copiado>"`
+   — **importante**: en Loki la clave del trace id es `traceid` (sin guion bajo), distinto del `trace_id` del stdout JSON (ver `docs/U3-notas-implementacion.md` §5) — por eso se busca como texto libre con `|=` en vez de como label, para no depender del parseo exacto.
+5. Captura el log que aparece, con la query y el `traceid` visibles en el cuerpo del log.
+
+### 2. Evidencia del incidente de Postgres (sección 4.4) — YA CAPTURADA, no hace falta tocar el clúster
+
+El propio `scripts/run-exp2-app.sh` guarda `kubectl get events` en cada corrida. El evento real que causó el incidente narrado en 4.4 ya quedó guardado en
+`results/exp2-app-20260906-140221/events.txt` (líneas ~190-207): un `SandboxChanged` que afectó casi todos los pods del namespace (incluyendo `postgres` y `data-service`) casi al mismo tiempo. Para la captura:
+
+```bash
+grep -n -i "sandboxchanged\|postgres" results/exp2-app-20260906-140221/events.txt
+```
+
+Screenshot de esa salida de terminal — es evidencia real y ya existente, no hay que reproducir el incidente (los eventos de Kubernetes expiran ~1h, así que si intentas `kubectl get events` en vivo ahora ya no lo vas a encontrar).
+
+### 3. Repetición limpia de D2-app (cierra la comparación de MTTD del Módulo B.5)
+
+1. Antes de lanzar, verifica que Postgres esté sano (dado que 8 de 9 corridas anteriores fallaron por su inestabilidad — sección 4.4/10.1): `kubectl -n otel-lab get pods | grep postgres` (0 restarts recientes); si tienes dudas, `kubectl -n otel-lab rollout restart deployment/postgres` y espera a que esté `Ready` un par de minutos antes de seguir.
+2. Lanza `bash scripts/run-exp2-app.sh` (línea base 90s, chaos 300s, post 240s — ~12 min en total, con los defaults).
+3. Durante los primeros ~90s (línea base), captura el dashboard de Grafana mostrando 0% de error (reemplaza o acompaña la figura 10).
+4. Durante la ventana de chaos (del segundo 90 al 390), ten abiertas **dos pestañas a la vez**: el dashboard interno (`AIOpsCorrelatedAnomaly` / `HighBurnRate_PAGE`) y la consola de Cloud Monitoring en la política `data_service_error_forecast` (Monitoring → Alerting → esa política → pestaña de incidentes). Captura ambas mientras reaccionan.
+5. Al terminar, `results/exp2-app-<timestamp>/mttd.json` y `summary.txt` traen los nuevos números de MTTD ya calculados — úsalos para reemplazar los de la sección 7.4/5.4 (los actuales están marcados como no válidos por el ruido de línea base del incidente de Postgres).
 
