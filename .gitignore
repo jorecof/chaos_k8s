@@ -14,3 +14,6 @@ jaeger-traces.json
 # istioctl release descargado localmente para instalar el service mesh (G-07) --
 # es una herramienta de la máquina del usuario, no parte del laboratorio.
 istio-*/
+
+# macOS
+.DS_Store
