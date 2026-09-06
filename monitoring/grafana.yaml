@@ -326,6 +326,46 @@ data:
             }
           ],
           "description": "Las dos lineas miden el mismo incidente. La del APM se queda en 0 porque la aplicacion respondio 200 a todas: el corte ocurre despues, en la conexion."
+        },
+        {
+          "id": 9,
+          "title": "Actividad de los 4 servicios (req/s)",
+          "type": "timeseries",
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 32
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "reqps"
+            },
+            "overrides": []
+          },
+          "targets": [
+            {
+              "expr": "sum(rate(otelcol_http_server_duration_milliseconds_count{exported_job=\"service-a\"}[$__rate_interval]))",
+              "legendFormat": "service-a",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(rate(otelcol_http_server_duration_milliseconds_count{exported_job=\"service-b\"}[$__rate_interval]))",
+              "legendFormat": "service-b",
+              "refId": "B"
+            },
+            {
+              "expr": "sum(rate(otelcol_http_server_duration_milliseconds_count{exported_job=\"data-service\"}[$__rate_interval]))",
+              "legendFormat": "data-service",
+              "refId": "C"
+            },
+            {
+              "expr": "sum(rate(alert_enriched_total[$__rate_interval]))",
+              "legendFormat": "alert-enricher (alertas procesadas/s)",
+              "refId": "D"
+            }
+          ],
+          "description": "Los 4 servicios del cluster en un solo panel. Los primeros 3 miden requests HTTP (via el SDK de OTel, exported_job); alert-enricher no pasa por el Collector -- mide su propio contador alert_enriched_total (alertas de Alertmanager procesadas, no requests HTTP), por eso normalmente esta en 0 salvo durante una corrida del modulo D."
         }
       ]
     }
