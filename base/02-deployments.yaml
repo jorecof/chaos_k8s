@@ -137,9 +137,19 @@ spec:
                   key: GCP_PROJECT_ID
             - name: CHAOS_EXPERIMENT_ACTIVE
               value: "false"
+            # ── googlecloud exporter (módulo B, B5-a) ──────────────────
+            # Misma ADC del Secret data-service-gcp-sql (creada con
+            # `gcloud auth application-default login`): la política de
+            # organización bloquea keys de service account, así que no hay
+            # una key propia del Collector — se reutiliza la del usuario.
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /secrets/gcp-adc/adc.json
           volumeMounts:
             - name: collector-config
               mountPath: /conf
+            - name: gcp-adc
+              mountPath: /secrets/gcp-adc
+              readOnly: true
           resources:
             requests:
               cpu: 100m
@@ -163,6 +173,12 @@ spec:
         - name: collector-config
           configMap:
             name: collector-config
+        - name: gcp-adc
+          secret:
+            secretName: data-service-gcp-sql
+            items:
+              - key: sa-key.json
+                path: adc.json
 
 ---
 apiVersion: v1
@@ -374,7 +390,7 @@ spec:
                     operator: DoesNotExist
       containers:
         - name: data-service
-          image: 192.168.0.20:30500/data-service:1.0.1
+          image: 192.168.0.20:30500/data-service:1.0.3
           ports:
             - containerPort: 8002
               name: http
@@ -386,6 +402,16 @@ spec:
           env:
             - name: PROMETHEUS_PORT
               value: "9066"
+            # ── Backend Cloud SQL vía el sidecar cloud-sql-proxy (módulo A.4) ──
+            - name: DB_HOST_GCP
+              value: "127.0.0.1"
+            - name: DB_PORT_GCP
+              value: "5432"
+            - name: DB_PASSWORD_GCP
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-gcp-sql
+                  key: db-password
           resources:
             requests:
               cpu: 100m
@@ -399,6 +425,43 @@ spec:
               port: 8002
             initialDelaySeconds: 20
             periodSeconds: 20
+
+        # ── Cloud SQL Auth Proxy — el kubeadm on-prem no tiene Workload
+        # Identity (eso es solo para nodos de GKE); autentica con la key de
+        # SA montada desde el Secret data-service-gcp-sql (ver
+        # cloudsql.tf outputs u3_comando_crear_key_sa / u3_comando_crear_secret_k8s).
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.14.0
+          args:
+            - "--structured-logs"
+            - "--port=5432"
+            - "$(GCP_SQL_CONNECTION_NAME)"
+          env:
+            - name: GCP_SQL_CONNECTION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: otel-lab-config
+                  key: GCP_SQL_CONNECTION_NAME
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /secrets/gcp-sa/sa-key.json
+          volumeMounts:
+            - name: gcp-sa-key
+              mountPath: /secrets/gcp-sa
+              readOnly: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+      volumes:
+        - name: gcp-sa-key
+          secret:
+            secretName: data-service-gcp-sql
+            items:
+              - key: sa-key.json
+                path: sa-key.json
 
 ---
 apiVersion: v1

@@ -4,3 +4,9 @@ results/
 _to_delete/
 *.zip
 jaeger-traces.json
+
+# Terraform (infra/gcp) — nunca el state: lleva en texto plano el password
+# de random_password.data_service_db (ver infra/gcp/terraform/cloudsql.tf)
+*.tfstate
+*.tfstate.backup
+.terraform/

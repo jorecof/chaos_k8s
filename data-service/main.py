@@ -32,20 +32,29 @@ CLOUD_PROVIDER  = os.getenv("CLOUD_PROVIDER", "gcp")
 APP_VERSION     = os.getenv("APP_VERSION", "1.0.0")
 ENV             = os.getenv("ENVIRONMENT", "production")
 
-# DB según cloud provider
-# GCP Cloud SQL: postgresql://user:pass@/dbname?host=/cloudsql/project:region:instance
-# AWS RDS:       postgresql://user:pass@rds-endpoint:5432/dbname
-DB_DSN = os.getenv("DATABASE_URL", "postgresql://app:secret@postgres:5432/appdb")
+# ── Selección de backend de base de datos (módulo A.4, U3) ──────────
+# Tres backends en paralelo, elegibles por request con ?backend=. El local
+# sigue viniendo de DATABASE_URL tal como estaba; Cloud SQL se arma en partes
+# porque llega por el sidecar cloud-sql-proxy en 127.0.0.1, no por una URL
+# completa inyectada (ver base/02-deployments.yaml).
+DEFAULT_BACKEND = "local"
+
+DB_DSN_LOCAL = os.getenv("DATABASE_URL", "postgresql://app:secret@postgres:5432/appdb")
+
+DB_HOST_GCP     = os.getenv("DB_HOST_GCP", "127.0.0.1")
+DB_PORT_GCP     = os.getenv("DB_PORT_GCP", "5432")
+DB_NAME_GCP     = os.getenv("GCP_SQL_DB_NAME", "appdb")
+DB_USER_GCP     = os.getenv("GCP_SQL_DB_USER", "app")
+DB_PASSWORD_GCP = os.getenv("DB_PASSWORD_GCP", "")
 
 # ── OTel Resource ──────────────────────────────────────────────────
+# db.system.name/db.namespace ya no van aquí: cambian por request según el
+# backend elegido, así que se declaran por span (ver /data/products).
 resource = Resource.create({
     SERVICE_NAME:    "data-service",
     SERVICE_VERSION: APP_VERSION,
     "deployment.environment": ENV,
     "cloud.provider": CLOUD_PROVIDER,
-    # GCP Cloud SQL o AWS RDS según el provider
-    "db.system": "postgresql",
-    "db.provider": "cloud-sql" if CLOUD_PROVIDER == "gcp" else "rds",
 })
 
 # ── TracerProvider ─────────────────────────────────────────────────
@@ -113,9 +122,29 @@ logger = logging.getLogger("data-service")
 Psycopg2Instrumentor().instrument(tracer_provider=tracer_provider)
 
 # ── DB helpers ─────────────────────────────────────────────────────
-def get_connection():
-    """Conecta a Cloud SQL (GCP) o RDS (AWS) según CLOUD_PROVIDER."""
-    return psycopg2.connect(DB_DSN)
+def _dsn_for_backend(backend: str) -> tuple[str, str]:
+    """Devuelve (dsn, server_address) para el backend pedido."""
+    if backend == "local":
+        server_address = DB_DSN_LOCAL.split("@")[-1].split("/")[0].split(":")[0]
+        return DB_DSN_LOCAL, server_address
+    if backend == "cloud-sql":
+        if not DB_PASSWORD_GCP:
+            raise HTTPException(
+                status_code=503,
+                detail="Cloud SQL no configurado: falta DB_PASSWORD_GCP (Secret data-service-gcp-sql)",
+            )
+        dsn = f"postgresql://{DB_USER_GCP}:{DB_PASSWORD_GCP}@{DB_HOST_GCP}:{DB_PORT_GCP}/{DB_NAME_GCP}"
+        return dsn, DB_HOST_GCP
+    if backend == "rds":
+        raise HTTPException(status_code=501, detail="Backend rds pendiente de esta sesión (solo GCP por ahora)")
+    raise HTTPException(status_code=400, detail=f"backend desconocido: {backend!r}")
+
+
+def get_connection(dsn: str):
+    """Conecta con presupuesto de tiempo — remediación #1 de U2 (D-01 del
+    diseño de U3) aplicada también al salto hacia la base de datos: sin esto,
+    un backend WAN degradado cuelga el threadpool en vez de fallar rápido."""
+    return psycopg2.connect(dsn, connect_timeout=2, options="-c statement_timeout=2000")
 
 # ── Chaos flags (Módulo D) ─────────────────────────────────────────
 CHAOS_LATENCY_MS  = int(os.getenv("CHAOS_LATENCY_MS", "0"))    # inyectar latencia
@@ -136,7 +165,7 @@ def apply_chaos():
 async def lifespan(app: FastAPI):
     logger.info("data-service iniciando", extra={
         "cloud_provider": CLOUD_PROVIDER,
-        "db_dsn_host": DB_DSN.split("@")[-1].split("/")[0],
+        "db_dsn_host": DB_DSN_LOCAL.split("@")[-1].split("/")[0],
     })
     yield
     tracer_provider.shutdown()
@@ -162,42 +191,41 @@ async def health():
 
 
 @app.get("/data/products")
-async def get_products(category: str = "all"):
+async def get_products(category: str = "all", backend: str = DEFAULT_BACKEND):
     """
-    Consulta catálogo de productos desde Cloud SQL (GCP) o RDS (AWS).
-    Implementa OTel DB Semantic Conventions:
-    - db.system: postgresql
-    - db.operation: SELECT
-    - db.sql.table: products
-    - db.statement: (query completa)
+    Consulta catálogo de productos. Backend seleccionable con
+    ?backend=local|cloud-sql|rds (módulo A.4). Implementa OTel DB Semantic
+    Conventions estables: db.system.name, db.namespace, db.operation.name,
+    db.collection.name, db.query.text, server.address.
     """
-    data_requests_total.add(1, {"endpoint": "/data/products", "cloud": CLOUD_PROVIDER})
-
-    # Aplicar chaos si está configurado (Módulo D)
-    apply_chaos()
+    dsn, server_address = _dsn_for_backend(backend)
 
     start = time.time()
     db_connections_active.add(1)
 
     with tracer.start_as_current_span(
-        "db.query.products",
+        "SELECT products",
         kind=trace.SpanKind.CLIENT,
         attributes={
-            # ── OTel DB Semantic Conventions ─────────────────────
-            "db.system":      "postgresql",
-            "db.name":        "appdb",
-            "db.operation":   "SELECT",
-            "db.sql.table":   "products",
-            "db.user":        "app",
-            # Atributo del provider cloud
-            "db.connection_string": f"{CLOUD_PROVIDER}-db",
+            # ── OTel DB Semantic Conventions (estables) ──────────
+            "db.system.name":      "postgresql",
+            "db.namespace":        DB_NAME_GCP if backend == "cloud-sql" else "appdb",
+            "db.operation.name":   "SELECT",
+            "db.collection.name":  "products",
+            "server.address":      server_address,
+            "db.provider":         backend,
             # Atributos de negocio
-            "query.category": category,
-            "query.cloud":    CLOUD_PROVIDER,
+            "cloud.provider":      CLOUD_PROVIDER,
+            "query.category":      category,
         }
     ) as span:
         try:
-            conn = get_connection()
+            # Chaos dentro del span (módulo D, D-08): el error inyectado debe
+            # quedar como StatusCode.ERROR con trace_id resoluble (D2-app);
+            # si se dispara antes de abrir el span no hay traza que pivotar.
+            apply_chaos()
+
+            conn = get_connection(dsn)
             cur  = conn.cursor()
 
             query = "SELECT id, name, category, price, stock FROM products"
@@ -207,8 +235,8 @@ async def get_products(category: str = "all"):
                 params.append(category)
             query += " LIMIT 50"
 
-            # Registrar el statement completo en el span
-            span.set_attribute("db.statement", query)
+            # Query parametrizada, sin valores — evita fuga de datos en el span
+            span.set_attribute("db.query.text", query)
 
             cur.execute(query, params)
             rows = cur.fetchall()
@@ -216,39 +244,62 @@ async def get_products(category: str = "all"):
 
             duration = time.time() - start
             db_query_duration.record(duration, {
-                "operation":  "SELECT",
-                "table":      "products",
-                "cloud":      CLOUD_PROVIDER,
-                "db.provider": "cloud-sql" if CLOUD_PROVIDER == "gcp" else "rds",
+                "db.system.name":     "postgresql",
+                "db.operation.name":  "SELECT",
+                "db.collection.name": "products",
+                "server.address":     server_address,
+                "db.provider":        backend,
             })
 
-            span.set_attribute("db.rows_returned", len(rows))
+            span.set_attribute("db.response.returned_rows", len(rows))
             span.set_attribute("db.query_duration_ms", round(duration * 1000, 2))
             span.set_status(trace.StatusCode.OK)
+
+            # G-09: outcome real, recién conocido acá — antes se incrementaba
+            # sin distinguir éxito/error y no se podía derivar error rate.
+            data_requests_total.add(1, {
+                "endpoint": "/data/products",
+                "db.provider": backend,
+                "outcome": "success",
+                "http.response.status_code": 200,
+            })
 
             logger.info("Products query completada", extra={
                 "rows":     len(rows),
                 "category": category,
                 "duration": round(duration, 4),
-                "cloud":    CLOUD_PROVIDER,
+                "backend":  backend,
             })
 
             return {
-                "products":      [{"id": r[0], "name": r[1], "category": r[2],
-                                   "price": float(r[3]), "stock": r[4]} for r in rows],
-                "count":         len(rows),
-                "cloud_provider": CLOUD_PROVIDER,
-                "db_provider":   "Cloud SQL" if CLOUD_PROVIDER == "gcp" else "RDS",
-                "trace_id":      format(trace.get_current_span().get_span_context().trace_id, "032x"),
+                "products":       [{"id": r[0], "name": r[1], "category": r[2],
+                                     "price": float(r[3]), "stock": r[4]} for r in rows],
+                "count":          len(rows),
+                "db_provider":    backend,
+                "server_address": server_address,
+                "trace_id":       format(trace.get_current_span().get_span_context().trace_id, "032x"),
             }
 
-        except HTTPException:
+        except HTTPException as e:
+            span.set_status(trace.StatusCode.ERROR, str(e.detail))
+            data_requests_total.add(1, {
+                "endpoint": "/data/products",
+                "db.provider": backend,
+                "outcome": "error",
+                "http.response.status_code": e.status_code,
+            })
             raise
         except Exception as e:
-            db_errors_total.add(1, {"operation": "SELECT", "cloud": CLOUD_PROVIDER})
+            db_errors_total.add(1, {"operation": "SELECT", "db.provider": backend})
+            data_requests_total.add(1, {
+                "endpoint": "/data/products",
+                "db.provider": backend,
+                "outcome": "error",
+                "http.response.status_code": 500,
+            })
             span.record_exception(e)
             span.set_status(trace.StatusCode.ERROR, str(e))
-            logger.error("DB query fallida", extra={"error": str(e), "cloud": CLOUD_PROVIDER})
+            logger.error("DB query fallida", extra={"error": str(e), "backend": backend})
             raise HTTPException(status_code=500, detail=f"DB error: {str(e)}")
         finally:
             db_connections_active.add(-1)

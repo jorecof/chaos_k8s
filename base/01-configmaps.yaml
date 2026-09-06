@@ -14,11 +14,17 @@ data:
   ENVIRONMENT:                  "production"
   CLOUD_PROVIDER:               "gcp"
   CLOUD_REGION:                 "us-central1"
-  GCP_PROJECT_ID:               "cicdtraining-498421"
+  GCP_PROJECT_ID:               "project-ae3ce4fd-3eea-42ed-b57"
   OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector-svc:4317"
   DATABASE_URL:                 "postgresql://app:secret@postgres-svc:5432/appdb"
   SERVICE_B_URL:                "http://service-b-svc:8001"
   APP_VERSION:                  "1.0.0"
+  # Cloud SQL (GCP) — backend gestionado de data-service (módulo A.4, U3)
+  # GCP_SQL_CONNECTION_NAME: reemplazar con el output `u3_sql_connection_name`
+  # de `terraform output` en otel-e2e-lab/deploy/gcp/terraform tras el apply.
+  GCP_SQL_CONNECTION_NAME:      "project-ae3ce4fd-3eea-42ed-b57:us-central1:u3-data-service"
+  GCP_SQL_DB_NAME:              "appdb"
+  GCP_SQL_DB_USER:              "app"
   # Variables de chaos — en producción siempre en 0
   # Chaos Mesh/LitmusChaos las reemplazan con faults de red reales
   CHAOS_LATENCY_MS:             "0"
@@ -114,11 +120,14 @@ data:
         metrics:
           receivers: [otlp, hostmetrics]
           processors: [memory_limiter, resource, resourcedetection, batch]
-          exporters: [prometheus, logging]
+          # googlecloud reactivado (módulo B, B5-a): ADC montada como Secret
+          # (data-service-gcp-sql, reutilizada — ver DaemonSet otel-collector)
+          # porque la política de organización bloquea keys de service account.
+          exporters: [prometheus, logging, googlecloud]
         logs:
           receivers: [otlp]
           processors: [memory_limiter, resource, batch]
-          exporters: [logging]   # "googlecloud" quitado: sin credenciales GCP en el cluster local
+          exporters: [logging]   # Loki pendiente (G-05), fuera de alcance de hoy
       telemetry:
         logs:
           level: info
