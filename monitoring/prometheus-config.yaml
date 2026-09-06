@@ -13,7 +13,16 @@ data:
         environment: production
 
     rule_files:
-      - /etc/prometheus/rules/*.yaml
+      # El ConfigMap completo (prometheus-config) se monta plano en
+      # /etc/prometheus (un solo volumeMount de directorio, ver
+      # base/02-deployments.yaml) -- rules.yaml queda ahi mismo, sin
+      # subcarpeta. Un segundo volumeMount con subPath para forzar una
+      # subcarpeta "rules/" no funciona: no se puede anidar un mount de
+      # subPath dentro de un path ya gobernado por un mount de todo el
+      # volumen ("not a directory" en runc). Bug real, no cosmetico:
+      # antes de este fix, /api/v1/rules devolvia groups:[] sin ningun
+      # error en el log -- las reglas de U2 nunca se cargaron.
+      - /etc/prometheus/rules.yaml
 
     scrape_configs:
       # OTel Collector — metricas de aplicacion (puerto 8889)
@@ -168,43 +177,75 @@ data:
           - targets: ["chaos-controller-manager-metrics.chaos-mesh:10080"]
 
   rules.yaml: |
+    # Reglas reescritas contra el contrato de metricas real (docs/METRICS-CONTRACT.md,
+    # cierra G-08). Las reglas anteriores apuntaban a series que no existen
+    # (otelcol_http_requests_total, job="service-b") y nunca dispararon.
     groups:
-      - name: aiops.anomaly_detection
+      - name: aiops.baseline
         interval: 30s
         rules:
-          - record: job:error_rate:baseline_1h
+          # SLI de error, medido en la app (data-service ya trae outcome, G-09)
+          - record: sli:error_rate:ratio5m
             expr: |
-              avg_over_time(
-                (rate(otelcol_http_requests_total{status=~"5.."}[5m])
-                 / rate(otelcol_http_requests_total[5m]))[1h:5m]
+              1 - (
+                sum by (exported_job) (rate(otelcol_data_requests_total{outcome="success"}[5m]))
+                /
+                sum by (exported_job) (rate(otelcol_data_requests_total[5m]))
               )
 
-          - record: job:latency_p99:current
+          # mu y sigma sobre 6h, DESPLAZADAS 10min para que la ventana anomala
+          # no contamine su propio baseline
+          - record: sli:error_rate:mu6h
+            expr: avg_over_time(sli:error_rate:ratio5m[6h] offset 10m)
+          - record: sli:error_rate:sigma6h
+            expr: stddev_over_time(sli:error_rate:ratio5m[6h] offset 10m)
+
+          - record: sli:latency_p99:5m
             expr: |
               histogram_quantile(0.99,
-                rate(otelcol_http_request_duration_seconds_bucket[5m])
-              )
+                sum by (exported_job, le) (rate(otelcol_http_server_duration_milliseconds_bucket[5m])))
+              / 1000
+
+          # SLI de disponibilidad de borde (blackbox, cierra G-12 -- ve
+          # http_code=000, que el SLI de 5xx de la app nunca ve)
+          - record: sli:availability:avg30d
+            expr: avg_over_time(probe_success[30d])
 
           - alert: AIOpsCorrelatedAnomaly
+            # piso absoluto (> 0.01) evita disparar cuando mu=0 y sigma~=0
+            # (ruido de un solo error aislado)
             expr: |
-              (
-                rate(otelcol_http_requests_total{status=~"5.."}[5m])
-                / rate(otelcol_http_requests_total[5m])
-              ) > (job:error_rate:baseline_1h * 3)
-              AND
-              job:latency_p99:current > 0.25
-            for: 1m
+              sli:error_rate:ratio5m > (sli:error_rate:mu6h + 2 * sli:error_rate:sigma6h)
+              and sli:latency_p99:5m > 0.25
+              and sli:error_rate:ratio5m > 0.01
+            for: 30s
             labels:
               severity: critical
+              playbook: "runbook-trace-pivot"
             annotations:
-              summary: "Anomalía correlacionada — Chaos experiment activo"
-              description: "Error rate y latencia p99 anómalos simultáneamente"
+              summary: "Anomalía correlacionada en {{ $labels.exported_job }}"
+              error_rate: "{{ $value | humanizePercentage }}"
+              baseline: "{{ with query \"sli:error_rate:mu6h\" }}{{ . | first | value }}{{ end }}"
+
+          # Hallazgo 3b de U2: un abort que bloquea el worker 9s hace bajar el
+          # throughput y con eso el error rate (base menor) -- una regla que
+          # solo mira proporcion de errores premia la corrida rota.
+          - alert: ThroughputCollapse
+            expr: |
+              sum by (exported_job) (rate(otelcol_data_requests_total[5m]))
+                < 0.7 * avg_over_time(
+                    sum by (exported_job) (rate(otelcol_data_requests_total[5m]))[6h:5m] offset 10m)
+            for: 1m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Caída de throughput en {{ $labels.exported_job }} (posible worker bloqueado)"
 
           - alert: ChaosLatencyDetected
             expr: |
               histogram_quantile(0.99,
-                rate(otelcol_http_request_duration_seconds_bucket{job="service-b"}[2m])
-              ) > 0.25
+                sum by (exported_job, le) (rate(otelcol_http_server_duration_milliseconds_bucket{exported_job="service-b"}[2m])))
+              / 1000 > 0.25
             for: 30s
             labels:
               severity: warning
@@ -215,12 +256,13 @@ data:
           - alert: HighBurnRate_PAGE
             expr: |
               (
-                rate(otelcol_http_requests_total{status=~"5.."}[1h])
-                / rate(otelcol_http_requests_total[1h])
+                sum by (exported_job) (rate(otelcol_data_requests_total{outcome="error"}[1h]))
+                /
+                sum by (exported_job) (rate(otelcol_data_requests_total[1h]))
               ) / 0.005 > 14.4
             for: 0m
             labels:
               severity: critical
               page: "true"
             annotations:
-              summary: "Burn rate crítico — error budget agotándose"
+              summary: "Burn rate crítico en {{ $labels.exported_job }} — error budget agotándose"
