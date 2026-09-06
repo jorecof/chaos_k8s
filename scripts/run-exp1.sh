@@ -346,3 +346,4 @@ hr
 cat "$OUT/summary.txt" 2>/dev/null | tee -a "$LOG"
 hr
 log "TODO EN: $OUT"
+log "Ahora corre: python3 scripts/mttd-analysis.py $OUT ChaosLatencyDetected service-b"

@@ -408,3 +408,4 @@ cat "$OUT/summary.txt"
 hr
 log "TODO EN: $OUT"
 log "Pásame  $OUT/summary.txt  y, si querés, $OUT/chaos-describe.txt"
+log "Ahora corre: python3 scripts/mttd-analysis.py $OUT AIOpsCorrelatedAnomaly data-service"
