@@ -97,6 +97,11 @@ active_requests = meter.create_up_down_counter(
     description="Requests activos en vuelo (saturación)",
     unit="1",
 )
+auth_attempts_total = meter.create_counter(
+    "auth_attempts_total",
+    description="Intentos de autenticacion en /auth/login (golden signal de seguridad: Errors, cierra parte de G-13)",
+    unit="1",
+)
 
 # ── 5. Logging estructurado JSON con trace_id/span_id ────────────────────────
 # El trace_id en el log es el PUENTE que correlaciona log ↔ traza en Grafana.
@@ -285,6 +290,40 @@ async def get_order(order_id: str, request: Request):
 
     finally:
         active_requests.add(-1, labels)
+
+
+# Usuarios de demostracion -- NO es un mecanismo real de auth, solo genera
+# trafico de exito/fallo real para el golden signal "Errors" de seguridad
+# (C.3) sin exponer credenciales de verdad en ningun lado.
+_DEMO_USERS = {"demo": "demo123", "operador": "otel-lab-2026"}
+
+
+@app.post("/auth/login")
+async def login(request: Request):
+    """Endpoint de autenticacion sintetico -- alimenta auth_attempts_total,
+    la base del panel de intentos fallidos del dashboard de golden signals
+    de seguridad (cierra parte de G-13, modulo C)."""
+    try:
+        payload = await request.json()
+    except Exception:
+        payload = {}
+    username = str(payload.get("username", ""))
+    password = str(payload.get("password", ""))
+
+    if not username or not password:
+        auth_attempts_total.add(1, {"result": "failure", "reason": "missing_fields"})
+        logger.warning("auth_login_failure", extra={"reason": "missing_fields"})
+        raise HTTPException(status_code=400, detail="username y password son requeridos")
+
+    if _DEMO_USERS.get(username) == password:
+        auth_attempts_total.add(1, {"result": "success", "reason": "n/a"})
+        logger.info("auth_login_success", extra={"username": username})
+        return {"status": "ok", "username": username}
+
+    reason = "unknown_user" if username not in _DEMO_USERS else "bad_password"
+    auth_attempts_total.add(1, {"result": "failure", "reason": reason})
+    logger.warning("auth_login_failure", extra={"username": username, "reason": reason})
+    raise HTTPException(status_code=401, detail="credenciales invalidas")
 
 
 @app.get("/metrics/health")

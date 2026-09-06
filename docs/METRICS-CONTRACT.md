@@ -27,6 +27,7 @@ por `instance` (la URL sondeada) bajo `job="blackbox-http"`.
 | `otelcol_http_server_duration_milliseconds_count` / `_sum` / `_bucket` | histograma | `service-a`, `service-b`, `data-service` (FastAPI auto-instrumentado) | `http_status_code`, `http_target`, `http_method`, `le` (solo `_bucket`) | SLI de latencia (p99 via `histogram_quantile`) |
 | `otelcol_inventory_requests_total` | counter | `service-b` | `product` | **Sin atributo de resultado** -- no sirve para error rate; solo volumen por producto |
 | `probe_success` | gauge (0/1) | -- (usar `instance`) | `instance` (URL completa sondeada) | SLI de disponibilidad de borde (blackbox, cierra G-12 -- ve `http_code=000`, que el 5xx de la app no ve) |
+| `otelcol_auth_attempts_total` | counter | `service-a` | `result` (`success`/`failure`), `reason` (`n/a`, `missing_fields`, `unknown_user`, `bad_password`) | Golden signal de seguridad "Errors" -- endpoint sintetico `/auth/login`, cierra parte de G-13 |
 
 Series confirmadas vacias/inexistentes (no usar en reglas nuevas):
 `otelcol_http_requests_total`, `otelcol_http_request_duration_seconds_bucket` --

@@ -148,6 +148,53 @@ data:
           - source_labels: [__meta_kubernetes_pod_name]
             target_label: pod
 
+      # Falco (G-13, modulo C) — metricas nativas de Prometheus (chart
+      # falcosecurity/falco >=0.40, sin falco-exporter separado): se
+      # habilitan con --set metrics.enabled=true --set
+      # falco.webserver.prometheus_metrics_enabled=true, servidas en el
+      # webserver embebido del propio pod de Falco (puerto 8765, /metrics).
+      # PENDIENTE DE INSTALAR (ver docs/U3-notas-implementacion.md) -- este
+      # job no encontrara targets hasta que exista el namespace "falco".
+      - job_name: falco
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names: [falco]
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+            action: keep
+            regex: falco
+          - source_labels: [__meta_kubernetes_pod_ip]
+            action: replace
+            target_label: __address__
+            regex: (.+)
+            replacement: ${1}:8765
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
+
+      # Trivy Operator (G-13, modulo C) — expone trivy_image_vulnerabilities{severity}
+      # por workload escaneado. Namespace "trivy-system", instalado via Helm
+      # (aquasecurity/trivy-operator). Puerto 8080 confirmado via
+      # `helm template` (no aparece en values.yaml, esta hardcodeado en el
+      # template). PENDIENTE DE INSTALAR -- este job no encontrara targets
+      # hasta que exista el namespace "trivy-system".
+      - job_name: trivy-operator
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names: [trivy-system]
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+            action: keep
+            regex: trivy-operator
+          - source_labels: [__meta_kubernetes_pod_ip]
+            action: replace
+            target_label: __address__
+            regex: (.+)
+            replacement: ${1}:8080
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
+
       # Blackbox exporter — SLI de borde, medido FUERA del proceso.
       # Ve las requests abortadas por HTTPChaos, que la instrumentacion
       # de la app no puede ver porque nunca llegan al codigo.
@@ -276,3 +323,32 @@ data:
               page: "true"
             annotations:
               summary: "Burn rate crítico en {{ $labels.exported_job }} — error budget agotándose"
+
+          # ── Modulo C: trafico anomalo sobre telemetria L7 del mesh (cierra G-13) ──
+          # Calico OSS no tiene flow logs (son de la edicion Enterprise); el
+          # equivalente honesto es istio_requests_total con source_workload/
+          # destination_workload -- mejor que un flow log L4 porque distingue
+          # endpoint y codigo de respuesta. Limite reconocido: el mesh no ve
+          # trafico que no pasa por el proxy (DNS, trafico de nodo).
+          - alert: UnexpectedEastWestFlow
+            expr: |
+              sum by (source_workload, destination_workload) (rate(istio_requests_total{source_workload!="unknown"}[5m])) > 0
+              unless
+              sum by (source_workload, destination_workload) (rate(istio_requests_total{source_workload!="unknown"}[5m] offset 24h)) > 0
+            for: 2m
+            labels:
+              severity: warning
+              domain: security
+            annotations:
+              summary: "Nuevo par este-oeste nunca antes visto: {{ $labels.source_workload }} -> {{ $labels.destination_workload }}"
+
+          - alert: NorthSouthTrafficSpike
+            expr: |
+              sum(rate(istio_requests_total{source_workload="unknown"}[5m]))
+                > 3 * avg_over_time(sum(rate(istio_requests_total{source_workload="unknown"}[5m]))[6h:5m] offset 10m)
+            for: 2m
+            labels:
+              severity: warning
+              domain: security
+            annotations:
+              summary: "Salto de volumen de trafico norte-sur (entrada externa) sobre el baseline propio"
