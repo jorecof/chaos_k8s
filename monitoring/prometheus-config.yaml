@@ -110,6 +110,30 @@ data:
           - source_labels: [__meta_kubernetes_pod_name]
             target_label: pod
 
+      # waypoint proxy (Istio ambient, G-07) — metricas L7 reales: requests,
+      # codigo de respuesta, latencia por servicio, generadas por el proxy
+      # de la malla (Envoy) sin instrumentar la app. Este es el dato clave
+      # para el experimento "blind spot" del modulo D: el mesh SI cuenta
+      # el abort de un HTTPChaos que la instrumentacion de aplicacion nunca
+      # llega a ver (la conexion se corta antes de tocar el codigo).
+      - job_name: waypoint
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names: [otel-lab]
+        metrics_path: /stats/prometheus
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_gateway_networking_k8s_io_gateway_name]
+            action: keep
+            regex: waypoint
+          - source_labels: [__meta_kubernetes_pod_ip]
+            action: replace
+            target_label: __address__
+            regex: (.+)
+            replacement: ${1}:15020
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
+
       # Blackbox exporter — SLI de borde, medido FUERA del proceso.
       # Ve las requests abortadas por HTTPChaos, que la instrumentacion
       # de la app no puede ver porque nunca llegan al codigo.

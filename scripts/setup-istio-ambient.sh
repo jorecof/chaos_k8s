@@ -77,5 +77,14 @@ log "Verificando..."
 kubectl get pods -n istio-system
 kubectl get pods -n "${NAMESPACE}" -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.metadata.annotations.ambient\.istio\.io/redirection}{"\n"}{end}'
 
-ok "Istio ambient instalado. Metricas L4 de ztunnel: ver monitoring/prometheus-config.yaml (job 'ztunnel')."
-ok "Siguiente pieza: waypoint proxy por namespace para telemetria L7 (istio_requests_total)."
+# ── 8. Waypoint proxy (telemetria L7) ───────────────────────────────
+# ztunnel es L4-only (bytes, conexiones, mTLS) -- para requests/status
+# code/latencia por servicio (istio_requests_total) hace falta un
+# waypoint. --enroll-namespace lo despliega y etiqueta el namespace
+# completo (istio.io/use-waypoint=waypoint) de una sola vez.
+log "Desplegando waypoint proxy para ${NAMESPACE} (telemetria L7)..."
+istioctl waypoint apply -n "${NAMESPACE}" --enroll-namespace
+
+kubectl get pods -n "${NAMESPACE}" -l gateway.networking.k8s.io/gateway-name=waypoint
+
+ok "Istio ambient instalado. Metricas L4 de ztunnel + L7 del waypoint: ver monitoring/prometheus-config.yaml (jobs 'ztunnel' y 'waypoint')."
