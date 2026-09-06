@@ -86,6 +86,30 @@ data:
             regex: (.+);(.+)
             replacement: ${1}:${2}
 
+      # ztunnel (Istio ambient, G-07) — metricas L4 de la malla: conexiones,
+      # bytes, latencia por par src/dst, sin instrumentar ningun codigo de
+      # aplicacion. Corre como DaemonSet en istio-system, expone Prometheus
+      # en :15020/stats/prometheus (mismo puerto/ruta que los sidecars Envoy).
+      - job_name: ztunnel
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names: [istio-system]
+        metrics_path: /stats/prometheus
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            action: keep
+            regex: ztunnel
+          - source_labels: [__meta_kubernetes_pod_ip]
+            action: replace
+            target_label: __address__
+            regex: (.+)
+            replacement: ${1}:15020
+          - source_labels: [__meta_kubernetes_pod_node_name]
+            target_label: node
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
+
       # Blackbox exporter — SLI de borde, medido FUERA del proceso.
       # Ve las requests abortadas por HTTPChaos, que la instrumentacion
       # de la app no puede ver porque nunca llegan al codigo.
