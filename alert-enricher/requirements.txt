@@ -1,0 +1,8 @@
+setuptools>=69.0.0
+wheel>=0.43.0
+
+fastapi>=0.111.0,<0.112.0
+uvicorn[standard]>=0.30.0,<0.31.0
+httpx>=0.27.0,<0.28.0
+python-json-logger>=2.0.7,<3.0.0
+prometheus-client>=0.20.0,<1.0.0

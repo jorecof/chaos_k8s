@@ -24,6 +24,11 @@ data:
       # error en el log -- las reglas de U2 nunca se cargaron.
       - /etc/prometheus/rules.yaml
 
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets: ["alertmanager-svc:9093"]
+
     scrape_configs:
       # OTel Collector — metricas de aplicacion (puerto 8889)
       #
@@ -175,6 +180,11 @@ data:
       - job_name: chaos-mesh-controller
         static_configs:
           - targets: ["chaos-controller-manager-metrics.chaos-mesh:10080"]
+
+      # alert-enricher — alert_enriched_total{alertname, enriched} (cierra G-11)
+      - job_name: alert-enricher
+        static_configs:
+          - targets: ["alert-enricher-svc:8080"]
 
   rules.yaml: |
     # Reglas reescritas contra el contrato de metricas real (docs/METRICS-CONTRACT.md,

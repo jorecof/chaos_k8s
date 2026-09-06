@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+  namespace: otel-lab
+data:
+  alertmanager.yml: |
+    # Cierra G-11 (no habia Alertmanager en el cluster). group_wait en 10s
+    # per el presupuesto de retardo del diseno (D.3): baja el peor caso de
+    # MTTD de ~91s a ~71s, dejando margen de 49s sobre el objetivo de 120s.
+    global:
+      resolve_timeout: 5m
+
+    route:
+      receiver: alert-enricher
+      group_by: ['alertname', 'exported_job']
+      group_wait: 10s
+      group_interval: 5m
+      repeat_interval: 3h
+
+    receivers:
+      - name: alert-enricher
+        webhook_configs:
+          - url: http://alert-enricher-svc:8080/webhook
+            send_resolved: true

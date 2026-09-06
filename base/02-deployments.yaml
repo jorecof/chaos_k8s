@@ -603,6 +603,119 @@ spec:
   type: ClusterIP
 
 ---
+# ── Alertmanager (cierra G-11) ───────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager
+  namespace: otel-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+        chaos.exclude: "true"
+    spec:
+      containers:
+        - name: alertmanager
+          image: prom/alertmanager:v0.27.0
+          args:
+            - "--config.file=/etc/alertmanager/alertmanager.yml"
+            - "--storage.path=/alertmanager"
+          ports:
+            - containerPort: 9093
+              name: http
+          volumeMounts:
+            - name: alertmanager-config
+              mountPath: /etc/alertmanager
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+      volumes:
+        - name: alertmanager-config
+          configMap:
+            name: alertmanager-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alertmanager-svc
+  namespace: otel-lab
+spec:
+  selector:
+    app: alertmanager
+  ports:
+    - name: http
+      port: 9093
+      targetPort: 9093
+  type: ClusterIP
+
+---
+# ── alert-enricher (cierra G-11: enriquecimiento con trace_id) ───
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alert-enricher
+  namespace: otel-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alert-enricher
+  template:
+    metadata:
+      labels:
+        app: alert-enricher
+        chaos.exclude: "true"
+    spec:
+      containers:
+        - name: alert-enricher
+          image: 192.168.0.20:30500/alert-enricher:1.0.0
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: LOKI_URL
+              value: "http://loki-svc:3100"
+            - name: JAEGER_QUERY_URL
+              value: "http://jaeger-svc:16686"
+            - name: JAEGER_EXTERNAL_URL
+              value: "http://localhost:16686"
+            - name: GRAFANA_EXTERNAL_URL
+              value: "http://localhost:3000"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alert-enricher-svc
+  namespace: otel-lab
+spec:
+  selector:
+    app: alert-enricher
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+
+---
 # ── Prometheus ────────────────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
