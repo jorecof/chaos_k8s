@@ -1,0 +1,41 @@
+[
+  {
+    "label": "E1 (latencia 200ms, service-b)",
+    "n_requests": 1448,
+    "mu_baseline": 0.0,
+    "sigma_baseline": 6.608186004550898e-05,
+    "static_error_episodes": 0,
+    "static_latency_episodes": 1,
+    "static_total": 1,
+    "dynamic_episodes": 0,
+    "mttd_static_error": null,
+    "mttd_static_latency": 74.78200006484985,
+    "mttd_dynamic": null
+  },
+  {
+    "label": "E2-A (error rate 10%, data-service)",
+    "n_requests": 1252,
+    "mu_baseline": 0.0,
+    "sigma_baseline": 6.565321642986127e-05,
+    "static_error_episodes": 1,
+    "static_latency_episodes": 1,
+    "static_total": 2,
+    "dynamic_episodes": 1,
+    "mttd_static_error": 92.20899987220764,
+    "mttd_static_latency": 167.20899987220764,
+    "mttd_dynamic": 137.20899987220764
+  },
+  {
+    "label": "E2-B (error rate 10%, data-service, replica 2)",
+    "n_requests": 1620,
+    "mu_baseline": 0.0,
+    "sigma_baseline": 6.565321642986127e-05,
+    "static_error_episodes": 1,
+    "static_latency_episodes": 0,
+    "static_total": 1,
+    "dynamic_episodes": 0,
+    "mttd_static_error": 77.4670000076294,
+    "mttd_static_latency": null,
+    "mttd_dynamic": null
+  }
+]

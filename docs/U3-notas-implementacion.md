@@ -104,3 +104,31 @@ antes de habilitar el namespace en la malla — ver `scripts/setup-istio-ambient
 No estaba anticipado en el diseño original; es el tipo de detalle de plataforma
 que solo aparece al ejecutar contra el cluster real (issue conocido:
 https://github.com/istio/istio/issues/53750).
+
+## 7. Alertmanager + alert-enricher (G-11) — desplegados y verificados end-to-end
+
+El diseño (§B.3) pedía Alertmanager con un receptor `alert-enricher` propio.
+Se implementó tal cual: `monitoring/alertmanager-config.yaml` (`group_wait:
+10s`, ruteo único por webhook) y `alert-enricher/` (FastAPI, ~150 líneas)
+que busca `trace_id` en Loki con fallback a la API de Jaeger, arma
+deep-links y publica `alert_enriched_total{alertname,enriched}`. Verificado
+con una alerta sintética vía `curl -X POST .../webhook`: el pipeline
+completo (Prometheus ve a Alertmanager activo, Alertmanager rutea al
+enricher, el enricher responde y expone la métrica) funciona; con esa
+alerta sintética el resultado fue `enriched=false` porque no había ningún
+error real de `data-service` en ese instante — comportamiento correcto,
+no una falla.
+
+## 8. Backtesting B.4 — promtool sustituido por replay directo sobre CSV crudos
+
+Ver `docs/backtesting-B4-reduccion-ruido.md` para el detalle completo y el
+hallazgo. Resumen: `promtool` no estaba instalado y los `series-*.json` ya
+volcados no traen el desglose por `outcome` que las reglas nuevas
+necesitan (se capturaron antes del fix de G-08/G-09) — se reimplementó la
+lógica de las reglas en Python sobre los CSV crudos por petición
+(`raw-w*.csv`), que sí tienen el detalle necesario. El resultado no es un
+simple "la regla dinámica gana": la regla correlacionada
+(`AIOpsCorrelatedAnomaly`) solo dispara cuando el fallo *también* eleva la
+latencia, y dos de las tres corridas reales (E1, latencia pura; E2-B,
+error rápido sin colgar la conexión) no cumplen esa condición aunque hay
+un incidente real. Se documenta como hallazgo, no se oculta.
