@@ -24,6 +24,10 @@ from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME, SERVICE_VERSION
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import OTLPMetricExporter
+from opentelemetry.exporter.otlp.proto.grpc._log_exporter import OTLPLogExporter
+from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
+from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
+from opentelemetry._logs import set_logger_provider
 from opentelemetry.exporter.prometheus import PrometheusMetricReader
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.psycopg2 import Psycopg2Instrumentor
@@ -83,6 +87,14 @@ cache_hits = meter.create_counter(
 )
 
 # ── Logging estructurado con trace_id ─────────────────────────────────────────
+# ── LoggerProvider + OTLP exporter (tercer pilar: logs, G-05) ────────────────
+# Mismo Resource y mismo endpoint OTLP que trazas/métricas — el Collector ya
+# tenía el pipeline `logs` armado (receiver otlp), solo faltaba quién emitiera.
+logger_provider = LoggerProvider(resource=resource)
+otlp_log_exporter = OTLPLogExporter(endpoint=OTEL_ENDPOINT, insecure=True)
+logger_provider.add_log_record_processor(BatchLogRecordProcessor(otlp_log_exporter))
+set_logger_provider(logger_provider)
+
 class OtelJsonFormatter(jsonlogger.JsonFormatter):
     def add_fields(self, log_record, record, message_dict):
         super().add_fields(log_record, record, message_dict)
@@ -96,7 +108,11 @@ class OtelJsonFormatter(jsonlogger.JsonFormatter):
 
 handler = logging.StreamHandler()
 handler.setFormatter(OtelJsonFormatter("%(asctime)s %(levelname)s %(name)s %(message)s"))
-logging.basicConfig(level=logging.INFO, handlers=[handler])
+# LoggingHandler reenvía cada log record (via el root logger) al LoggerProvider
+# OTel -> mismo trace_id/span_id ya quedan en el registro por el Formatter de
+# arriba, y OTel los promueve a atributos reales del LogRecord OTLP.
+otel_log_handler = LoggingHandler(level=logging.INFO, logger_provider=logger_provider)
+logging.basicConfig(level=logging.INFO, handlers=[handler, otel_log_handler])
 logger = logging.getLogger("service-b")
 
 # ── Auto-instrumentación ──────────────────────────────────────────────────────
@@ -160,6 +176,7 @@ async def lifespan(app: FastAPI):
     await _catalog_client.aclose()
     tracer_provider.shutdown()
     meter_provider.shutdown()
+    logger_provider.shutdown()
 
 app = FastAPI(
     title="Service B",

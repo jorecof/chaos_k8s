@@ -23,10 +23,42 @@ data:
     datasources:
       - name: Prometheus
         type: prometheus
+        uid: prometheus
         access: proxy
         url: http://prometheus-svc:9090
         isDefault: true
         editable: true
+      - name: Jaeger
+        type: jaeger
+        uid: jaeger
+        access: proxy
+        url: http://jaeger-svc:16686
+        editable: true
+        jsonData:
+          # Boton "View Logs" en el panel de trace -> salta a Loki filtrando
+          # por trace_id (G-05: correlacion log <-> traza, tercer pilar).
+          tracesToLogsV2:
+            datasourceUid: loki
+            spanStartTimeShift: "-1m"
+            spanEndTimeShift: "1m"
+            filterByTraceID: true
+            customQuery: true
+            query: '{job=~".+"} | json | traceid="${__trace.traceId}"'
+      - name: Loki
+        type: loki
+        uid: loki
+        access: proxy
+        url: http://loki-svc:3100
+        editable: true
+        jsonData:
+          derivedFields:
+            # El trace_id ya viaja en el body JSON de cada log (ver
+            # OtelJsonFormatter en cada servicio) -- este regex lo extrae y
+            # arma el link "Ver traza" que salta al datasource Jaeger.
+            - datasourceUid: jaeger
+              matcherRegex: '"traceid":\s*"(\w+)"'
+              name: TraceID
+              url: "${__value.raw}"
 
 ---
 apiVersion: v1

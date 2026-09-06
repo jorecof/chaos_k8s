@@ -234,7 +234,7 @@ spec:
     spec:
       containers:
         - name: service-a
-          image: 192.168.0.20:30500/service-a:1.0.1
+          image: 192.168.0.20:30500/service-a:1.0.2
           ports:
             - containerPort: 8000
               name: http
@@ -311,7 +311,7 @@ spec:
     spec:
       containers:
         - name: service-b
-          image: 192.168.0.20:30500/service-b:1.0.3
+          image: 192.168.0.20:30500/service-b:1.0.4
           ports:
             - containerPort: 8001
               name: http
@@ -390,7 +390,7 @@ spec:
                     operator: DoesNotExist
       containers:
         - name: data-service
-          image: 192.168.0.20:30500/data-service:1.0.3
+          image: 192.168.0.20:30500/data-service:1.0.4
           ports:
             - containerPort: 8002
               name: http
@@ -541,6 +541,66 @@ spec:
       port: 4317
       targetPort: 4317
   type: NodePort
+
+---
+# ── Loki (tercer pilar: logs, G-05) ──────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loki
+  namespace: otel-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+  template:
+    metadata:
+      labels:
+        app: loki
+        chaos.exclude: "true"
+    spec:
+      containers:
+        - name: loki
+          image: grafana/loki:2.9.8
+          args:
+            - "-config.file=/etc/loki/loki-config.yaml"
+          ports:
+            - containerPort: 3100
+              name: http
+          volumeMounts:
+            - name: loki-config
+              mountPath: /etc/loki
+            - name: loki-data
+              mountPath: /loki
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      volumes:
+        - name: loki-config
+          configMap:
+            name: loki-config
+        - name: loki-data
+          emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki-svc
+  namespace: otel-lab
+spec:
+  selector:
+    app: loki
+  ports:
+    - name: http
+      port: 3100
+      targetPort: 3100
+  type: ClusterIP
 
 ---
 # ── Prometheus ────────────────────────────────────────────────────

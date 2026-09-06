@@ -109,6 +109,11 @@ data:
         project: ${env:GCP_PROJECT_ID}
       logging:
         verbosity: normal
+      loki:
+        endpoint: http://loki-svc:3100/loki/api/v1/push
+        default_labels_enabled:
+          exporter: true
+          job: true
 
     service:
       extensions: [health_check, zpages]
@@ -128,7 +133,7 @@ data:
         logs:
           receivers: [otlp]
           processors: [memory_limiter, resource, batch]
-          exporters: [logging]   # Loki pendiente (G-05), fuera de alcance de hoy
+          exporters: [logging, loki]   # G-05 cerrado: tercer pilar -> Loki
       telemetry:
         logs:
           level: info
