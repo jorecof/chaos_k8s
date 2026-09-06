@@ -74,3 +74,33 @@ no de ingeniería:
   que Flow Logs. SCC completo queda fuera de alcance por permisos de organización,
   no por decisión de diseño — documentar la diferencia entre "no lo hicimos" y
   "no pudimos pedirlo".
+
+## 5. Logs (G-05) — OTel SDK real en vez de scraping de stdout
+
+El diseño original (`U3-Diseno-Laboratorio-Integrador.md`, §A.2) asumía que el
+pilar de logs se cerraría alimentando el exporter `loki` del Collector con los
+logs que las apps ya escriben a stdout (`OtelJsonFormatter`, con la clave
+`trace_id`), probablemente vía un receiver `filelog`. En la implementación real
+se tomó un camino distinto y más nativo de OTel: cada servicio ahora corre un
+`LoggerProvider` + `OTLPLogExporter` real (SDK de logs de OTel) en paralelo al
+`StreamHandler` de stdout existente (que se dejó intacto). Los logs llegan al
+Collector por OTLP igual que trazas y métricas, y el Collector los reserializa
+al empujarlos a Loki — en ese formato la clave del trace id es **`traceid`**
+(sin guion bajo), no `trace_id` como en el JSON de stdout. El `derivedField` de
+Grafana y la query `tracesToLogsV2` usan `traceid` por esto — quien lea el
+diseño original y busque `trace_id` en Loki no lo va a encontrar.
+
+No es una regresión: es una implementación más fiel al principio "3 pilares con
+el SDK de OTel" que dejar el pilar de logs dependiendo de scraping de contenedor.
+Se documenta porque el diseño original especificaba el otro mecanismo.
+
+## 6. Service mesh (G-07) — Calico requiere un ajuste de compatibilidad
+
+`istioctl x precheck`/`install` detectó `bpfConnectTimeLoadBalancing=TCP` en la
+`FelixConfiguration` de Calico como incompatible con la redirección in-pod de
+ztunnel (ambos reescriben la misma conexión). Se corrigió con
+`kubectl patch felixconfiguration default --type=merge -p '{"spec":{"bpfConnectTimeLoadBalancing":"Disabled"}}'`
+antes de habilitar el namespace en la malla — ver `scripts/setup-istio-ambient.sh`.
+No estaba anticipado en el diseño original; es el tipo de detalle de plataforma
+que solo aparece al ejecutar contra el cluster real (issue conocido:
+https://github.com/istio/istio/issues/53750).
